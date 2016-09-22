@@ -1,0 +1,18 @@
+
+{{#isQueryParam}}
+	<tr>
+	<td>
+	{{baseName}} {{^required}}(optional){{/required}}{{#required}}(required){{/required}}
+	</td>
+	<td>
+      {{description}} {{#defaultValue}}
+      default: {{{defaultValue}}} {{/defaultValue}}
+      {{#dataFormat}}
+      format: {{{dataFormat}}}{{/dataFormat}}
+      <!-- </div> -->
+       </td>
+	</tr>
+     <!-- <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; -->
+     
+      {{/isQueryParam}}
+      
