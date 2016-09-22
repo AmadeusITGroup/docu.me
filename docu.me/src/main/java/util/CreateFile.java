@@ -1,4 +1,4 @@
-package pegdown;
+package main.java.util;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -28,6 +28,8 @@ import io.swagger.models.properties.RefProperty;
 import io.swagger.models.properties.StringProperty;
 import io.swagger.parser.SwaggerParser;
 import io.swagger.util.Json;
+import main.java.pojo.ModelDetail;
+import main.java.pojo.MyModel;
 
 public class CreateFile {
 
@@ -91,7 +93,7 @@ public class CreateFile {
 		HashMap<String, Object> indexScope = new HashMap<>();
 		
 		List<String> operationId = new ArrayList<>();
-		List<pegdown.Response> responsesList = new ArrayList<>();
+		List<main.java.pojo.Response> responsesList = new ArrayList<>();
 	
 		StringWriter indexWriter = new StringWriter();
 		Map<String, Path> pathMap = swaggerParse().getPaths();
@@ -109,7 +111,7 @@ public class CreateFile {
 					Response resValue = res.getValue();
 					apiScope.put("resName", resName);
 					apiScope.put("resValue", resValue.getDescription());
-					pegdown.Response response = new pegdown.Response();
+					main.java.pojo.Response response = new main.java.pojo.Response();
 					response.setDescription(resValue.getDescription());
 					Property p1 = resValue.getSchema();
 					if (p1 instanceof ArrayProperty) {

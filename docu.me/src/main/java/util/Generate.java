@@ -1,4 +1,4 @@
-package pegdown;
+package main.java.util;
 
 import java.util.Date;
 import java.util.List;

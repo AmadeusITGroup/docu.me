@@ -1,4 +1,4 @@
-package pegdown;
+package main.java.pojo;
 
 public class MyModel {
 
