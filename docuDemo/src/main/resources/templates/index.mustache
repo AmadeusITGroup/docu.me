@@ -13,28 +13,13 @@
   <body>
   <h1>{{{appName}}}</h1>
      
-     {{> header}}
+     {{> templates//header}}
      <div class="container-fluid">
      <h4><a name="__Methods">Methods</a></h4>
   [ Jump to <a href="#__Models">Models</a> ]
   
-  <div class = "list-group">
-  <ol class="list-group">
-  {{#operationId}}
-  <li class="list-group-item"><a href="{{.}}.html">
-  <code><span class="http-method">{{.}}</span> {{path}}</code>
-  </a></li>
-  {{/operationId}}
-</ol>
-
-
-<ul>
-{{#sr}}
-<li>{{.}}</li>
-{{/sr}}
-</ul>
-</div>
-  </div> 
+  {{> templates//index2}}
+  </div> <!-- container-fluid ends-->
   </body>
   </html>
 

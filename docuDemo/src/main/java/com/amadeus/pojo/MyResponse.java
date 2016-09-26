@@ -1,6 +1,6 @@
-package main.java.pojo;
+package com.amadeus.pojo;
 
-public class Response {
+public class MyResponse {
 
 	private String responseNumber;
 	private String description;

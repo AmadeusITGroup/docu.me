@@ -1,4 +1,5 @@
-package main.java.pojo;
+package com.amadeus.pojo;
+
 
 public class MyModel {
 

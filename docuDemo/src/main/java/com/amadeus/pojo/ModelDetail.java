@@ -1,4 +1,5 @@
-package main.java.pojo;
+package com.amadeus.pojo;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,8 @@ public class ModelDetail {
 	
 	
 	public ModelDetail() {
-		// TODO Auto-generated constructor stub
 		
-		modelList = new ArrayList<MyModel>();
+		modelList = new ArrayList<>();
 	}
 
 

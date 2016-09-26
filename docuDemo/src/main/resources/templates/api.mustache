@@ -3,7 +3,7 @@
   <head>
     <title>{{{appName}}}</title>
      <style type="text/css">
-      {{>style.css}}
+      {{>templates//style.css}}
     </style>
     <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,10 +14,10 @@
   </head>
   <body>
   <h1>{{{appName}}}</h1>
-     {{> header}}
+     {{> templates//header}}
      <div class="container-fluid">
      <h4><a name="__Methods">Methods</a></h4>
-  [ Jump to <a href="#__Models">Models</a> ]
+  
    {{#operations}}
    <div class="method"><a name="{{operationId}}"/>
     <div class="method-path">
@@ -43,9 +43,7 @@
 </table>
 Tags : {{tags}}
   <h3 class="field-label">Responses</h3>
-   
-    <h4 class="field-label">{{resName}}</h4>
-       
+     
 {{/operations}}
 
 From res object
