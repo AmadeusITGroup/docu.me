@@ -16,32 +16,13 @@
   <h1>{{{appName}}}</h1>
      {{> header}}
      <div class="container-fluid">
-<b>Title : {{refName}}</b>
-   <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Element</th>
-        <th>Meaning</th>
-        <th>Type</th>
-      </tr>
-      </thead>
-   <tbody>
-  {{#obj}}
- 
-  <tr>
-  <td>{{modelName}}</td>
-  <td>{{modelDesc}}</td>
-  <td>{{modelType}}</td>
-  </tr>
-  
-  {{/obj}}
-  </tbody>
-  <br>
-  </table>
-  
-  the list object 
+     <div class="row">
+      <div class="col-md-4">
+     <h4> <a href="index.html">Index Page</a></h4>
+      </div>
+  <div class="col-md-4">
   {{#List}}
-  <b>Title : {{modelTitle}}</b>
+  <b>Title : <a name="{{modelTitle}}">{{modelTitle}}</a></b>
    <table class="table table-hover">
     <thead>
       <tr>
@@ -64,9 +45,15 @@
   <br>
   </table>
   {{/List}}
-  </div> 
+  </div> <!--col-md-4 -->
+  <div class="col-md-4>
+  </div>
+  </div> <!--row ends -->
+  </div> <!--container-fluid ends -->
   
   </body>
+  
+  
   </html>
 
 

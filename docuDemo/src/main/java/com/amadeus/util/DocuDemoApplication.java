@@ -23,7 +23,7 @@ public class DocuDemoApplication {
 		
 	    
 		cf.createApiTemplate(swaggerFile);
-//		cf.displayModels(swaggerFile);
+		cf.displayModels(swaggerFile);
 		scanner.close();
 
 	}

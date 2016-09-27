@@ -58,9 +58,9 @@ public class Documentation {
 
 	public Swagger parseSwaggerFile(String swaggerFile) {
 
-//		"d:\\Userfiles\\nghate\\Desktop\\smallswg.yml"
+		String swaggerFile1 = "d:\\Userfiles\\nghate\\Desktop\\swg.yml";
 
-		return new SwaggerParser().read(swaggerFile);
+		return new SwaggerParser().read(swaggerFile1);
 	}
 
 	public Map<String, Response> getReponses(Operation op) {
@@ -78,10 +78,12 @@ public class Documentation {
 		HashMap<String, Object> indexScope = new HashMap<>();
 
 		List<String> operationIdList = new ArrayList<>();
+		List<String> modelsList = new ArrayList<>();
 		List<MyResponse> responsesList = new ArrayList<>();
 
 		StringWriter indexWriter = new StringWriter();
 		Map<String, Path> pathMap = parseSwaggerFile(swaggerFile).getPaths();
+		Map<String, Model> modelMap = parseSwaggerFile(swaggerFile).getDefinitions();
 
 		for (Map.Entry<String, Path> entry : pathMap.entrySet()) {
 			Path path = entry.getValue();
@@ -92,7 +94,14 @@ public class Documentation {
 			getOperations(opList, apiScope, responses, simpleRef, responsesList, apiTemplate, operationIdList);
 
 		}
+		
+		for (Map.Entry<String, Model> entry : modelMap.entrySet()) {
+			modelsList.add(entry.getKey());
+		}
+		
+		
 		indexScope.put("operationId", operationIdList);
+		indexScope.put("modelList", modelsList);
 		indexTemplate.execute(indexWriter, indexScope);
 		createFile("index", indexWriter.toString());
 
@@ -173,7 +182,13 @@ public class Documentation {
 					myModel.setModelDesc(property.getDescription());
 					myModel.setModelName(modelName);
 					myModel.setModelType(property.getType());
-					
+					if("ref".equals(property.getType())){
+						RefProperty rp = (RefProperty) property;
+						String simpleRef= rp.getSimpleRef();
+					}
+					else{
+						System.out.println("example: "+property.getExample());
+					}
 					myModelList.add(myModel);
 					
 					modelDetail.setModelList(myModelList);

@@ -11,3 +11,13 @@
 
 
 
+modelList:
+
+<ul class="nav nav-pills" role="tablist">
+ {{#modelList}}
+  <li >
+  <a href="modelnew.html#{{.}}"><span class="http-method">{{.}}</span> {{path}}
+  </a>
+  </li>
+  {{/modelList}}
+</ul>
