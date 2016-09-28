@@ -10,6 +10,4 @@ It is a Maven project so has all required dependencies in the pom.xml.
 You need the following installed and available in your $PATH:
 
 * [Java 7](http://java.oracle.com)
-
-* [Apache maven 3.0.3 or greater](http://maven.apache.org/)
 * [Apache maven 3.0.3 or greater](http://maven.apache.org/)
