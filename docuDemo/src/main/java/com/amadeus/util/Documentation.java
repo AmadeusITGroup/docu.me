@@ -4,14 +4,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
+
+import org.apache.log4j.Logger;
 
 import com.amadeus.pojo.ModelDetail;
 import com.amadeus.pojo.MyModel;
@@ -32,12 +31,15 @@ import io.swagger.parser.SwaggerParser;
 
 public class Documentation {
 
-	String dir = "d:\\Userfiles\\nghate\\Desktop\\genSmall\\models\\";
+	final static Logger logger = Logger.getLogger(Documentation.class);
+
 
 	public void createFile(String filename, String content) {
 		try {
-
-			File file = new File(dir, filename + ".html");
+			
+			 File filedir = new File("Portal\\docs\\");
+			 filedir.mkdirs();
+			File file = new File(filedir, filename + ".html");
 
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
@@ -46,13 +48,13 @@ public class Documentation {
 			fw.close();
 
 			if (file.createNewFile()) {
-				System.out.println("File is created!");
+				logger.info("File is created!");
 			} else {
-				System.out.println(filename + ".html already exists.");
+			logger.info(filename + ".html already exists.");
 			}
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -187,7 +189,7 @@ public class Documentation {
 						String simpleRef= rp.getSimpleRef();
 					}
 					else{
-						System.out.println("example: "+property.getExample());
+//						System.out.println("example: "+property.getExample());
 					}
 					myModelList.add(myModel);
 					

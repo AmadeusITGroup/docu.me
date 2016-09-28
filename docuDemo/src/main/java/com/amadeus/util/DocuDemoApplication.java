@@ -16,7 +16,7 @@ public class DocuDemoApplication {
 	    Scanner scanner = new Scanner(System.in);
 
 	    //  prompt for the user's name
-	    System.out.print("Enter your Swagger.yaml file: ");
+	    System.out.print("Enter your Swagger.yaml file location: ");
 
 	    // get their input as a String
 	    String swaggerFile = scanner.next();

@@ -11,3 +11,8 @@ You need the following installed and available in your $PATH:
 
 * [Java 7](http://java.oracle.com)
 * [Apache maven 3.0.3 or greater](http://maven.apache.org/)
+
+## To start with...
+
+* Run it as a spring boot application, you will be asked for swagger.yaml file location.
+* The output folder contains index file with navigation to different operations and models of the API documentation.
