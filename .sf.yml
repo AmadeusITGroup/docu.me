@@ -1,0 +1,5 @@
+environments: [java-1.8, maven-3.3]
+build: mvn -B clean verify
+reports:
+ mail:
+codequality: on
