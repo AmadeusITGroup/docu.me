@@ -17,10 +17,7 @@ You need the following installed and available in your $PATH:
 
 Go on the project's root folder, then type:
 
-	[indent=0]
-----
 	$ mvn spring-boot:run
-----
 
 ### From Eclipse (Spring Tool Suite)
 
