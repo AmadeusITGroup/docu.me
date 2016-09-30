@@ -33,45 +33,13 @@ public class Documentation {
 
 	final static Logger logger = Logger.getLogger(Documentation.class);
 
-
-	public void createFile(String filename, String content) {
-		try {
-			
-			 File filedir = new File("Portal\\docs\\");
-			 filedir.mkdirs();
-			File file = new File(filedir, filename + ".html");
-
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(content);
-			bw.close();
-			fw.close();
-
-			if (file.createNewFile()) {
-				logger.info("File is created!");
-			} else {
-			logger.info(filename + ".html already exists.");
-			}
-
-		} catch (IOException e) {
-			logger.error(e.getMessage());
-		}
-	}
-
-	public Swagger parseSwaggerFile(String swaggerFile) {
-
-		String swaggerFile1 = "d:\\Userfiles\\nghate\\Desktop\\swg.yml";
-
-		return new SwaggerParser().read(swaggerFile1);
-	}
-
-	public Map<String, Response> getReponses(Operation op) {
+	public  Map<String, Response> getReponses(Operation op) {
 
 		return op.getResponses();
 
 	}
-
-	public void createApiTemplate(String swaggerFile) {
+	
+	public void createIndexApiTemplate(String swaggerFile) {
 		MustacheFactory mf = new DefaultMustacheFactory();
 		Mustache apiTemplate = mf.compile("templates\\api.mustache");
 		Mustache indexTemplate = mf.compile("templates\\index.mustache");
@@ -84,8 +52,8 @@ public class Documentation {
 		List<MyResponse> responsesList = new ArrayList<>();
 
 		StringWriter indexWriter = new StringWriter();
-		Map<String, Path> pathMap = parseSwaggerFile(swaggerFile).getPaths();
-		Map<String, Model> modelMap = parseSwaggerFile(swaggerFile).getDefinitions();
+		Map<String, Path> pathMap = FileUtil.parseSwaggerFile(swaggerFile).getPaths();
+		Map<String, Model> modelMap = FileUtil.parseSwaggerFile(swaggerFile).getDefinitions();
 
 		for (Map.Entry<String, Path> entry : pathMap.entrySet()) {
 			Path path = entry.getValue();
@@ -93,7 +61,7 @@ public class Documentation {
 			Map<String, Response> responses = null;
 			String simpleRef = "noRef";
 
-			getOperations(opList, apiScope, responses, simpleRef, responsesList, apiTemplate, operationIdList);
+			createApiTemplate(opList, apiScope, responses, simpleRef, responsesList, apiTemplate, operationIdList);
 
 		}
 		
@@ -105,11 +73,11 @@ public class Documentation {
 		indexScope.put("operationId", operationIdList);
 		indexScope.put("modelList", modelsList);
 		indexTemplate.execute(indexWriter, indexScope);
-		createFile("index", indexWriter.toString());
+		FileUtil.createFile("index", indexWriter.toString());
 
 	}
 
-	private void getOperations(List<Operation> opList, HashMap<String, Object> apiScope,
+	private void createApiTemplate(List<Operation> opList, HashMap<String, Object> apiScope,
 			Map<String, Response> responses, String simpleRef, List<MyResponse> responsesList, Mustache apiTemplate,
 			List<String> operationIdList) {
 
@@ -149,18 +117,18 @@ public class Documentation {
 
 			StringWriter apiWriter = new StringWriter();
 			apiTemplate.execute(apiWriter, apiScope);
-			createFile(op.getOperationId(), apiWriter.toString());
+			FileUtil.createFile(op.getOperationId(), apiWriter.toString());
 
 		}
 
 	}
 
-	public void displayModels(String swaggerFile) {
+	public void createModelTemplate(String swaggerFile) {
 
 		MustacheFactory mf = new DefaultMustacheFactory();
-		Mustache template = mf.compile("templates//model.mustache");
-		HashMap<String, Object> currscope = new HashMap<>();
-		Map<String, Model> modelMap = parseSwaggerFile(swaggerFile).getDefinitions();
+		Mustache modelTemplate = mf.compile("templates//model.mustache");
+		HashMap<String, Object> modelScope = new HashMap<>();
+		Map<String, Model> modelMap = FileUtil.parseSwaggerFile(swaggerFile).getDefinitions();
 
 		List<ModelDetail> modelDetailsList = new ArrayList<>();
 		List<MyModel> myModelList = null;
@@ -178,7 +146,7 @@ public class Documentation {
 					Property property = modelProp.getValue();
 					myModelList = modelDetail.getModelList();
 					
-					currscope.put("refName", entry.getKey()); 
+					modelScope.put("refName", entry.getKey()); 
 					
 					MyModel myModel = new MyModel();
 					myModel.setModelDesc(property.getDescription());
@@ -199,12 +167,12 @@ public class Documentation {
 			}
 		}
 
-		currscope.put("obj", myModelList);
-		currscope.put("List", modelDetailsList);
+		modelScope.put("obj", myModelList);
+		modelScope.put("List", modelDetailsList);
 		
 		StringWriter writer = new StringWriter();
-		template.execute(writer, currscope);
-		createFile("modelnew", writer.toString());
+		modelTemplate.execute(writer, modelScope);
+		FileUtil.createFile("modelnew", writer.toString());
 
 	}
 
@@ -218,7 +186,7 @@ public class Documentation {
 		currscope.put("obj", modelOb);
 		currscope.put("title", modelTitle);
 		template.execute(writer, currscope);
-		createFile("exampleJson", writer.toString());
+		FileUtil.createFile("exampleJson", writer.toString());
 
 	}
 

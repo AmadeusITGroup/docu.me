@@ -22,8 +22,8 @@ public class DocuDemoApplication {
 	    String swaggerFile = scanner.next();
 		
 	    
-		cf.createApiTemplate(swaggerFile);
-		cf.displayModels(swaggerFile);
+		cf.createIndexApiTemplate(swaggerFile);
+		cf.createModelTemplate(swaggerFile);
 		scanner.close();
 
 	}
