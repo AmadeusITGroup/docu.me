@@ -1,9 +1,10 @@
 Docu.Me - Documentation Portal Generator
 =================================
+Docu.Me is a static site generator for API documentation and is based on the current version of the [Open API specification](https://github.com/OAI/OpenAPI-Specification) f.k.a Swagger.
 
-This repo contains the content and specifications for the [Amadeus Travel Innovation Sandbox](https://sandbox.amadeus.com).  Check out [our site](https://sandbox.amadeus.com) for more details.
+This repo contains the content and specifications for the [Amadeus Travel Innovation Sandbox](https://sandbox.amadeus.com).  
 
-This is a Spring boot project built with [Spring Tool Suite](https://spring.io/tools) (STS) . You can download/clone and import it as an existing project into workspace.
+This is a Spring boot project built with [Spring Tool Suite](https://spring.io/tools) (STS) . You can download/clone the repo and import it as an existing project into workspace.
 It is a Maven project so has all required dependencies in the pom.xml.
 
 ### Prerequisites
@@ -16,7 +17,10 @@ You need the following installed and available in your $PATH:
 
 Go on the project's root folder, then type:
 
-    $ mvn spring-boot:run
+	[indent=0]
+----
+	$ mvn spring-boot:run
+----
 
 ### From Eclipse (Spring Tool Suite)
 
