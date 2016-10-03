@@ -17,6 +17,7 @@ public class DocuDemoApplication {
 
 	    //  prompt for the user's name
 	    System.out.print("Enter your Swagger.yaml file location: ");
+	    
 
 	    // get their input as a String
 	    String swaggerFile = scanner.next();
@@ -25,6 +26,6 @@ public class DocuDemoApplication {
 		cf.createIndexApiTemplate(swaggerFile);
 		cf.createModelTemplate(swaggerFile);
 		scanner.close();
-
+		System.out.print("Look for Portal folderfor index.html ");
 	}
 }
