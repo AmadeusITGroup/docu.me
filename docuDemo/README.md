@@ -4,14 +4,14 @@ Docu.Me is a static site generator for API documentation and is based on the cur
 
 This repo contains the content and specifications for the [Amadeus Travel Innovation Sandbox](https://sandbox.amadeus.com).  
 
-This is a Spring boot project built with [Spring Tool Suite](https://spring.io/tools) (STS) . You can download/clone the repo and import it as an existing project into workspace.
+This is a Spring boot project built with [Spring Tool Suite](https://spring.io/tools/sts/all) (STS) . You can download/clone the repo and import it as an existing project into workspace.
 It is a Maven project so has all required dependencies in the pom.xml.
 
 ### Prerequisites
 You need the following installed and available in your $PATH:
 
-* [Java 7](http://java.oracle.com)
-* [Apache maven 3.0.3 or greater](http://maven.apache.org/)
+* [Java 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* [Apache maven 3.0.3 or greater](http://maven.apache.org/install.html)
 
 ### From terminal
 
