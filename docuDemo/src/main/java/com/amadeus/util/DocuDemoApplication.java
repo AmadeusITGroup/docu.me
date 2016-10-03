@@ -15,7 +15,7 @@ public class DocuDemoApplication {
 		 // create a scanner so we can read the command-line input
 	    Scanner scanner = new Scanner(System.in);
 
-	    //  prompt for the user's name
+	    //  prompt for the file location
 	    System.out.print("Enter your Swagger.yaml file location: ");
 	    
 

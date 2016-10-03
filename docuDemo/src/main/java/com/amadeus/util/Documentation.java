@@ -23,11 +23,9 @@ import io.swagger.models.Model;
 import io.swagger.models.Operation;
 import io.swagger.models.Path;
 import io.swagger.models.Response;
-import io.swagger.models.Swagger;
 import io.swagger.models.properties.ArrayProperty;
 import io.swagger.models.properties.Property;
 import io.swagger.models.properties.RefProperty;
-import io.swagger.parser.SwaggerParser;
 
 public class Documentation {
 
@@ -38,6 +36,8 @@ public class Documentation {
 		return op.getResponses();
 
 	}
+	
+	//Create index template 
 	
 	public void createIndexApiTemplate(String swaggerFile) {
 		MustacheFactory mf = new DefaultMustacheFactory();
@@ -52,7 +52,11 @@ public class Documentation {
 		List<MyResponse> responsesList = new ArrayList<>();
 
 		StringWriter indexWriter = new StringWriter();
+		
+		//Iterate through Paths,then operations in the Swagger file
 		Map<String, Path> pathMap = FileUtil.parseSwaggerFile(swaggerFile).getPaths();
+		
+		//Iterate through Definitions,then models in the Swagger file 
 		Map<String, Model> modelMap = FileUtil.parseSwaggerFile(swaggerFile).getDefinitions();
 
 		for (Map.Entry<String, Path> entry : pathMap.entrySet()) {
@@ -65,6 +69,8 @@ public class Documentation {
 
 		}
 		
+		
+		//Add model's list in index file
 		for (Map.Entry<String, Model> entry : modelMap.entrySet()) {
 			modelsList.add(entry.getKey());
 		}
