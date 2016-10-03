@@ -44,7 +44,7 @@ public class FileUtil {
 
 		String swaggerFile1 = "d:\\Userfiles\\nghate\\Desktop\\swg.yml";
 
-		return new SwaggerParser().read(swaggerFile1);
+		return new SwaggerParser().read(swaggerFile);
 	}
 
 	
