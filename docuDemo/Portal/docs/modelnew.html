@@ -1,0 +1,3779 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+     <style type="text/css">
+      body { 
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+	display: none;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+    </style>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"  rel="stylesheet">
+  <!-- Latest compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+  <h1></h1>
+     <nav class="navbar navbar-default navbar-fixed-top">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+            <a class="navbar-brand" href="#">Amadeus</a>
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Index Page</a></li>
+        </ul>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
+    </div><!-- /.navbar-collapse -->
+</nav>
+     <div class="container-fluid">
+     <div class="row">
+      <div class="col-md-4">
+     <h4> <a href="index.html">Index Page</a></h4>
+      </div>
+  <div class="col-md-4" style="padding-top: 82px;">
+  <div class="modelItem">
+  <h3>Title : <a name="Error">Error</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>status</td>
+  <td></td>
+  <td>integer</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>message</td>
+  <td></td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>more_info</td>
+  <td></td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="ExtremeSearchResponse">ExtremeSearchResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>origin</td>
+  <td><a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a></td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>currency</td>
+  <td><a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>results</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="ExtremeSearchResult">ExtremeSearchResult</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>destination</td>
+  <td>The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city or airport to which the traveler may go, from the provided origin</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>departure_date</td>
+  <td>The date departure at the origin, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd, to go to the above destination</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>return_date</td>
+  <td>The date at which the flight from the destination to the origin will depart from the destination. The date is in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd, in the local date of the origin. This field will not be present in the response if the one-way request parameter is set to true.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>price</td>
+  <td>The minimum total price for one adult passenger for a round trip from the origin to the destination and back. Always a string, formatted correctly for the provided currency</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>airline</td>
+  <td>The 2 character alphanumeric <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the airline that is responsible for selling the traveler this flight - also known as the Validating Carrier. Airlines are specified using <a href="https://en.wikipedia.org/wiki/Airline_codes"><a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a>s</a></td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="LowFareSearchResponse">LowFareSearchResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>currency</td>
+  <td><a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>results</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="LowFareSearchResult">LowFareSearchResult</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>itineraries</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>fare</td>
+  <td>The price and fare information which applies to all itineraries in this response</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FlightSearchItinerary">FlightSearchItinerary</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>outbound</td>
+  <td>The bound container for the flight information for bringing the traveler from the origin airport to the destination airport</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>inbound</td>
+  <td>The bound container for the flight information for bringing the traveler from the destination airport to the origin airport</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FlightSearchBound">FlightSearchBound</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>flights</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>duration</td>
+  <td>The duration of this bound, including layover time, expressed in the format hh:mm</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FlightSearchSegment">FlightSearchSegment</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>departs_at</td>
+  <td>Date and time of departure at the origin, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>  date format yyyy-MM-ddTHH:mm in the local time at the origin airport</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>arrives_at</td>
+  <td>Date and time of departure at the destination, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>  date format yyyy-MM-ddTHH:mm in the local time at the destination airport</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>origin</td>
+  <td>Information on the origin airport, from which this flight departs</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>destination</td>
+  <td>Information on the destination airport, at which this flight arrives</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>marketing_airline</td>
+  <td>The 2 character alphanumeric <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the airline that is responsible for the traveller this flight</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>operating_airline</td>
+  <td>The 2 character alphanumeric <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the airline that is providing the aircraft for this flight. Note that in the USA, if the marketing and operating carrier are different, you are legally required to display this in your application.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>flight_number</td>
+  <td>The identifier that the airline uses for this flight route. This is most commonly - but not always - a number. When combined with the airline and date, it identifies an individual aircraft's flight</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>aircraft</td>
+  <td>The <a href="http://www.jacanaent.com/JacTechLib/07Aviation/AircraftTypeCodes.txt">IATA aircraft type designator</a> of aircraft that will be used for this flight</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>booking_info</td>
+  <td>A booking information object with additional details about how the quality of this flight at the given price.</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Airport">Airport</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>airport</td>
+  <td>The 3 character <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA airport code</a> of the airport in question for this flight</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>terminal</td>
+  <td>The terminal identifier at which this flight will arrive or depart in the given airport</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FlightSearchBookingInfo">FlightSearchBookingInfo</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>travel_class</td>
+  <td>The cabin class offered on this flight. An enumeration that will read either ECONOMY, PREMIUM_ECONOMY, BUSINESS or FIRST</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>cabin_code</td>
+  <td>A single character encoding of the travel_class, generally only available on responses from affiliates.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>booking_code</td>
+  <td>The Reservation Booking Designator code that determines the quality and terms of the flight offered for the given price. A single letter from A..Z</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>seats_remaining</td>
+  <td>The minimum number of seats that are still available for this price at the time of search. If the value is a 4 or above, there are often more than this number of seats still available.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>fare_family</td>
+  <td>Enumeration of the type of fare which this airline is providing, eg. VALUE. This is generally only available for affiliate responses.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>fare_basis</td>
+  <td>See https://en.wikipedia.org/wiki/Fare_basis_code for the fare being offered.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FlightSearchPrice">FlightSearchPrice</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>total_price</td>
+  <td>The total price for all the requested passengers for this flight</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>price_per_adult</td>
+  <td>The per-passenger fare for each adult on this flight</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>price_per_child</td>
+  <td>The per-passenger fare for each child on this flight</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>price_per_infant</td>
+  <td>The per-passenger fare for each infant on this flight</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>restrictions</td>
+  <td>The restrictions associated with this fare</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FareRestrictions">FareRestrictions</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>refundable</td>
+  <td>Indicates whether this fare is refundable under some circumstances. Note that a refund charge or penalty may apply</td>
+  <td>boolean</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>change_penalties</td>
+  <td>Indicates whether this fare allows the itinerary to be changed under some circumstances. Note that a change fee or penalty may apply</td>
+  <td>boolean</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Fare">Fare</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>total_fare</td>
+  <td>The total price, including taxes per-passenger, for this passenger type, for this itinerary. Always a string, formatted correctly for the given currency</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>tax</td>
+  <td>The tax applied per-passenger, for this passenger type, for this itinerary. Some of this tax may be refundable in the event of cancellation.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="AirportAutocompleteResponse">AirportAutocompleteResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>value</td>
+  <td>The 3 letter IATA location code of the given city or airport. You can use this as an input parameter for a flight low-fare or inspiration search.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>label</td>
+  <td>The name of this airport, in UTF-8 format, prefixed with the name of the city if it is not already incorporated in the name of the airport, and appended with the location's <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> (as in value), enclosed in square brackets.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="RailStationAutocompleteResponse">RailStationAutocompleteResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>value</td>
+  <td>The unique identifier of the station. You can use this as an input parameter for a rail search.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>label</td>
+  <td>The full name of the station, in UTF-8 format.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="LocationResponse">LocationResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>city</td>
+  <td>Information for any <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city which corresponds to the provided code</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>airports</td>
+  <td>Information for any IATA airport located in the provided <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city or which corresponds to the provided code</td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="CityInformation">CityInformation</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>code</td>
+  <td>The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of this city. If you intend to make a flight search from the output of this call, I recommend using this as your input parameter as it generally gives the best results.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>geonames_ID</td>
+  <td>The ID of this city in the open-sourced Geonames DB</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>name</td>
+  <td>The name of this city, in English</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>state</td>
+  <td>The state code of this city, if applicable</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>country</td>
+  <td>The <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country code</a> in which this city can be found.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>location</td>
+  <td>This city's approximate geolocation. The exact center of a city is often not an exact location, so be aware that this might not be exact.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>timezone</td>
+  <td>The <a href="http://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Olson format</a> name of the timezone in which this city is located</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>currency</td>
+  <td>The ISO-4217 currency code of the official local currency at this location</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="AirportInformation">AirportInformation</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>code</td>
+  <td>The 3 letter IATA airport code of this given airport. You can use this as an input parameter for a low-fare flight search, to get more specific results than the city code, but inspiration search works best using the city code.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>name</td>
+  <td>The name of this airport, in UTF-8 format</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>city_code</td>
+  <td>The three letter <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city of the city in which this airport is located.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>city_name</td>
+  <td>The English name of the city in which this airport is located</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>state</td>
+  <td>The state code of this city, if applicable</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>country</td>
+  <td>The <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country code</a> in which this city can be found.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>location</td>
+  <td>  An object containing the longitude and latitude of the given airport.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>aircraft_movements</td>
+  <td>The annual number of aircraft movements at that airport.</td>
+  <td>integer</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>timezone</td>
+  <td>The <a href="http://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Olson format</a> name of the timezone in which this airport is located</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="NearestAirport">NearestAirport</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>airport</td>
+  <td>The 3 letter IATA airport code of this given airport. You can use this as an input parameter for a low-fare flight search, to get more specific results than the city code, but inspiration search works best using the city code.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>airport_name</td>
+  <td>The name of this airport, in UTF-8 format</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>city</td>
+  <td>The three letter <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city of the city in which this airport is located.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>city_name</td>
+  <td>The English name of the city in which this airport is located</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>state</td>
+  <td>The state code of this city, if applicable</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>distance</td>
+  <td>The distance in km from the point specified in the query, to this location</td>
+  <td>number</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>location</td>
+  <td>  An object containing the longitude and latitude of the given airport.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>aircraft_movements</td>
+  <td>The annual number of aircraft movements at that airport.</td>
+  <td>integer</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>timezone</td>
+  <td>The <a href="http://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Olson format</a> name of the timezone in which this airport is located</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Geolocation">Geolocation</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>latitude</td>
+  <td>The north-south coordinate of this location, in decimal degrees, between -90 and 90</td>
+  <td>number</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>longitude</td>
+  <td>The east-west coordinate of this location, in decimal degrees, between -180 and 180</td>
+  <td>number</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>google_maps_link</td>
+  <td>For YapQ APIs only  - a link to a google map rendering of this location.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="HotelSearchResponse">HotelSearchResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>results</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="HotelPropertyResponse">HotelPropertyResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>property_code</td>
+  <td>The 8 character property code of this given hotel. The first 2 characters of this code are the chain code that can be specified in the input. The remaining elements are proprietary to each hotel chain.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>property_name</td>
+  <td>The name of this hotel.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>location</td>
+  <td></td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>address</td>
+  <td></td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>total_price</td>
+  <td>The lowest price of a stay, from the given check in date to the given check out date.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>min_daily_rate</td>
+  <td>The lowest price per day that the hotel offers between the given check-in and check-out dates. Extra taxes may apply to this rate.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>contacts</td>
+  <td>An array of contact objects to tell the user how to contact the hotel. Typically includes a phone and fax number</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>amenities</td>
+  <td>An array of amenity objects to the user what facilities this hotel might provide, such as a pool or parking. 
+If this array is empty, it does not necessarily mean that there are no amenities available at this hotel, it could also mean that the hotel does not list their amenities in our search!
+</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>awards</td>
+  <td>An array of hotel award objects to give the user an expectation of the service quality at this hotel. This can be used to indicate, for example, the star rating of a hotel. If this array is empty, it does not necessarily mean that the hotel has no awards, it could simply mean that they didn't tell us about them!</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>images</td>
+  <td>A selection of image objects, showing pictures of the hotel building, the entrance or some rooms, to give an indication of what to expect at this hotel. Note that redistribution of images outside Amadeus products requires licensing from our image providers: Leonardo and Ice Portal. Thus image links are returned for whitelisted Amadeus users only.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>rooms</td>
+  <td>Information on currently available rooms at this hotel.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>more_rooms_at_this_hotel</td>
+  <td>Provides a ready-to-use link to make a follow up request to find more available rooms at this hotel</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Address">Address</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>line1</td>
+  <td>The first line of this place's address. Generally represents the basic street address.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>city</td>
+  <td>The town or city in which place is located.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>region</td>
+  <td>The state or region code in which the place is located.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>postal_code</td>
+  <td>The postal or zip code of this address.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>country</td>
+  <td>The <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country code</a> country code of this address.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Contact">Contact</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>type</td>
+  <td>The method of contact, such as phone or fax.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>purpose</td>
+  <td>The reason or channel of that contact method. For example&colon; HOME, EMERGENCY, MOBILE.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>detail</td>
+  <td>How that contact should be used, eg. a phone number</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Amenity">Amenity</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>amenity</td>
+  <td><a href="hotels-api-supported-amenities-filter">The amenity code</a></td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>ota_code</td>
+  <td>The <a href="http://www.opentravel.org/">Open Travel Alliance</a> <a href="ota-hotel-amenity-code-table">Hotel Amenities Code</a> for this amenity.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>description</td>
+  <td>The decoded text description for this amenity code, where available.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Award">Award</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>provider</td>
+  <td>The organization that issued the award. For example&colon;. Local Star Rating, AAA.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>rating</td>
+  <td>The level of the award that was awarded on the provider's scale. For example&colon; 4 or RECOMMENDED.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Image">Image</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>category</td>
+  <td>The enumerated category of this image type. Common values include EXTERIOR, GUEST_ROOM, SUITE, LOBBY, RESTAURANT, LOUNGE, LOGO, MAP, MISC and UNKNOWN.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>width</td>
+  <td>The pixel width of the image at the provided URL.</td>
+  <td>integer</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>height</td>
+  <td>The pixel height of the image at the provided URL.</td>
+  <td>integer</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>url</td>
+  <td>The URL of the hotel image of this given category and size, for display.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="HotelRoom">HotelRoom</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>booking_code</td>
+  <td>The booking code identifies a product at the hotel. It can be used to book a room.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>room_type_code</td>
+  <td>A 3-letter code to identify a specific room type.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>rate_plan_code</td>
+  <td>A 3 letter code to designate different rates base on traveler type.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>total_amount</td>
+  <td>The total price of staying in this room from the given check-in date to the given check-out date</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>rates</td>
+  <td>The total price of staying in this room from the given check-in date to the given check-out date</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>descriptions</td>
+  <td>An array of description strings describing room and rate types features</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>room_type_info</td>
+  <td></td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>rate_type_code</td>
+  <td>The unique rate code used by the hotel chain to price this room's rate</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="RoomInfo">RoomInfo</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>bed_type</td>
+  <td>The type of bed or beds in the room, such as Double, or King.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>number_of_beds</td>
+  <td>The number of beds in the room. May be an integer or a free-text dessciption, as provided by the hotel</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>room_type</td>
+  <td>Free-text indicating the type of room - such Smoking, No Smoking, Suite, etc..</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Amount">Amount</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>currency</td>
+  <td><a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>amount</td>
+  <td>Total amount in the given currency, formatted appropriately. For example&colon; 194.99</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="PeriodRate">PeriodRate</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>start_date</td>
+  <td>The start date of this rate, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>end_date</td>
+  <td>The date on which this rate ends, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>currency</td>
+  <td><a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code of this rate.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>price</td>
+  <td>Total amount in the given currency per day of this rate, formatted appropriately. For example&colon; 194.99.</td>
+  <td>number</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Link">Link</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>href</td>
+  <td>Hyperlink reference URL to the target</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="CarSearchResponse">CarSearchResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>results</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="CarSearchResult">CarSearchResult</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>provider</td>
+  <td>Details of the car company offering this rental.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>location</td>
+  <td>This car rental company's approximate geolocation. The exact quality of this parameter depends on the provider but it's usually quite accurate.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>airport</td>
+  <td>The exact quality of this parameter depends on the provider but it's usually quite accurate.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>cars</td>
+  <td>Further details about each of the vehicles offered by this car rental provider.</td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Company">Company</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>company_code</td>
+  <td>The Amadeus 2-character company code of this provider.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>company_name</td>
+  <td>The long name of the provider corresponding to the above code.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Vehicle">Vehicle</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>vehicle_info</td>
+  <td>More information about the type of vehicle on offer.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>rates</td>
+  <td>Rates that will be applied during the duration of the car rental requested. These rates are generally not inclusive of tax and are used by the car rental company to compute the total cost at the end of the rental period.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>estimated_total</td>
+  <td>The estimated total cost of the rental given the rental period and location provided, including all mandatory taxes and charges, and using a default set of rental options and restrictions defined by the car company.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>image</td>
+  <td>An image to give an indication of what to expect when renting this vehicle.</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="VehicleInfo">VehicleInfo</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>acriss_code</td>
+  <td>The 4 letter <a href="http://en.wikipedia.org/wiki/ACRISS_Car_Classification_Code">ACRISS code</a> that defines the properties of vehicle being rented.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>category</td>
+  <td>The decoded ACRISS vehicle category (For example&colon; Economy, Luxury, Standard).</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>type</td>
+  <td>The decoded ACRISS vehicle type, to let you know what kind of vehicle this is (For example&colon; Van, SUV, Pickup).</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>transmission</td>
+  <td>The decoded ACRISS transmission type, to let you know if this vehicle is Automatic or Manual Transmission (stick-shift).</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>air_conditioning</td>
+  <td>The decoded ACRISS air_conditioning information, to let you know if this vehicle has air conditioning</td>
+  <td>boolean</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>fuel</td>
+  <td>The decoded ACRISS fuel type, to let you know if this vehicle is hybrid, electric, etc.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Rate">Rate</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>type</td>
+  <td>The type or applicability period of rate being applied. For example&colon; DAILY, WEEKLY, WEEKEND.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>price</td>
+  <td>The long name of the provider corresponding to the above code.</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="ExtensiveTrainSearchResponse">ExtensiveTrainSearchResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>results</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="ExtensiveTrainSearchResult">ExtensiveTrainSearchResult</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>origin</td>
+  <td>Station object with details about the origin station for this search.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>destination</td>
+  <td>Station object with details about the destination station for this search.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>itineraries</td>
+  <td>Routes from the origin to the destination.</td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="TrainSearchItinerary">TrainSearchItinerary</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>trains</td>
+  <td>The array of trains that will be required to complete the given itinerary. Since the cache currently only contains direct itineraries, there will be only one object in this array.</td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Station">Station</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>station_code</td>
+  <td>ID of this rail station</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>station_name</td>
+  <td>Full name of this rail station.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="TrainSearchSegment">TrainSearchSegment</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>departs_at</td>
+  <td>The <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date-time of the train's departure in the local time zone of the departure station, in the format YYYY-MM-DDTHH:mm.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>arrives_at</td>
+  <td>The <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date-time of the train's arrival in the local time zone of the arrival station, in the format YYYY-MM-DDTHH:mm.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>departure_station</td>
+  <td>The station object representing the station at which the passenger should board this train in order to complete this part of the itinerary.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>arrival_station</td>
+  <td>The station object representing the station at which the passenger should disembark this train in order to complete this part of the itinerary.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>marketing_company</td>
+  <td>The name of the train company selling this train journey. This is the name you should see printed on your ticket.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>operating_company</td>
+  <td>The name of the train company operating this train journey. This is the name you should see written on the train.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>train_number</td>
+  <td>The identifying number of this train service. Usually the marketing company will only operate on train per day with this train number.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>train_type</td>
+  <td>The type of train that you may expect for this journey. For example&colon; InterCity, Regional...</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>prices</td>
+  <td>Possible pricing for this train journey.</td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="TrainSearchPricing">TrainSearchPricing</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>service_class</td>
+  <td>A standard enumeration of the type of seat, bed or service the passenger can expect.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>booking_code</td>
+  <td>A code the identifies the type of booking class being used.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>accomodation</td>
+  <td>A standard enumeration of the mode in which the passenger is accommodated. For example&colon; SEAT, BERTH, CABIN, CARGO, UNKNOWN.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>total_price</td>
+  <td>The total cost of this service.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>rate</td>
+  <td>A rate identifying type of charge being levied for this service, and the restrictions that apply.</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="RestrictedRate">RestrictedRate</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>rate_code</td>
+  <td>The unique identifier of this rate.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>rate_name</td>
+  <td>The name used by the company to describe this rate.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>restrictions</td>
+  <td>An enumeration of the type of restrictions associated with this rate.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="RailStationResponse">RailStationResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>id</td>
+  <td>The ID of this station, as provided in the request</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>type</td>
+  <td>The type of code to which this station refers. Some codes represent agglomeration of multiple stations, whereas others represent an individual station. Possible values are AGGLOMERATION and STATION.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>name</td>
+  <td>The name of this station.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>short_name</td>
+  <td>The shortened name of this station (20 characters max) which may be used in certain cases.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>country</td>
+  <td>The <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country code</a> in which this station can be found.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>location</td>
+  <td>This stations's approximate geolocation. </td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>traffic</td>
+  <td>An indication of the level of Intercity traffic passing through this station.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="TrainScheduleSearchResponse">TrainScheduleSearchResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>results</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="TrainScheduleSearchResult">TrainScheduleSearchResult</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>origin_station_id</td>
+  <td>Station ID of the origin station for this search.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>date</td>
+  <td>The search date provided in the input.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>services</td>
+  <td>Array to describe service to the destinations.</td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="RailService">RailService</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>destination_station_id</td>
+  <td>ID of the destination rail station.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>services</td>
+  <td>An array of departure times at which trains depart from the origin station to this destination station. Times are in the ISO 8601 YYYY-MM-DDTHH:mm format.</td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="TravelRecordResponse">TravelRecordResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>record_locator</td>
+  <td>6 character identifier of this travel record on the Amadeus system.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>header</td>
+  <td>Summarized metadata on the record that has been retrieved.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>messages</td>
+  <td>Functional or technical messages associated with the retrieval of this travel record.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>travelers</td>
+  <td>Information about each traveler who may be included as part of this travel record.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>reservation</td>
+  <td>Details about the itineraries that have been reserved as part of this travel record.</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="TravelRecordHeader">TravelRecordHeader</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>creation_office_id</td>
+  <td>9 character Amadeus office identifier of the travel agency that created this travel record. An office ID may be considered as equivalent to a <a href="https://en.wikipedia.org/wiki/Pseudo_city_code">PCC</a> in other reservation systems.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>owner_office_id</td>
+  <td>9 character Amadeus office identifier of the travel agency that owns and manages this travel record.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Message">Message</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>severity</td>
+  <td>An indicator of the importance of this message as part of the flow. May be ERROR or INFO.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>type</td>
+  <td>An indicator of the source or type of message that has been generated. May be USER or SYSTEM.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>message</td>
+  <td>A free text message that provides more information.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Traveler">Traveler</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>id</td>
+  <td>Uniquely identifies this traveler in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>last_name</td>
+  <td>The last name of the passenger, as entered by the agent, in upper-case. May include suffixes. For example&colon; THACKSTON, KING III, LU.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>first_name</td>
+  <td>The first name of the passenger, as entered by the agent, in upper-case. May include middle names, initials or prefixes. The total combined length of the first name and last name must be between 2 and 57 characters. For example&colon; ALEXANDRA, JOSE-ANTONIO MR, ELAINE T DR.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>traveler_type</td>
+  <td>Enumeration of the type of traveler. May be ADULT or CHILD.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>infant</td>
+  <td>Details on any infant that may be sharing this seat with this traveler. Absence of this key indicates that no infant is traveling with this passenger. An empty object at this key indicated an anonymous infant is traveling with the passenger.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>date_of_birth</td>
+  <td>An <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date indicating the birth date of the traveler, as provided by the agent. For example&colon; 1972-02-19.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>contacts</td>
+  <td>Details on how to contact this traveler. At least one traveler in a travel-record will have a contact element.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>frequent_traveler_cards</td>
+  <td>Information regarding loyalty cards that the traveler would like to use to accrue benefits as part of this travel record. Where possible, the system will attempt to validate that the frequent traveler card is eligible for use in the context of this travel record.</td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Infant">Infant</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>last_name</td>
+  <td>The last name of the infant, as entered by the agent, in upper-case. If no value is provided, the last name of the infant can generally be assumed to be the same as that of the traveler which whom they are associated.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>first_name</td>
+  <td>The first name of the infant, as entered by the agent, in upper-case. May include middle names, initials or prefixes.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>date_of_birth</td>
+  <td>An optional <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date indicating the birth date of the infant, as provided by the agent. For example&colon; 1972-02-19.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FrequentTravelerCard">FrequentTravelerCard</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>issuer_type</td>
+  <td>The type of organization that issued the card. This is an enumeration, possible values are AIRLINE, HOTEL_CHAIN, RENTAL_CAR_PROVIDER, RAILWAY.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>company_code</td>
+  <td>The identifying code of the issuer, within the context of its type. For example&colon; BA (and if the issuer type is AIRLINE, this indicates BA=British Airways).</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>card_number</td>
+  <td>The identifying number (or string) marked on the card. For example&colon; 12345678.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Reservation">Reservation</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>flight_tickets</td>
+  <td></td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>unticketed_flights</td>
+  <td>The flight itineraries in this reservation that have not yet been ticketed or priced.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>cars</td>
+  <td>The rental cars reserved.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>hotels</td>
+  <td>The hotel room bookings in this reservation.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>others</td>
+  <td>Free text information to represent other travel items that may be considered part of the travel itinerary in this reservation.</td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FlightTicket">FlightTicket</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>id</td>
+  <td>Uniquely identifies this ticket in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>price</td>
+  <td>The cost of this ticket.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>traveler_ids</td>
+  <td>Traveler identifiers to indicate the travelers to whom this ticket applies.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>flight_bounds</td>
+  <td>The flight itinerary for this ticket.</td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FlightReservationBound">FlightReservationBound</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>flights</td>
+  <td>The individual flights that make up this itinerary. These flights are presented in the order required to fly from the origin to the destination, and the array of flights represents a connection.</td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FlightReservationSegment">FlightReservationSegment</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>id</td>
+  <td>Uniquely identifies this flight in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>departs_at</td>
+  <td>Date and time of departure at the origin, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>  date format yyyy-MM-ddTHH:mm in the local time at the origin airport</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>arrives_at</td>
+  <td>Date and time of departure at the destination, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>  date format yyyy-MM-ddTHH:mm in the local time at the destination airport</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>origin</td>
+  <td>Information on the origin airport, from which this flight departs</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>destination</td>
+  <td>Information on the destination airport, at which this flight arrives</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>marketing_airline</td>
+  <td>The 2 character alphanumeric <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the airline that is responsible for the traveller this flight</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>operating_airline</td>
+  <td>The 2 character alphanumeric <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the airline that is providing the aircraft for this flight. Note that in the USA, if the marketing and operating carrier are different, you are legally required to display this in your application.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>flight_number</td>
+  <td>The identifier that the airline uses for this flight route. This is most commonly - but not always - a number. When combined with the airline and date, it identifies an individual aircraft's flight</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>traveler_ids</td>
+  <td>Traveler identifiers to indicate the travelers to whom this ticket applies.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>booking_info</td>
+  <td>A booking information object with additional details about how the quality of this flight at the given price.</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FlightReservationBookingInfo">FlightReservationBookingInfo</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>travel_class</td>
+  <td>The cabin class offered on this flight. An enumeration that will read either ECONOMY, PREMIUM_ECONOMY, BUSINESS or FIRST</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>booking_code</td>
+  <td>The Reservation Booking Designator code that determines the quality and terms of the flight offered for the given price. A single letter from A..Z</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>airline_record_locator</td>
+  <td>6 character identifier of this travel record on the airline's system. May be the same as the global record locator.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>status</td>
+  <td>An enumeration to represent the reservation status for this seat on this flight. For example&colon; CONFIRMED, CANCELLED, RESCHEDULED, FLIGHT_CANCELLED, WAITLISTED.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="CarReservation">CarReservation</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>id</td>
+  <td>Uniquely identifies this car rental reservation in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>pick_up</td>
+  <td>Date on which the car rental will be collected from the car rental location. <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-ddTHH.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>drop_off</td>
+  <td>Date at which the car rental will end and the car will be returned to the rental location. <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-ddTHH.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>provider</td>
+  <td>Details of the car company offering this rental.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>origin</td>
+  <td>This car rental company office location ID. If this is an airport location, this will be the airport's <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>. Otherwise, this is a custom value provided by the car rental provider.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>car</td>
+  <td>A car information object giving further details about the vehicle provided for rental.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>traveler_ids</td>
+  <td>Traveler identifiers to indicate the travelers to whom this car rental applies. Generally, only drivers of the vehicle will be marked in this array.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>booking_info</td>
+  <td>Additional details the status of this car rental reservation.</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="CarReservationBookingInfo">CarReservationBookingInfo</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>reservation_code</td>
+  <td>The identifier of this reservation in the car rental provider's system. This should be provided at the rental office to identify your reservation.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>status</td>
+  <td>An enumeration to represent the reservation status for this car rental. For example&colon; CONFIRMED, CANCELLED, REQUESTED, REJECTED, PENDING_CANCELLATION, PENDING_CONFIRMATION.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="HotelReservation">HotelReservation</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>id</td>
+  <td>Uniquely identifies this hotel room reservation in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>check_in</td>
+  <td>Date on which the guest will begin their stay in the hotel, in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>check_out</td>
+  <td>Date on which the guest will end their stay in the hotel, in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>property_code</td>
+  <td>The 8 character property code of this given hotel. The first 2 characters of this code are the chain code that can be specified in the input. The remaining elements are proprietary to each hotel chain.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>property_name</td>
+  <td>The name of this hotel.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>total_price</td>
+  <td>The total price of this stay, from the given check in date to the given check out date.</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>traveler_ids</td>
+  <td>Traveler identifiers to indicate the travelers to whom this hotel room reservation applies. Generally all non-infant room occupants will be marked in this array.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>booking_info</td>
+  <td>Additional details and status of this hotel room reservation.</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="HotelReservationBookingInfo">HotelReservationBookingInfo</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>reservation_code</td>
+  <td>The identifier of this reservation in the hotel chain's system. This should be provided at the check-in desk to identify your reservation.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>status</td>
+  <td>An enumeration to represent the reservation status for this hotel reservation. For example&colon; CONFIRMED, CANCELLED, REQUESTED.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="OtherReservation">OtherReservation</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>id</td>
+  <td>Uniquely identifies this other reservation in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>date</td>
+  <td>Date on which this other reservation will begin, in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>location</td>
+  <td>A 3 letter <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> that identifies where this other reservation will occur.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>description</td>
+  <td>A free-text description of this reservation, that will inform you of its functional meaning.</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>traveler_ids</td>
+  <td>Traveler identifiers to indicate the travelers to whom this reservation applies.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>booking_info</td>
+  <td>The status of this reservation.</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="OtherReservationBookingInfo">OtherReservationBookingInfo</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>status</td>
+  <td>An enumeration to represent the reservation status for this hotel reservation. For example&colon; CONFIRMED, CANCELLED, REQUESTED, REJECTED, PENDING_CANCELLATION, PENDING_CONFIRMATION.</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="AffiliateSearchResponse">AffiliateSearchResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>meta</td>
+  <td>Meta data about the results</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>results</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="AffiliateSearchMeta">AffiliateSearchMeta</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>carriers</td>
+  <td>A map of meta information for each of the airlines involved in the response</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="CarrierInfo">CarrierInfo</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>logos</td>
+  <td>Logos of the airline in a variety of sizes</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>name</td>
+  <td>Display name of the airline</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Logos">Logos</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>small</td>
+  <td>URL to logo of resolution 27x27px</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>medium</td>
+  <td>URL to logo of resolution 60x60px</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="AffiliateSearchResult">AffiliateSearchResult</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>outbound</td>
+  <td>The flight from the origin to the destination</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>inbound</td>
+  <td>The return flight from the destination to the origin</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>fare</td>
+  <td>The price and fare information which applies to all itineraries in this response</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>payout</td>
+  <td>Details of the amount of payout that the affiliate will received per click or if this flight is sold</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>airline</td>
+  <td>The 2 character alphanumeric <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the airline that is selling this result</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>deep_link</td>
+  <td>A link to the page from which this result can be purchased from the affiliate</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="AffiliatePayout">AffiliatePayout</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>CPC</td>
+  <td>See https://en.wikipedia.org/wiki/Pay_per_click for commission earned when the provided deep link is clicked</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>CPA</td>
+  <td>See https://en.wikipedia.org/wiki/Cost_per_action for commission earned for a given action from the provided deep link</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>CPS</td>
+  <td>See https://en.wikipedia.org/wiki/Pay_per_sale for commission earned as a result of a booking made from the provided deep link</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="AffiliateFlightSearchPrice">AffiliateFlightSearchPrice</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>currency</td>
+  <td>The <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> code applicable to this fare</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>total_price</td>
+  <td>The total price for all the requested passengers for this flight</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>price_per_adult</td>
+  <td>The per-passenger fare for each adult on this flight</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>price_per_child</td>
+  <td>The per-passenger fare for each child on this flight</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>price_per_infant</td>
+  <td>The per-passenger fare for each infant on this flight</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>restrictions</td>
+  <td>The restrictions associated with this fare</td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>fees</td>
+  <td>The fees that apply in addition to the total price of this fare</td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="Fees">Fees</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>service_fees</td>
+  <td>The cost of any required service fees in addition to the total price</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>creditcard_fees</td>
+  <td>The cost of any fees for common credit cards, such as Visa or Mastercard, in addition to the total price</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="TopDestinationsSearchResponse">TopDestinationsSearchResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>period</td>
+  <td>The date period, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format YYYY-MM or YYYY</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>origin</td>
+  <td><a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a></td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>results</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="TopDestinationsSearchResult">TopDestinationsSearchResult</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>destination</td>
+  <td>The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city or airport to which the traveler may go, from the provided origin</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>flights</td>
+  <td>Number of flights from origin to destination during the search period provided</td>
+  <td>integer</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>travelers</td>
+  <td>Number of passengers from origin to destination during the search period provided</td>
+  <td>integer</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="TopSearchesSearchResponse">TopSearchesSearchResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>market</td>
+  <td>Country code</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>period</td>
+  <td>The date period, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format YYYY-MM or YYYY</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>origin</td>
+  <td><a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a></td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>destination</td>
+  <td><a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a></td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>results</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="TopSearchesSearchResult">TopSearchesSearchResult</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>destination</td>
+  <td>The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city or airport to which the traveler may go, from the provided origin</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>searches</td>
+  <td>Average number of daily searches for the destination during the search period provided</td>
+  <td>integer</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>searches_prior_year</td>
+  <td>Prior year average number of daily searches for the destination during the search period provided</td>
+  <td>integer</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FlightTrafficSearchResponse">FlightTrafficSearchResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>period</td>
+  <td>The date period, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format YYYY-MM or YYYY</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>origin</td>
+  <td><a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a></td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>results</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="FlightTrafficSearchResult">FlightTrafficSearchResult</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>destination</td>
+  <td>The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city or airport to which the traveler may go, from the provided origin</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>flights</td>
+  <td>Number of flights from origin to destination during the search period provided</td>
+  <td>integer</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>travelers</td>
+  <td>Number of passengers from origin to destination during the search period provided</td>
+  <td>integer</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="PointsOfInterestResponse">PointsOfInterestResponse</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>current_city</td>
+  <td></td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>points_of_interest</td>
+  <td></td>
+  <td>array</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="PointOfInterestCity">PointOfInterestCity</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>name</td>
+  <td>The name of the location that was searched for</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>geoname_id</td>
+  <td>The Geonames ID of the location that was searched for</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>location</td>
+  <td></td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>total_points_of_interest</td>
+  <td>The total number of points_of_interest that YapQ has indexed for this city</td>
+  <td>integer</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="PointOfInterestResult">PointOfInterestResult</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>title</td>
+  <td>Display name of a given point of interest</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>main_image</td>
+  <td>A link to an image of the given location</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>location</td>
+  <td></td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>grades</td>
+  <td>Result availble grades.</td>
+  <td>object</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>categories</td>
+  <td>Array of descriptions indicating what type of point of interest this is. You can filter the results to include only certain categories of point of interest using the category input parameter.</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>details</td>
+  <td></td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>contextual_images</td>
+  <td>Images taken at this point of interest. Note that these images might have nothing to do with the point itself, particularly if you have enabled the social_media parameter</td>
+  <td>array</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>geoname_id</td>
+  <td>The GeonamesID of this point of interest, if available</td>
+  <td>integer</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>walk_time</td>
+  <td>Time in minutes that it takes to walk from the searched coordinates to this Point of Interest</td>
+  <td>number</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="PointOfInterestDetails">PointOfInterestDetails</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>short_description</td>
+  <td>A summary of the given point</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>description</td>
+  <td>A paragraph describing this point of interest</td>
+  <td>string</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>wiki_page_link</td>
+  <td>A link to this point of interest&quot;s wikipedia page</td>
+  <td>string</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  <div class="modelItem">
+  <h3>Title : <a name="ImageSize">ImageSize</a></h3>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Meaning</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+   <tbody>
+ 
+  <tr>
+  <td>small</td>
+  <td></td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>medium</td>
+  <td></td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>large</td>
+  <td></td>
+  <td>ref</td>
+  </tr>
+  
+ 
+  <tr>
+  <td>hd</td>
+  <td></td>
+  <td>ref</td>
+  </tr>
+  
+  </tbody>
+  <br>
+  </table>
+  </div>
+  </div> <!--col-md-4 -->
+  <div class="col-md-4>
+  </div>
+  </div> <!--row ends -->
+  </div> <!--container-fluid ends -->
+  
+  </body>
+  
+  
+  </html>
+
+

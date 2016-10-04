@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+     <style type="text/css">
+      body { 
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+	display: none;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+    </style>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"  rel="stylesheet">
+  <!-- Latest compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+  <h1></h1>
+     <nav class="navbar navbar-default navbar-fixed-top">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+            <a class="navbar-brand" href="#">Amadeus</a>
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Index Page</a></li>
+        </ul>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
+    </div><!-- /.navbar-collapse -->
+</nav>
+     <div class="container-fluid">
+     <h4><a name="__Methods">Methods</a></h4>
+  
+   <div class="method"><a name="Flight Affiliate Search"/>
+    <div class="method-path">
+    <pre class="get"><code class="huge"><span class="http-method">Flight Affiliate Search</span> </code></pre>
+    <a class="up" href="#__Methods">Up</a>
+    </div>
+  <div class="method-summary"> Flight Affiliate Search - Use Travel Audience Connect's affiliate network API to search flights from our list of partners and provides deep-links to allow the user to book directly on the airline website.</div>
+  <div class="method-summary"> <p>The Flight Affiliate Search API combines Amadeus' flight search technology with Travel Audience's Connect API partners to provide a unique flight search, where all results come with deep-links to book the flight at a partner's website. The API will let you easily provide the traveler with a path to book flights from your application.</p>
+<p>Travel Audience Connect partners include
+<ul>
+  <li><a href="http://www.cityjet.com/">CityJet</a>, <a href="https://www.aireuropa.com/en/flights">Air Europa</a> and <a href="http://www.flytap.com/">TAP</a> in Western Europe,</li>
+  <li><a href="http://uralairlines.com/">Ural Airlines</a> in Russia, </li>
+  <li><a href="http://www.avianca.com.br/">Avianca Brazil</a>  and</li>
+  <li><a href="http://www.jal.com/">JAL</a> in East Asia</li>
+</ul>
+</p>
+<p>Only Travel Audience Connect partner airlines are searched. For an up-to-date list of routes, see the route maps on each partners respective websites above. You can earn commission using the deep links provided in the search results if you sign up for an account at <a href="http://connect.travelaudience.com/">connect.travelaudience.com</a>.</p>
+</div>
+  <h3>Query Parameters</h3>
+<table class="table">
+ <tr class = "param">
+	 <th>Parameter Name</th>
+	 <th>Value</th>
+</tr>
+ 
+<tr>
+<td>apikey</td>
+<td>API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.</td>
+</tr>
+ 
+ 
+<tr>
+<td>origin</td>
+<td>City code from which the traveler will depart. See the location and airport interfaces for more information.</td>
+</tr>
+ 
+ 
+<tr>
+<td>destination</td>
+<td><a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city to which the traveler is going</td>
+</tr>
+ 
+ 
+<tr>
+<td>departure_date</td>
+<td>The date on which the traveler will depart from the origin to go to the destination. The maximum scope for a date range is 2 days, for a larger scope, use the Extensive Search! </td>
+</tr>
+ 
+ 
+<tr>
+<td>return_date</td>
+<td>The date on which the traveler will depart from the destination to return to the origin. If this parameter is not specified, the search will find only one-way trips. If this, or the return_by parameter are specified, only return trips are found</td>
+</tr>
+ 
+ 
+<tr>
+<td>adults</td>
+<td>The number of adult (age 12 and over) passengers traveling on this flight.</td>
+</tr>
+ 
+ 
+<tr>
+<td>children</td>
+<td>The number of child (younger than age 12 on date of departure) passengers traveling on this flight who will each have their own separate seat</td>
+</tr>
+ 
+ 
+<tr>
+<td>infants</td>
+<td>The number of infant (younger than age 2 on date of departure) passengers traveling on this flight. Infants travel in the lap of an adult passenger, and thus the number of infants must not exceed the number of adults.</td>
+</tr>
+ 
+ 
+<tr>
+<td>include_merchants</td>
+<td>If specified, all results will include at least one flight where one or more of these airlines is the marketing carrier. Airlines are specified using <a href="https://en.wikipedia.org/wiki/Airline_codes"><a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a>s</a></td>
+</tr>
+ 
+ 
+<tr>
+<td>exclude_merchants</td>
+<td>If specified, no results will include any flights where any of these airlines is the marketing carrier. Airlines are specified using <a href="https://en.wikipedia.org/wiki/Airline_codes"><a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a>s</a></td>
+</tr>
+ 
+ 
+<tr>
+<td>max_price</td>
+<td>Maximum price of trips to find in the result set, in USD (US dollars) unless some other currency code is specified. By default, no limit is applied</td>
+</tr>
+ 
+ 
+<tr>
+<td>currency</td>
+<td>The preferred <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> for the results</td>
+</tr>
+ 
+ 
+<tr>
+<td>mobile</td>
+<td>Setting this to true will show mobile web deeplinks </td>
+</tr>
+ 
+</table>
+Tags : [Flight]
+  <h3 class="field-label">Responses</h3>
+     
+
+From res object
+<ol>
+<li>200</li>
+<li>Valid Search Response</li>
+<li>#/definitions/AffiliateSearchResponse</li>
+</ol>
+
+
+<ol>
+<li>default</li>
+<li>Client or server error</li>
+<li>#/definitions/Error</li>
+</ol>
+
+
+  </div> 
+  
+  
+  
+  </body>
+  </html>
+
+
