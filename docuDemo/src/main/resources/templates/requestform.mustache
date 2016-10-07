@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{{appName}}}</title>
+     <style type="text/css">
+      
+    </style>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"  rel="stylesheet">
+  <!-- Latest compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+  <h3>{{{appName}}}</h3>
+     <div class="container-fluid">
+     <form class="form-horizontal">
+  <div class="form-group ">
+    <label for="term" class="col-sm-2 control-label">term</label>
+    <div class="col-xs-3">
+      <input type="text" class="form-control" id="term" placeholder="BOS">
+    </div>
+  </div>
+  <div class="form-group ">
+    <label for="country" class="col-sm-2 control-label">country</label>
+    <div class="col-xs-3">
+      <input type="text" class="form-control" id="country" placeholder="US">
+    </div>
+  </div>
+ <div class="form-group ">
+    <label for="all_airports" class="col-sm-2 control-label">all_airports</label>
+    <div class="col-xs-3">
+      <input type="text" class="form-control" id="all_airports" placeholder="false">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button class="btn btn-default">Sign in</button>
+    </div>
+  </div>
+</form>
+<div class="result"></div>
+<div class="result-content"></div>
+</div>
+  </body>
+  
+ 
+ <script>
+  function output(inp) {
+    document.body.appendChild(document.createElement('pre')).innerHTML = inp;
+}
+    $("#get-data").click(function(){
+	 var keyvalue =  $('#term').val();
+  $.ajax({
+        url: "https://api.sandbox.amadeus.com/v1.2/flights/affiliate-search",
+        type : "GET",
+		  dataType: "json",
+        data: {
+            apikey:  "Uz3HSvIwhIhqE0MuB0R6pvNDERwoAnqA",
+            origin : keyvalue,
+            {{obj}} : "kkk",
+			destination : "DUB",
+			departure_date : "2016-11-25"
+        }
+    })
+    .done (function(data) {
+	console.log(JSON.stringify(data,null,4))
+	for(i =0;i<data.length;i++){
+	$('.result').append(data[i].label+"<br>")
+	}
+	var  str =JSON.stringify(data,null,4)
+	output(str);
+	})
+    .fail (function()  { alert("Error ")   ; })
+	});
+  </script>
+  
+  </html>
+
+

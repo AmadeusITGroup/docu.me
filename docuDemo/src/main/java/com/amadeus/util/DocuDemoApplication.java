@@ -22,10 +22,14 @@ public class DocuDemoApplication {
 	    // get their input as a String
 	    String swaggerFile = scanner.next();
 		
-	    
-		cf.createIndexApiTemplate(swaggerFile);
-		cf.createModelTemplate(swaggerFile);
+//		cf.createIndexApiTemplate(swaggerFile);
+//		cf.createModelTemplate(swaggerFile);
 		scanner.close();
-		System.out.print("Look for Portal folderfor index.html ");
+		
+		RequestForm rf = new RequestForm();
+//		rf.getReq();
+		rf.createRequestForm();
+		
+		System.out.print("The docs are generated in this location: /docuDemo/Portal");
 	}
 }
