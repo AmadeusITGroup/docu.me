@@ -31,36 +31,120 @@
  <tr class = "param">
 	 <th>Parameter Name</th>
 	 <th>Value</th>
+	 <th>Description</th>
 </tr>
 {{#parameters}}
  
 <tr>
-<td>{{name}}</td>
+<td>{{name}} {{#required}}
+       <i>(required)</i> <!-- If {like: true} --->
+    {{/required}}
+    {{^required}}
+        (optional) <!-- If {like: false} --->
+    {{/required}}
+    
+    </td>
+<td>
+ <form class="form-horizontal">
+  <div class="form-group ">
+    <div>
+      <input type="text" class="form-control" id="{{name}}">
+    </div>
+  </div>
+
+</td>
 <td>{{{description}}}</td>
 </tr>
  
 {{/parameters}}
 </table>
-Tags : {{tags}}
-  <h3 class="field-label">Responses</h3>
-     
+<div>
+ <a href="#" id="get-data" class="btn btn-info">Send request</a>
+ </div>
+   </form>
+ <div>
+ <h3>Tags :</h3>
+ {{tags}}
+ </div>
 {{/operations}}
 
-From res object
+<div class="responses">
+<h3 class="field-label">Responses</h3>
+<!--From res object-->
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Response number</th>
+        <th>Description</th>
+        <th>Reference</th>
+      </tr>
+    </thead>
+    <tbody>
 {{#responses}}
-<ol>
-<li>{{responseNumber}}</li>
-<li>{{description}}</li>
-<li>{{reference}}</li>
-</ol>
-
-
+<tr>
+<td>{{responseNumber}}</td>
+<td>{{description}}</td>
+<td>{{reference}}</td>
+</tr>
 {{/responses}}
+</tbody>
+</table>
+</div><!-- responses end-->
+  
+<div class="result"></div>
+<div class="result-content"></div>
   </div> 
-  
-  
-  
   </body>
+  
+  <script>
+  function output(inp) {
+    document.body.appendChild(document.createElement('pre')).innerHTML = inp;
+}
+
+$(function() {
+   $('#apikey').val("{{apiKey}}");
+   $( '#apikey' ).prop( "disabled", true );
+});
+
+    $("#get-data").click(function(){
+    
+     {{#operations}}
+     {{#parameters}} 
+     var {{name}}_value = $('#{{name}}').val();
+      {{/parameters}}
+     {{/operations}}
+     
+     var total ={};
+     {{#operations}}
+     {{#parameters}}
+      if({{name}}_value){
+     total["{{name}}"] = {{name}}_value;
+     }
+     {{/parameters}}
+     {{/operations}}
+     
+     
+  $.ajax({
+        url: "{{url}}",
+        type : "GET",
+		dataType: "json",
+        data: total
+    })
+    .done (function(data) {
+	console.log(JSON.stringify(data,null,4))
+	var  str =JSON.stringify(data,null,4)
+	output(str);
+	})
+    .fail (function(data)  
+    {
+    var  str =JSON.stringify(data.responseJSON,null,4)
+    console.log(JSON.stringify(data,null,4))
+    output(str);
+      })
+	});
+  </script>
+  
+  
   </html>
 
 

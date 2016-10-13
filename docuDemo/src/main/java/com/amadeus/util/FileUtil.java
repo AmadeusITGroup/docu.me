@@ -6,6 +6,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.github.fge.jsonschema.core.exceptions.ProcessingException;
+import com.github.fge.jsonschema.core.report.ProcessingReport;
+import com.github.fge.jsonschema.examples.Utils;
+import com.github.fge.jsonschema.main.JsonSchema;
+import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import org.apache.log4j.Logger;
 
 import io.swagger.models.Swagger;
@@ -43,9 +50,23 @@ public class FileUtil {
 	public static Swagger parseSwaggerFile(String swaggerFile) {
 
 		String swaggerFile1 = "d:\\Userfiles\\nghate\\Desktop\\swg.yml";
-
-		return new SwaggerParser().read(swaggerFile1);
+		File fileName = new File(swaggerFile);
+		Swagger s = null;
+		
+		if(fileName.exists()){
+			
+		 s = new SwaggerParser().read(swaggerFile);
+		 
+		}
+		else{
+			logger.error("Please specify valid file location");
+		}
+		return s;
 	}
+	
+	
+	
+	
 
 	
 }
