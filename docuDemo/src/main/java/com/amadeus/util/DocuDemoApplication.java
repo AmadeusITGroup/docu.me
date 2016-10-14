@@ -13,15 +13,14 @@ public class DocuDemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DocuDemoApplication.class, args);
-		Documentation cf = new Documentation();
+		Documentation document = new Documentation();
 		
 		 // get their input as a String
 	    String swaggerFile = args[0];
 	     
-		cf.createIndexApiTemplate(swaggerFile);
-		cf.createModelTemplate(swaggerFile);
+		document.createIndexApiTemplate(swaggerFile);
+		document.createModelTemplate(swaggerFile);
 		
-//		rf.createRequestForm(swaggerFile);
 		
 		logger.info("The docs are generated in this location: /docuDemo/Portal");
 	}
