@@ -7,8 +7,16 @@ public class MyModel {
 	private String modelName;
 	private String modelDesc;
 	private String modelType;
-
+	private String modelRef;
 	
+
+	public String getModelRef() {
+		return modelRef;
+	}
+
+	public void setModelRef(String modelRef) {
+		this.modelRef = modelRef;
+	}
 
 	public String getModelName() {
 		return modelName;

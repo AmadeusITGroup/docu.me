@@ -26,6 +26,8 @@
     </div>
   <div class="method-summary"> {{{summary}}}</div>
   <div class="method-summary"> {{{description}}}</div>
+     <h3>Resource URL</h3>
+<div class="result"></div>
   <h3>Query Parameters</h3>
 <table class="table">
  <tr class = "param">
@@ -37,10 +39,11 @@
  
 <tr>
 <td>{{name}} {{#required}}
-       <i>(required)</i> <!-- If {like: true} --->
+       <i>(required)</i> <!-- If {required: true} --->
+     -in:  <i>{{in}}</i>
     {{/required}}
     {{^required}}
-        (optional) <!-- If {like: false} --->
+        (optional) <!-- If {required: false} --->
     {{/required}}
     
     </td>
@@ -84,14 +87,16 @@
 <tr>
 <td>{{responseNumber}}</td>
 <td>{{description}}</td>
-<td>{{reference}}</td>
+<!--<td>{{reference}}</td>-->
+<td>
+ <a href="modelnew.html#_{{simpleReference}}">{{simpleReference}}</a>
+  </td>
 </tr>
 {{/responses}}
 </tbody>
 </table>
 </div><!-- responses end-->
-  
-<div class="result"></div>
+<h3>Result:</h3>
 <div class="result-content"></div>
   </div> 
   </body>
@@ -100,6 +105,7 @@
   function output(inp) {
     document.body.appendChild(document.createElement('pre')).innerHTML = inp;
 }
+$('.result').append("{{url}}");
 
 $(function() {
    $('#apikey').val("{{apiKey}}");
@@ -107,25 +113,39 @@ $(function() {
 });
 
     $("#get-data").click(function(){
-    
+     $( "pre" ).remove();
      {{#operations}}
      {{#parameters}} 
      var {{name}}_value = $('#{{name}}').val();
+      
       {{/parameters}}
      {{/operations}}
      
+     
+
+     
+     var url = "{{url}}"
+     
      var total ={};
+     
+     <!-- The following code will output :  url = url.replace("{last_name}",last_name_value).To escape the curly braces {{=<% %>=}}{<%={{ }}=%> is used. -->
+      
      {{#operations}}
      {{#parameters}}
-      if({{name}}_value){
+      if({{name}}_value && "{{in}}" != "path"){
      total["{{name}}"] = {{name}}_value;
      }
+     if("{{in}}" == "path"){
+      url = url.replace("{{=<% %>=}}{<%={{ }}=%>{{name}}{{=<% %>=}}}<%={{ }}=%>",{{name}}_value)
+      }
      {{/parameters}}
      {{/operations}}
      
+    
+     
      
   $.ajax({
-        url: "{{url}}",
+        url: url,
         type : "GET",
 		dataType: "json",
         data: total
@@ -137,9 +157,15 @@ $(function() {
 	})
     .fail (function(data)  
     {
+    if(data.responseJSON){
     var  str =JSON.stringify(data.responseJSON,null,4)
     console.log(JSON.stringify(data,null,4))
     output(str);
+    }
+    else{
+    console.log("Please fill the required fields. The response had HTTP status code 400.");
+    output(" This is a cross-origin call. Make sure the server accepts GET requests from here.");
+    }
       })
 	});
   </script>

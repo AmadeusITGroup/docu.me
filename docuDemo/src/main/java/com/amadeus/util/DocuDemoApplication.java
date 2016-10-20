@@ -1,9 +1,14 @@
 package com.amadeus.util;
 
 
+import java.io.File;
+
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import io.swagger.models.Swagger;
+import io.swagger.parser.SwaggerParser;
 
 
 @SpringBootApplication
@@ -17,9 +22,11 @@ public class DocuDemoApplication {
 		
 		 // get their input as a String
 	    String swaggerFile = args[0];
-	     
-		document.createIndexApiTemplate(swaggerFile);
-		document.createModelTemplate(swaggerFile);
+	    File fileName = new File(swaggerFile);
+	    Swagger swaggerObj = new SwaggerParser().read(swaggerFile);
+	    
+		document.createIndexApiTemplate(swaggerObj);
+//		document.createModelTemplate(swaggerObj);
 		
 		
 		logger.info("The docs are generated in this location: /docuDemo/Portal");

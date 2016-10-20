@@ -30,6 +30,7 @@
         <th>Element</th>
         <th>Meaning</th>
         <th>Type</th>
+          <th>Reference</th>
       </tr>
       </thead>
    <tbody>
@@ -39,6 +40,11 @@
   <td>{{modelName}}</td>
   <td>{{{modelDesc}}}</td>
   <td>{{modelType}}</td>
+  <td><a href="modelnew.html#_{{modelRef}}">{{modelRef}}</a>
+  {{^modelRef}}
+  -
+  {{/modelRef}}
+  </td> 
   </tr>
   
   {{/modelList}}

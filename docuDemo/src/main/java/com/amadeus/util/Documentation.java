@@ -31,6 +31,7 @@ import io.swagger.models.properties.RefProperty;
 public class Documentation {
 
 	final static Logger logger = Logger.getLogger(Documentation.class);
+	MustacheFactory mf = new DefaultMustacheFactory();
 
 	public Map<String, Response> getReponses(Operation op) {
 
@@ -40,47 +41,34 @@ public class Documentation {
 
 	// Create index template
 
-	public void createIndexApiTemplate(String swaggerFile) {
-		MustacheFactory mf = new DefaultMustacheFactory();
-		Mustache apiTemplate = mf.compile("templates\\api.mustache");
+	public void createIndexApiTemplate(Swagger swaggerObj) {
 		Mustache indexTemplate = mf.compile("templates\\index.mustache");
 
-		HashMap<String, Object> apiScope = new HashMap<>();
 		HashMap<String, Object> indexScope = new HashMap<>();
 
 		List<String> operationIdList = new ArrayList<>();
 		List<String> modelsList = new ArrayList<>();
-//		List<MyResponse> responsesList = new ArrayList<>();
 
 		StringWriter indexWriter = new StringWriter();
 
-		// Retrieve the api key which is set as environment variable
-		String apiKey = System.getenv("AMADEUS_APIKEY");
-
 		// creating the url
-		Swagger swagger = FileUtil.parseSwaggerFile(swaggerFile);
-		String basePath = swagger.getBasePath();
-		String host = swagger.getHost();
+		String basePath = swaggerObj.getBasePath();
+		String host = swaggerObj.getHost();
 
 		// Iterate through Paths,then operations in the Swagger file
-		Map<String, Path> pathMap = FileUtil.parseSwaggerFile(swaggerFile).getPaths();
+		Map<String, Path> pathMap = swaggerObj.getPaths();
 
 		// Iterate through Definitions,then models in the Swagger file
-		Map<String, Model> modelMap = FileUtil.parseSwaggerFile(swaggerFile).getDefinitions();
+		Map<String, Model> modelMap = swaggerObj.getDefinitions();
 
-		for (Map.Entry<String, Path> entry : pathMap.entrySet()) {
-			String pathUrl = entry.getKey();
-			Path path = entry.getValue();
+		for (Map.Entry<String, Path> pathDetail : pathMap.entrySet()) {
+			String pathUrl = pathDetail.getKey();
+			Path path = pathDetail.getValue();
 			List<Operation> opList = path.getOperations();
-			Map<String, Response> responses = null;
-			String simpleRef = "noRef";
-
 			String url = "https://" + host + basePath;
 			url = url + pathUrl;
 
-			apiScope.put("url", url);
-			apiScope.put("apiKey", apiKey);
-			createApiTemplate(opList, apiScope, responses, simpleRef, apiTemplate, operationIdList);
+			createApiTemplate(opList, url,operationIdList);
 
 		}
 
@@ -97,45 +85,28 @@ public class Documentation {
 		FileUtil.createFile("index", indexWriter.toString());
 
 	}
-	
-	// Create api template
-	private void createApiTemplate(List<Operation> opList, HashMap<String, Object> apiScope,
-			Map<String, Response> responses, String simpleRef, Mustache apiTemplate,
-			List<String> operationIdList) {
 
+	// Create api template
+	private void createApiTemplate(List<Operation> opList, String url, List<String> operationIdList) {
+		
+		Mustache apiTemplate = mf.compile("templates\\api.mustache");
+		HashMap<String, Object> apiScope = new HashMap<>();
+		
+		Map<String, Response> responses;
+		String simpleReference;
+		// Retrieve the api key which is set as environment variable
+		String apiKey = System.getenv("AMADEUS_APIKEY");
+		apiScope.put("url", url);
+		apiScope.put("apiKey", apiKey);
+		
 		for (Operation op : opList) {
 			apiScope.put("operations", op);
-
 			List<MyResponse> resList = new ArrayList<>();
 			responses = getReponses(op);
-			for (Map.Entry<String, Response> res : responses.entrySet()) {
-				
-				String resName = res.getKey();
-				Response resValue = res.getValue();
-				MyResponse response = new MyResponse();
-				response.setDescription(resValue.getDescription());
-				Property property = resValue.getSchema();
-				
-				if (property != null) {
-					if (property instanceof ArrayProperty) {
-						ArrayProperty ap = (ArrayProperty) property;
-						Property p2 = ap.getItems();
-						RefProperty rp = (RefProperty) p2;
-						String ref = rp.get$ref();
-						simpleRef = rp.getSimpleRef();
-						response.setReference(ref);
-						response.setResponseNumber(resName);
-					} else {
-						RefProperty rp = (RefProperty) property;
-						String ref = rp.get$ref();
-						simpleRef = rp.getSimpleRef();
-						response.setReference(ref);
-						response.setResponseNumber(resName);
-					}
-//					responsesList.add(response);
-					resList.add(response);
+			for (Map.Entry<String, Response> responseObj : responses.entrySet()) {
 
-				}
+				getResponseList(resList, responseObj);
+
 			}
 			apiScope.put("responses", resList);
 			operationIdList.add(op.getOperationId());
@@ -148,12 +119,51 @@ public class Documentation {
 
 	}
 
-	public void createModelTemplate(String swaggerFile) {
+	/**
+	 * @param resList
+	 * @param res
+	 */
+	private void getResponseList(List<MyResponse> resList, Map.Entry<String, Response> res) {
+		String simpleReference;
+		String resName = res.getKey();
+		Response resValue = res.getValue();
+		Property property = resValue.getSchema();
+
+		MyResponse response = new MyResponse();
+		response.setDescription(resValue.getDescription());
+
+		if (property != null) {
+			if (property instanceof ArrayProperty) {
+				ArrayProperty ap = (ArrayProperty) property;
+				Property p2 = ap.getItems();
+				RefProperty rp = (RefProperty) p2;
+				String ref = rp.get$ref();
+				simpleReference = rp.getSimpleRef();
+				response.setReference(ref);
+				response.setResponseNumber(resName);
+			} else {
+				RefProperty rp = (RefProperty) property;
+				String ref = rp.get$ref();
+				simpleReference = rp.getSimpleRef();
+				response.setReference(ref);
+				response.setResponseNumber(resName);
+			}
+			response.setSimpleReference(simpleReference);
+			resList.add(response);
+
+		} else {
+			response.setReference("No property reference was found.");
+			resList.add(response);
+		}
+	}
+
+	// create models
+	public void createModelTemplate(Swagger swaggerObj) {
 
 		MustacheFactory mf = new DefaultMustacheFactory();
 		Mustache modelTemplate = mf.compile("templates//model.mustache");
 		HashMap<String, Object> modelScope = new HashMap<>();
-		Map<String, Model> modelMap = FileUtil.parseSwaggerFile(swaggerFile).getDefinitions();
+		Map<String, Model> modelMap = swaggerObj.getDefinitions();
 
 		List<ModelDetail> modelDetailsList = new ArrayList<>();
 		List<MyModel> myModelList = null;
@@ -170,19 +180,20 @@ public class Documentation {
 					String modelName = modelProp.getKey();
 					Property property = modelProp.getValue();
 					myModelList = modelDetail.getModelList();
-
 					modelScope.put("refName", entry.getKey());
 
 					MyModel myModel = new MyModel();
 					myModel.setModelDesc(property.getDescription());
 					myModel.setModelName(modelName);
 					myModel.setModelType(property.getType());
+
 					if ("ref".equals(property.getType())) {
 						RefProperty rp = (RefProperty) property;
-						String simpleRef = rp.getSimpleRef();
+						String simpleReference = rp.getSimpleRef();
+						myModel.setModelRef(simpleReference);
 					} else {
-						// System.out.println("example:
-						// "+property.getExample());
+						// System.out.println("example:"+property.getExample());
+						// myModel.setModelRef("No reference");
 					}
 					myModelList.add(myModel);
 
