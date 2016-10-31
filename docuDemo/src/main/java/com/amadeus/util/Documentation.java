@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.amadeus.pojo.ModelDetail;
 import com.amadeus.pojo.MyModel;
@@ -19,6 +21,7 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 
+import io.swagger.models.HttpMethod;
 import io.swagger.models.Model;
 import io.swagger.models.Operation;
 import io.swagger.models.Path;
@@ -29,6 +32,10 @@ import io.swagger.models.properties.Property;
 import io.swagger.models.properties.RefProperty;
 
 public class Documentation {
+	
+	interface Template{
+		String INDEX = "templates\\index.mustache";
+	}
 
 	final static Logger logger = Logger.getLogger(Documentation.class);
 	MustacheFactory mf = new DefaultMustacheFactory();
@@ -41,8 +48,11 @@ public class Documentation {
 
 	// Create index template
 
-	public void createIndexApiTemplate(Swagger swaggerObj) {
-		Mustache indexTemplate = mf.compile("templates\\index.mustache");
+	/**
+	 * @param swaggerObj
+	 */
+	public void createIndexApiTemplate(Swagger swaggerObj,String isExample) {
+		Mustache indexTemplate = mf.compile(Template.INDEX);
 
 		HashMap<String, Object> indexScope = new HashMap<>();
 
@@ -64,12 +74,19 @@ public class Documentation {
 		for (Map.Entry<String, Path> pathDetail : pathMap.entrySet()) {
 			String pathUrl = pathDetail.getKey();
 			Path path = pathDetail.getValue();
+			Map<HttpMethod,Operation> httpMethodMap =path.getOperationMap();
+			
 			List<Operation> opList = path.getOperations();
 			String url = "https://" + host + basePath;
 			url = url + pathUrl;
 
-			createApiTemplate(opList, url,operationIdList);
+			createApiTemplate(url,isExample,httpMethodMap);
 
+			for (Operation op : opList) {
+
+				operationIdList.add(op.getOperationId());
+
+			}
 		}
 
 		if (modelMap != null) {
@@ -87,35 +104,48 @@ public class Documentation {
 	}
 
 	// Create api template
-	private void createApiTemplate(List<Operation> opList, String url, List<String> operationIdList) {
-		
+	/**
+	 * @param opList
+	 * @param url
+	 * @param isExample 
+	 * @param httpMethodMap 
+	 */
+	private void createApiTemplate( String url, String isExample, Map<HttpMethod, Operation> httpMethodMap) {
+
 		Mustache apiTemplate = mf.compile("templates\\api.mustache");
 		HashMap<String, Object> apiScope = new HashMap<>();
-		
+
 		Map<String, Response> responses;
 		String simpleReference;
 		// Retrieve the api key which is set as environment variable
 		String apiKey = System.getenv("AMADEUS_APIKEY");
 		apiScope.put("url", url);
 		apiScope.put("apiKey", apiKey);
-		
-		for (Operation op : opList) {
+		JSONObject example = null;
+
+		for (Map.Entry<HttpMethod, Operation> httpMethod : httpMethodMap.entrySet()) {
+			HttpMethod method = httpMethod.getKey();
+			Operation op = httpMethod.getValue();
 			apiScope.put("operations", op);
+			apiScope.put("httpMethod", method);
+			if(isExample.equalsIgnoreCase("yes")){
+				example = GenerateExample.getReq(op, url);
+			}
 			List<MyResponse> resList = new ArrayList<>();
 			responses = getReponses(op);
 			for (Map.Entry<String, Response> responseObj : responses.entrySet()) {
 
-				getResponseList(resList, responseObj);
+				makeResponseList(resList, responseObj);
 
 			}
 			apiScope.put("responses", resList);
-			operationIdList.add(op.getOperationId());
-
+			apiScope.put("example", example);
 			StringWriter apiWriter = new StringWriter();
 			apiTemplate.execute(apiWriter, apiScope);
 			FileUtil.createFile(op.getOperationId(), apiWriter.toString());
 
 		}
+		
 
 	}
 
@@ -123,7 +153,7 @@ public class Documentation {
 	 * @param resList
 	 * @param res
 	 */
-	private void getResponseList(List<MyResponse> resList, Map.Entry<String, Response> res) {
+	private void makeResponseList(List<MyResponse> resList, Map.Entry<String, Response> res) {
 		String simpleReference;
 		String resName = res.getKey();
 		Response resValue = res.getValue();
@@ -186,14 +216,19 @@ public class Documentation {
 					myModel.setModelDesc(property.getDescription());
 					myModel.setModelName(modelName);
 					myModel.setModelType(property.getType());
-
-					if ("ref".equals(property.getType())) {
+					RefProperty r;
+					if (property instanceof RefProperty) {
 						RefProperty rp = (RefProperty) property;
 						String simpleReference = rp.getSimpleRef();
 						myModel.setModelRef(simpleReference);
-					} else {
-						// System.out.println("example:"+property.getExample());
-						// myModel.setModelRef("No reference");
+					} else if (property instanceof ArrayProperty) {
+						ArrayProperty ap = (ArrayProperty) property;
+						Property ap1 = ap.getItems();
+						if (ap1 instanceof RefProperty) {
+							r = (RefProperty) ap1;
+							String simpleReference = r.getSimpleRef();
+							myModel.setModelDesc(simpleReference);
+						}
 					}
 					myModelList.add(myModel);
 
@@ -212,18 +247,6 @@ public class Documentation {
 
 	}
 
-	public void createExample(List<MyModel> modelOb, String modelTitle) {
-
-		MustacheFactory mf = new DefaultMustacheFactory();
-		Mustache template = mf.compile("exampleJson.mustache");
-		HashMap<String, Object> currscope = new HashMap<>();
-		StringWriter writer = new StringWriter();
-
-		currscope.put("obj", modelOb);
-		currscope.put("title", modelTitle);
-		template.execute(writer, currscope);
-		FileUtil.createFile("exampleJson", writer.toString());
-
-	}
+	
 
 }
