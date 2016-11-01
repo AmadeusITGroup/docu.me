@@ -35,6 +35,22 @@ public class Documentation {
 	
 	interface Template{
 		String INDEX = "templates\\index.mustache";
+		String API = "templates\\api.mustache";
+		String MODEL = "templates//model.mustache";
+		
+	}
+	
+	interface MustacheVariables{
+		
+		String OPERATION_ID = "operationId";
+		String MODEL_LIST = "modelList";
+		String URL = "url";
+		String APIKEY = "apiKey";
+		String OPERATION = "operations";
+		String HTTP_METHOD = "httpMethod";
+		String RESPONSES = "responses";
+		String EXAMPLE = "example";
+		String MODEL_DETAILS_LIST = "modelDetailsList";
 	}
 
 	final static Logger logger = Logger.getLogger(Documentation.class);
@@ -96,8 +112,8 @@ public class Documentation {
 			}
 		}
 
-		indexScope.put("operationId", operationIdList);
-		indexScope.put("modelList", modelsList);
+		indexScope.put(MustacheVariables.OPERATION_ID, operationIdList);
+		indexScope.put(MustacheVariables.MODEL_LIST, modelsList);
 		indexTemplate.execute(indexWriter, indexScope);
 		FileUtil.createFile("index", indexWriter.toString());
 
@@ -112,37 +128,37 @@ public class Documentation {
 	 */
 	private void createApiTemplate( String url, String isExample, Map<HttpMethod, Operation> httpMethodMap) {
 
-		Mustache apiTemplate = mf.compile("templates\\api.mustache");
+		Mustache apiTemplate = mf.compile(Template.API);
 		HashMap<String, Object> apiScope = new HashMap<>();
 
 		Map<String, Response> responses;
 		String simpleReference;
 		// Retrieve the api key which is set as environment variable
-		String apiKey = System.getenv("AMADEUS_APIKEY");
-		apiScope.put("url", url);
-		apiScope.put("apiKey", apiKey);
+		String apiKey = System.getenv("APIKEY");
+		apiScope.put(MustacheVariables.URL, url);
+		apiScope.put(MustacheVariables.APIKEY, apiKey);
 		JSONObject example = null;
 
 		for (Map.Entry<HttpMethod, Operation> httpMethod : httpMethodMap.entrySet()) {
 			HttpMethod method = httpMethod.getKey();
-			Operation op = httpMethod.getValue();
-			apiScope.put("operations", op);
-			apiScope.put("httpMethod", method);
+			Operation operation = httpMethod.getValue();
+			apiScope.put(MustacheVariables.OPERATION, operation);
+			apiScope.put(MustacheVariables.HTTP_METHOD, method);
 			if(isExample.equalsIgnoreCase("yes")){
-				example = GenerateExample.getReq(op, url);
+				example = GenerateExample.getReq(operation, url);
 			}
 			List<MyResponse> resList = new ArrayList<>();
-			responses = getReponses(op);
+			responses = getReponses(operation);
 			for (Map.Entry<String, Response> responseObj : responses.entrySet()) {
 
 				makeResponseList(resList, responseObj);
 
 			}
-			apiScope.put("responses", resList);
-			apiScope.put("example", example);
+			apiScope.put(MustacheVariables.RESPONSES, resList);
+			apiScope.put(MustacheVariables.EXAMPLE, example);
 			StringWriter apiWriter = new StringWriter();
 			apiTemplate.execute(apiWriter, apiScope);
-			FileUtil.createFile(op.getOperationId(), apiWriter.toString());
+			FileUtil.createFile(operation.getOperationId(), apiWriter.toString());
 
 		}
 		
@@ -191,7 +207,7 @@ public class Documentation {
 	public void createModelTemplate(Swagger swaggerObj) {
 
 		MustacheFactory mf = new DefaultMustacheFactory();
-		Mustache modelTemplate = mf.compile("templates//model.mustache");
+		Mustache modelTemplate = mf.compile(Template.MODEL);
 		HashMap<String, Object> modelScope = new HashMap<>();
 		Map<String, Model> modelMap = swaggerObj.getDefinitions();
 
@@ -210,7 +226,6 @@ public class Documentation {
 					String modelName = modelProp.getKey();
 					Property property = modelProp.getValue();
 					myModelList = modelDetail.getModelList();
-					modelScope.put("refName", entry.getKey());
 
 					MyModel myModel = new MyModel();
 					myModel.setModelDesc(property.getDescription());
@@ -238,8 +253,7 @@ public class Documentation {
 			}
 		}
 
-		modelScope.put("obj", myModelList);
-		modelScope.put("List", modelDetailsList);
+		modelScope.put("modelDetailsList", modelDetailsList);
 
 		StringWriter writer = new StringWriter();
 		modelTemplate.execute(writer, modelScope);
