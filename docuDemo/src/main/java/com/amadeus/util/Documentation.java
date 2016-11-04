@@ -21,6 +21,7 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 
+import io.swagger.models.ComposedModel;
 import io.swagger.models.HttpMethod;
 import io.swagger.models.Model;
 import io.swagger.models.Operation;
@@ -32,16 +33,16 @@ import io.swagger.models.properties.Property;
 import io.swagger.models.properties.RefProperty;
 
 public class Documentation {
-	
-	interface Template{
+
+	interface Template {
 		String INDEX = "templates\\index.mustache";
 		String API = "templates\\api.mustache";
 		String MODEL = "templates//model.mustache";
-		
+
 	}
-	
-	interface MustacheVariables{
-		
+
+	interface MustacheVariables {
+
 		String OPERATION_ID = "operationId";
 		String MODEL_LIST = "modelList";
 		String URL = "url";
@@ -67,7 +68,7 @@ public class Documentation {
 	/**
 	 * @param swaggerObj
 	 */
-	public void createIndexApiTemplate(Swagger swaggerObj,String isExample) {
+	public void createIndexApiTemplate(Swagger swaggerObj, String isExample) {
 		Mustache indexTemplate = mf.compile(Template.INDEX);
 
 		HashMap<String, Object> indexScope = new HashMap<>();
@@ -90,13 +91,13 @@ public class Documentation {
 		for (Map.Entry<String, Path> pathDetail : pathMap.entrySet()) {
 			String pathUrl = pathDetail.getKey();
 			Path path = pathDetail.getValue();
-			Map<HttpMethod,Operation> httpMethodMap =path.getOperationMap();
-			
+			Map<HttpMethod, Operation> httpMethodMap = path.getOperationMap();
+
 			List<Operation> opList = path.getOperations();
 			String url = "https://" + host + basePath;
 			url = url + pathUrl;
 
-			createApiTemplate(url,isExample,httpMethodMap);
+			createApiTemplate(url, isExample, httpMethodMap);
 
 			for (Operation op : opList) {
 
@@ -123,10 +124,10 @@ public class Documentation {
 	/**
 	 * @param opList
 	 * @param url
-	 * @param isExample 
-	 * @param httpMethodMap 
+	 * @param isExample
+	 * @param httpMethodMap
 	 */
-	private void createApiTemplate( String url, String isExample, Map<HttpMethod, Operation> httpMethodMap) {
+	private void createApiTemplate(String url, String isExample, Map<HttpMethod, Operation> httpMethodMap) {
 
 		Mustache apiTemplate = mf.compile(Template.API);
 		HashMap<String, Object> apiScope = new HashMap<>();
@@ -144,35 +145,35 @@ public class Documentation {
 			Operation operation = httpMethod.getValue();
 			apiScope.put(MustacheVariables.OPERATION, operation);
 			apiScope.put(MustacheVariables.HTTP_METHOD, method);
-			if(isExample.equalsIgnoreCase("yes")){
+			if (isExample.equalsIgnoreCase("yes")) {
 				example = GenerateExample.getReq(operation, url);
 			}
-			List<MyResponse> resList = new ArrayList<>();
+			List<MyResponse> responseList = new ArrayList<>();
 			responses = getReponses(operation);
 			for (Map.Entry<String, Response> responseObj : responses.entrySet()) {
 
-				makeResponseList(resList, responseObj);
+				MyResponse response = makeResponseList(responseObj);
+				responseList.add(response);
 
 			}
-			apiScope.put(MustacheVariables.RESPONSES, resList);
+			apiScope.put(MustacheVariables.RESPONSES, responseList);
 			apiScope.put(MustacheVariables.EXAMPLE, example);
 			StringWriter apiWriter = new StringWriter();
 			apiTemplate.execute(apiWriter, apiScope);
 			FileUtil.createFile(operation.getOperationId(), apiWriter.toString());
 
 		}
-		
 
 	}
 
 	/**
-	 * @param resList
-	 * @param res
+	 * @param responseList
+	 * @param responseMap
 	 */
-	private void makeResponseList(List<MyResponse> resList, Map.Entry<String, Response> res) {
+	private MyResponse makeResponseList(Map.Entry<String, Response> responseMap) {
 		String simpleReference;
-		String resName = res.getKey();
-		Response resValue = res.getValue();
+		String resName = responseMap.getKey();
+		Response resValue = responseMap.getValue();
 		Property property = resValue.getSchema();
 
 		MyResponse response = new MyResponse();
@@ -195,15 +196,17 @@ public class Documentation {
 				response.setResponseNumber(resName);
 			}
 			response.setSimpleReference(simpleReference);
-			resList.add(response);
 
 		} else {
 			response.setReference("No property reference was found.");
-			resList.add(response);
 		}
+		return response;
 	}
 
 	// create models
+	/**
+	 * @param swaggerObj
+	 */
 	public void createModelTemplate(Swagger swaggerObj) {
 
 		MustacheFactory mf = new DefaultMustacheFactory();
@@ -212,47 +215,14 @@ public class Documentation {
 		Map<String, Model> modelMap = swaggerObj.getDefinitions();
 
 		List<ModelDetail> modelDetailsList = new ArrayList<>();
-		List<MyModel> myModelList = null;
+
+		List<MyModel> myModelList;
 		ModelDetail modelDetail;
 
 		for (Map.Entry<String, Model> entry : modelMap.entrySet()) {
-			Model model = entry.getValue();
-			modelDetail = new ModelDetail();
-			modelDetail.setModelTitle(entry.getKey());
-			Map<String, Property> modelPropMap = model.getProperties();
-
-			if (modelPropMap != null) {
-				for (Map.Entry<String, Property> modelProp : modelPropMap.entrySet()) {
-					String modelName = modelProp.getKey();
-					Property property = modelProp.getValue();
-					myModelList = modelDetail.getModelList();
-
-					MyModel myModel = new MyModel();
-					myModel.setModelDesc(property.getDescription());
-					myModel.setModelName(modelName);
-					myModel.setModelType(property.getType());
-					RefProperty r;
-					if (property instanceof RefProperty) {
-						RefProperty rp = (RefProperty) property;
-						String simpleReference = rp.getSimpleRef();
-						myModel.setModelRef(simpleReference);
-					} else if (property instanceof ArrayProperty) {
-						ArrayProperty ap = (ArrayProperty) property;
-						Property ap1 = ap.getItems();
-						if (ap1 instanceof RefProperty) {
-							r = (RefProperty) ap1;
-							String simpleReference = r.getSimpleRef();
-							myModel.setModelDesc(simpleReference);
-						}
-					}
-					myModelList.add(myModel);
-
-					modelDetail.setModelList(myModelList);
-				}
-				modelDetailsList.add(modelDetail);
-			}
+			modelDetail = iterateModels(entry);
+			modelDetailsList.add(modelDetail);
 		}
-
 		modelScope.put("modelDetailsList", modelDetailsList);
 
 		StringWriter writer = new StringWriter();
@@ -261,6 +231,61 @@ public class Documentation {
 
 	}
 
-	
+	private ModelDetail iterateModels(Map.Entry<String, Model> modelMap) {
+		List<Model> modelList;
+		Model model = modelMap.getValue();
+		ModelDetail md = null;
+		if (model instanceof ComposedModel) {
+			ComposedModel cm = (ComposedModel) model;
+			modelList = cm.getAllOf();
+			for (Model m : modelList) {
+				Map<String, Property> modelPropMap = m.getProperties();
+				md = iterateModelProperties(modelPropMap);
+			}
+		} else {
+			Map<String, Property> modelPropMap = model.getProperties();
+			md = iterateModelProperties(modelPropMap);
+		}
+
+		md.setModelTitle(modelMap.getKey());
+		return md;
+
+	}
+
+	private ModelDetail iterateModelProperties(Map<String, Property> modelPropertyMap) {
+		List<MyModel> myModelList;
+		ModelDetail modelDetail = new ModelDetail();
+
+		if (modelPropertyMap != null) {
+			for (Map.Entry<String, Property> modelProp : modelPropertyMap.entrySet()) {
+				String modelName = modelProp.getKey();
+				Property property = modelProp.getValue();
+				myModelList = modelDetail.getModelList();
+
+				MyModel myModel = new MyModel();
+				myModel.setModelDesc(property.getDescription());
+				myModel.setModelName(modelName);
+				myModel.setModelType(property.getType());
+				RefProperty r;
+				if (property instanceof RefProperty) {
+					RefProperty rp = (RefProperty) property;
+					String simpleReference = rp.getSimpleRef();
+					myModel.setModelRef(simpleReference);
+				} else if (property instanceof ArrayProperty) {
+					ArrayProperty ap = (ArrayProperty) property;
+					Property ap1 = ap.getItems();
+					if (ap1 instanceof RefProperty) {
+						r = (RefProperty) ap1;
+						String simpleReference = r.getSimpleRef();
+						myModel.setModelDesc(simpleReference);
+					}
+				}
+				myModelList.add(myModel);
+
+				modelDetail.setModelList(myModelList);
+			}
+		}
+		return modelDetail;
+	}
 
 }
