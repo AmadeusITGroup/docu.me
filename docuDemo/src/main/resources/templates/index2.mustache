@@ -1,13 +1,12 @@
-  
-
   <div class = "list-group">
   <h3>List of APIs</h3>
-	<ul class="nav nav-pills" role="tablist">
+  <div class="input-group">
+      <input type="text" class="form-control live-search-box" placeholder="Search for...">
+    </div><!-- /input-group -->
+    
+	<ul class="nav nav-pills live-search-list" role="tablist">
  {{#operationId}}
-  <li >
-  <a href="{{.}}.html"><code><span class="http-method">{{.}}</span> {{path}}</code>
-  </a>
-  </li>
+  <li><a href="{{.}}.html"><code><span class="http-method">{{.}}</span> {{path}}</code></a></li>
   {{/operationId}}
 </ul>
 </div> <!--list-group ends -->
@@ -16,11 +15,8 @@
 
 <h3>Model list</h3>
 
-<ul class="nav nav-pills" role="tablist">
+<ul class="nav nav-pills live-search-list" role="tablist">
  {{#modelList}}
-  <li >
-  <a href="modelnew.html#_{{.}}"><span class="http-method">{{.}}</span> {{path}}
-  </a>
-  </li>
+  <li><a href="modelnew.html#_{{.}}"><span class="http-method">{{.}}</span> {{path}}</a></li>
   {{/modelList}}
 </ul>
