@@ -5,129 +5,165 @@
      <style type="text/css">
       {{>templates//style.css}}
     </style>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"  rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"  rel="stylesheet">
   <!-- Latest compiled and minified JavaScript -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="../lib/jquery.json-view.js"></script>
-<link href="../lib/jquery.json-view.css" rel="stylesheet">
+  <script src="../lib/jquery.json-view.js"></script>
+  <link href="../lib/jquery.json-view.css" rel="stylesheet">
   </head>
+  
   <body>
   <h1>{{{appName}}}</h1>
-     {{> templates//header}}
-     <div class="container-fluid">
-     <h4><a name="__Methods">Methods</a></h4>
+  {{> templates//header}}
+  <div class="container-fluid">
+    <h4><a name="__Methods">Methods</a></h4>
   
    {{#operations}}
    <div class="method"><a name="{{operationId}}"/>
-    <div class="method-path">
-    <pre class="get"><code class="huge"><span class="http-method">{{operationId}}</span> {{path}}</code></pre>
-    <a class="up" href="#__Methods">Up</a>
+   <div class="method-path">
+   <pre class="get"><code class="huge"><span class="http-method">{{operationId}}</span> {{path}}</code></pre>
+   <a class="up" href="#__Methods">Up</a>
+   </div>
+   
+   <div class="method-summary"> {{{summary}}}</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Description :</h4>
+     </div>
+     <div class="col-md-9">
+	 <div class="method-summary"> {{{description}}}</div>
     </div>
-  <div class="method-summary"> {{{summary}}}</div>
-   <h3>Description :</h3>
-  <div class="method-summary"> {{{description}}}</div>
-  <h3>HttpMethod :</h3>
-    <div class="http-method">{{httpMethod}}</div>
-     <h3>Resource URL</h3>
-<div class="result"></div>
-  <h3>Query Parameters :</h3>
-<table class="table">
- <tr class = "param">
-	 <th>Parameter Name</th>
-	 <th>Parameter in</th>
-	 <th>Value</th>
-	 <th>Description</th>
-</tr>
-{{#parameters}}
- 
-<tr>
-<td>{{name}} {{#required}}
-       <i>(required)</i> <!-- If {required: true} --->
-    {{/required}}
-    {{^required}}
-        (optional) <!-- If {required: false} --->
-    {{/required}}
-    
-    </td>
-    <td> <i>{{in}}</i> </td>
-<td>
- <form class="form-horizontal">
-  <div class="form-group ">
-    <div>
-      <input type="text" class="form-control" id="{{name}}" placeholder="{{defaultValue}}">
     </div>
-  </div>
-
-</td>
-<td>{{{description}}}</td>
-</tr>
- 
-{{/parameters}}
-</table>
-<div>
- <a href="#" id="get-data" class="btn btn-info">Send request</a>
- </div>
-   </form>
- <div>
-
- <div class ="row">
- <div class="col-md-12"> <h3>Tags :</h3>{{tags}}</div>
-
- </div>
- </div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>HttpMethod :</h4>
+    </div>
+    <div class="col-md-9">
+ 	<div class="http-method">{{httpMethod}}</div>
+    </div>
+	</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Resource URL</h4>
+    </div>
+    <div class="col-md-9">
+	<div class="url"></div>
+    </div>
+	</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Query Parameters :</h4>
+    </div>
+    <div class="col-md-9">
+		 <table class="table">
+	   <tr class = "param">
+		 <th>Parameter Name</th>
+		 <th>Parameter in</th>
+		 <th>Value</th>
+		 <th>Description</th>
+	   </tr>
+	{{#parameters}}
+	 
+	   <tr>
+	   <td>{{name}} {{#required}}
+	       <i>(required)</i> <!-- If {required: true} --->
+	    {{/required}}
+	    {{^required}}
+	        (optional) <!-- If {required: false} --->
+	    {{/required}}
+	    </td>
+	    <td> <i>{{in}}</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="{{name}}" placeholder="{{defaultValue}}">
+		    </div>
+		  </div>
+		</td>
+		<td>{{{description}}}</td>
+		</tr>
+	{{/parameters}}
+		</table>
+		<div>
+	 	<a href="#" id="get-data" class="btn btn-info">Send request</a>
+	 	</div>
+	   </form>
+	    </div>
+	</div>
+	
+	 <div class="row">
+    <div class="col-md-3">
+	<h4>Tags :</h4>
+     </div>
+    <div class="col-md-9">
+	{{tags}}
+    </div>
+	</div>
 {{/operations}}
-
-<div class="responses">
-<h3>Responses :</h3>
-<!--From res object-->
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Response number</th>
-        <th>Description</th>
-        <th>Reference</th>
-      </tr>
-    </thead>
-    <tbody>
-{{#responses}}
-<tr>
-<td>{{responseNumber}}</td>
-<td>{{description}}</td>
-<!--<td>{{reference}}</td>-->
-<td>
- <a href="modelnew.html#_{{simpleReference}}">{{simpleReference}}</a>
-  </td>
-</tr>
-{{/responses}}
-</tbody>
-</table>
-</div><!-- responses end-->
- {{#example}}
- <h3>Example :</h3>
- <div id="element"></div>
+ <div class="row">
+    <div class="col-md-3">
+	<h4>Responses :</h4>
+     </div>
+    <div class="col-md-9">
+	<!--From res object-->
+	<table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>Response number</th>
+	        <th>Description</th>
+	        <th>Reference</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	{{#responses}}
+	<tr>
+	<td>{{responseNumber}}</td>
+	<td>{{description}}</td>
+	<td><a href="modelnew.html#_{{simpleReference}}">{{simpleReference}}</a></td>
+	</tr>
+	{{/responses}}
+	</tbody>
+	</table>
+    </div>
+ </div>
+  {{#example}}
+ <div class="row">
+    <div class="col-md-3">
+	<h4>Example :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="element"></div>
+    </div>
+	</div>
  {{/example}}
- <h3>Result :</h3>
-<div class="result-content"></div>
- 
+  <div class="row">
+    <div class="col-md-3">
+	<h4>Result :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="result-content"></div>
+    </div>
+	</div>
   </div> <!-- container-fluid end-->
-  
-  
   </body>
   
   <script>
   function output(inp) {
-    document.body.appendChild(document.createElement('pre')).innerHTML = inp;
-}
-$('.result').append("{{url}}");
+    $("#result-content").append("<pre></pre>")
+    $("pre").jsonView(inp);
+	}
 
-$(function() {
-   $('#apikey').val("{{apiKey}}");
-   $( '#apikey' ).prop( "disabled", true );
-   $('#element').jsonView(JSON.stringify({{{example}}}));
-});
+	$('.url').append("{{url}}");
+
+	$(function() {
+	   $('#apikey').val("{{apiKey}}");
+	   $( '#apikey' ).prop( "disabled", true );
+	   $('#element').jsonView(JSON.stringify({{{example}}}));
+	});
 
     $("#get-data").click(function(){
      $( "pre" ).remove();
@@ -138,8 +174,6 @@ $(function() {
       {{/parameters}}
      {{/operations}}
      
-     
-
      
      var url = "{{url}}"
      
@@ -157,8 +191,6 @@ $(function() {
       }
      {{/parameters}}
      {{/operations}}
-     
-    
      
      
   $.ajax({
@@ -181,12 +213,11 @@ $(function() {
     }
     else{
     console.log("Please fill the required fields. The response had HTTP status code 400.");
-    output(" <h4>This is a cross-origin call. Make sure the server accepts GET requests from here.<a href = 'https://github.com/swagger-api/swagger-editor/blob/master/docs/cors.md'>Learn More</a>.</h4>");
+    output(" <h3>This is a cross-origin call. Make sure the server accepts GET requests from here.<a href = 'https://github.com/swagger-api/swagger-editor/blob/master/docs/cors.md'>Learn More</a>.</h3>");
     }
       })
 	});
   </script>
-  
   
   </html>
 
