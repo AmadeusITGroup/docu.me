@@ -1,4 +1,4 @@
-package com.amadeus.util;
+package com.amadeus.docuMe.util;
 
 import java.io.BufferedWriter;
 import java.io.File;

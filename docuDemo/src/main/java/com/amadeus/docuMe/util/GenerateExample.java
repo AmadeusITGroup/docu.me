@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.amadeus.util;
+package com.amadeus.docuMe.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.amadeus.util;
+package com.amadeus.docuMe.util;
 
 public class Trial {
 

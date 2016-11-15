@@ -1,4 +1,4 @@
-package com.amadeus.pojo;
+package com.amadeus.docuMe.pojo;
 
 public class MyResponse {
 
