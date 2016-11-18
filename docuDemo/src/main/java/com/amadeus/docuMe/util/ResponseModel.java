@@ -1,10 +1,14 @@
 package com.amadeus.docuMe.util;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.json.simple.JSONObject;
 
 import com.amadeus.docuMe.pojo.ModelDetail;
 import com.amadeus.docuMe.pojo.MyModel;
@@ -26,22 +30,55 @@ public class ResponseModel {
 	/**
 	 * @param swaggerObj
 	 */
-	public void createModelTemplate(Swagger swaggerObj) {
+	public List<ModelDetail> getModelList(Swagger swaggerObj) {
 
-		MustacheFactory mf = new DefaultMustacheFactory();
-		Mustache modelTemplate = mf.compile(Template.MODEL);
-		HashMap<String, Object> modelScope = new HashMap<>();
 		Map<String, Model> modelMap = swaggerObj.getDefinitions();
-
 		List<ModelDetail> modelDetailsList = new ArrayList<>();
-
-		List<MyModel> myModelList;
 		ModelDetail modelDetail;
 
 		for (Map.Entry<String, Model> entry : modelMap.entrySet()) {
 			modelDetail = iterateModels(entry);
 			modelDetailsList.add(modelDetail);
 		}
+
+		return modelDetailsList;
+
+	}
+	
+	public void createJson(Swagger swaggerObj){
+		List<ModelDetail> modelDetailsList = getModelList(swaggerObj);
+		
+		for(ModelDetail md : modelDetailsList){
+			JSONObject jObject = new JSONObject();
+			List<MyModel> modelList = md.getModelList();
+			for(MyModel mm :modelList){
+				if("ref".equals(mm.getModelType())){
+					String ref = mm.getModelRef();
+					JSONObject internalrefObject = iterateJson(ref);
+					jObject.put(ref, internalrefObject);
+				}
+				else{
+					  
+					  jObject.put(mm.getModelName(), mm.getModelDesc());
+				}
+			}
+			System.out.println("========================================"+md.getModelTitle());
+			System.out.println(jObject.toJSONString());
+		}
+	}
+
+	private JSONObject iterateJson(String ref) {
+		//write method to get list of models n add in json obj
+		return null;
+		
+	}
+
+	public void createModelTemplate(Swagger swaggerObj) {
+		List<ModelDetail> modelDetailsList = getModelList(swaggerObj);
+		MustacheFactory mf = new DefaultMustacheFactory();
+		Mustache modelTemplate = mf.compile(Template.MODEL);
+		HashMap<String, Object> modelScope = new HashMap<>();
+
 		modelScope.put("modelDetailsList", modelDetailsList);
 
 		StringWriter writer = new StringWriter();
@@ -57,7 +94,7 @@ public class ResponseModel {
 	private ModelDetail iterateModels(Map.Entry<String, Model> modelMap) {
 		List<Model> modelList;
 		Model model = modelMap.getValue();
-		ModelDetail modelDetail = null ;
+		ModelDetail modelDetail = null;
 		if (model instanceof ComposedModel) {
 			ComposedModel cm = (ComposedModel) model;
 			modelList = cm.getAllOf();
@@ -93,17 +130,17 @@ public class ResponseModel {
 				myModel.setModelDesc(property.getDescription());
 				myModel.setModelName(modelName);
 				myModel.setModelType(property.getType());
-				RefProperty r;
+				RefProperty refProperty;
 				if (property instanceof RefProperty) {
 					RefProperty rp = (RefProperty) property;
 					String simpleReference = rp.getSimpleRef();
 					myModel.setModelRef(simpleReference);
 				} else if (property instanceof ArrayProperty) {
-					ArrayProperty ap = (ArrayProperty) property;
-					Property ap1 = ap.getItems();
-					if (ap1 instanceof RefProperty) {
-						r = (RefProperty) ap1;
-						String simpleReference = r.getSimpleRef();
+					ArrayProperty arrayProperty = (ArrayProperty) property;
+					Property internalProperty = arrayProperty.getItems();
+					if (internalProperty instanceof RefProperty) {
+						refProperty = (RefProperty) internalProperty;
+						String simpleReference = refProperty.getSimpleRef();
 						myModel.setModelDesc(simpleReference);
 					}
 				}
