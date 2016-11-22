@@ -38,18 +38,21 @@ public class FileUtil {
 			logger.error(e.getMessage());
 		}
 	}
-	
-	public static void createLib() throws IOException{
+
+	public static void createLib() throws IOException {
 		File destDir = new File("Portal\\lib\\");
 		File srcCSSFile = new File("src\\main\\resources\\static\\jquery.json-view.css");
-		
+
 		File srcJSFile = new File("src\\main\\resources\\static\\jquery.json-view.js");
-		
+
 		FileUtils.copyFileToDirectory(srcCSSFile, destDir);
 		FileUtils.copyFileToDirectory(srcJSFile, destDir);
-				
+
 	}
 
-	
+	public static boolean toBoolean(String s) {
+			 return Boolean.parseBoolean(s); 
+	 }
+	 
 
 }

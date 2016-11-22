@@ -32,7 +32,7 @@ public class ApiData {
 	 * @param swaggerObj
 	 * @param isExample
 	 */
-	public Map<String, String> createApiData(Swagger swaggerObj, String isExample) {
+	public Map<String, String> createApiData(Swagger swaggerObj, boolean isExample) {
 
 		ResponseModel rm = new ResponseModel();
 		HashMap<String, org.json.simple.JSONObject> jsonResponseMap = rm.createJson(swaggerObj);
@@ -67,7 +67,7 @@ public class ApiData {
 	 * @param httpMethodMap
 	 * @param jsonResponseMap
 	 */
-	private HashMap<String, String> getApiData(String url, String isExample, Map<HttpMethod, Operation> httpMethodMap,
+	private HashMap<String, String> getApiData(String url, boolean isExample, Map<HttpMethod, Operation> httpMethodMap,
 			HashMap<String, org.json.simple.JSONObject> jsonResponseMap) {
 
 		Mustache apiTemplate = mf.compile(Template.API);
@@ -87,7 +87,7 @@ public class ApiData {
 			Operation operation = httpMethod.getValue();
 			apiScope.put(MustacheVariables.OPERATION, operation);
 			apiScope.put(MustacheVariables.HTTP_METHOD, method);
-			if ("true".equalsIgnoreCase(isExample)) {
+			if (isExample) {
 				example = GenerateExample.getReq(operation, url);
 			}
 			List<MyResponse> responseList = new ArrayList<>();
