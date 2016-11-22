@@ -23,6 +23,7 @@ import io.swagger.models.Swagger;
 import io.swagger.models.properties.ArrayProperty;
 import io.swagger.models.properties.Property;
 import io.swagger.models.properties.RefProperty;
+import io.swagger.util.Json;
 
 public class ResponseModel {
 
@@ -45,31 +46,49 @@ public class ResponseModel {
 
 	}
 	
-	public void createJson(Swagger swaggerObj){
+	public HashMap<String,JSONObject> createJson(Swagger swaggerObj){
 		List<ModelDetail> modelDetailsList = getModelList(swaggerObj);
-		
+		HashMap<String, JSONObject> jsonResponseMap = new HashMap<>();
+
 		for(ModelDetail md : modelDetailsList){
 			JSONObject jObject = new JSONObject();
 			List<MyModel> modelList = md.getModelList();
 			for(MyModel mm :modelList){
-				if("ref".equals(mm.getModelType())){
+				if("ref".equals(mm.getModelType()) || "array".equals(mm.getModelType())){
 					String ref = mm.getModelRef();
-					JSONObject internalrefObject = iterateJson(ref);
-					jObject.put(ref, internalrefObject);
+					JSONObject internalrefObject = iterateJson(modelDetailsList,ref);
+					jObject.put(mm.getModelName(), internalrefObject);
 				}
 				else{
 					  
 					  jObject.put(mm.getModelName(), mm.getModelDesc());
 				}
 			}
-			System.out.println("========================================"+md.getModelTitle());
-			System.out.println(jObject.toJSONString());
+			jsonResponseMap.put(md.getModelTitle(), jObject);
 		}
+		return jsonResponseMap;
 	}
 
-	private JSONObject iterateJson(String ref) {
+	private JSONObject iterateJson(List<ModelDetail> modelDetailsList, String ref) {
 		//write method to get list of models n add in json obj
-		return null;
+		JSONObject jObject = new JSONObject();
+		for(ModelDetail md : modelDetailsList){
+			if(md.getModelTitle().equals(ref)){
+				List<MyModel> modelList = md.getModelList();
+				for(MyModel mm :modelList){
+					if("ref".equals(mm.getModelType())){
+						String reference = mm.getModelRef();
+						JSONObject internalrefObject = iterateJson(modelDetailsList,reference);
+						jObject.put(mm.getModelName(), internalrefObject);
+					}
+					else{
+						  
+						  jObject.put(mm.getModelName(), mm.getModelDesc());
+					}
+				}
+			}
+		}
+		return jObject;
 		
 	}
 
@@ -141,7 +160,7 @@ public class ResponseModel {
 					if (internalProperty instanceof RefProperty) {
 						refProperty = (RefProperty) internalProperty;
 						String simpleReference = refProperty.getSimpleRef();
-						myModel.setModelDesc(simpleReference);
+						myModel.setModelRef(simpleReference);
 					}
 				}
 				myModelList.add(myModel);

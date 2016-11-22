@@ -148,6 +148,14 @@
 	<div id="result-content"></div>
     </div>
 	</div>
+	<div class="row">
+	 <div class="col-md-3">
+	<h4>Response schema :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="response-content"></div>
+    </div>
+	</div>
   </div> <!-- container-fluid end-->
   </body>
   
@@ -163,6 +171,7 @@
 	   $('#apikey').val("{{apiKey}}");
 	   $( '#apikey' ).prop( "disabled", true );
 	   $('#element').jsonView(JSON.stringify({{{example}}}));
+	   $('#response-content').jsonView(JSON.stringify({{{resSchema}}}));
 	});
 
     $("#get-data").click(function(){

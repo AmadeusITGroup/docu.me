@@ -25,15 +25,18 @@ import io.swagger.models.properties.Property;
 import io.swagger.models.properties.RefProperty;
 
 public class ApiData {
-	
-	MustacheFactory mf = new DefaultMustacheFactory();
 
+	MustacheFactory mf = new DefaultMustacheFactory();
 
 	/**
 	 * @param swaggerObj
 	 * @param isExample
 	 */
 	public Map<String, String> createApiData(Swagger swaggerObj, String isExample) {
+
+		ResponseModel rm = new ResponseModel();
+		HashMap<String, org.json.simple.JSONObject> jsonResponseMap = rm.createJson(swaggerObj);
+
 		// creating the url
 		String basePath = swaggerObj.getBasePath();
 		String host = swaggerObj.getHost();
@@ -47,11 +50,12 @@ public class ApiData {
 			Map<HttpMethod, Operation> httpMethodMap = path.getOperationMap();
 			String url = swaggerObj.getSchemes().get(0).toString().toLowerCase() + "://" + host + basePath;
 			url = url + pathUrl;
-			apiDetails = getApiData(url, isExample, httpMethodMap);
+			apiDetails = getApiData(url, isExample, httpMethodMap, jsonResponseMap);
 			for (Map.Entry<String, String> api : apiDetails.entrySet()) {
 				apiDataMap.put(api.getKey(), api.getValue());
 			}
 		}
+		// obj to b created
 		return apiDataMap;
 	}
 
@@ -61,8 +65,10 @@ public class ApiData {
 	 * @param url
 	 * @param isExample
 	 * @param httpMethodMap
+	 * @param jsonResponseMap
 	 */
-	private HashMap<String, String> getApiData(String url, String isExample, Map<HttpMethod, Operation> httpMethodMap) {
+	private HashMap<String, String> getApiData(String url, String isExample, Map<HttpMethod, Operation> httpMethodMap,
+			HashMap<String, org.json.simple.JSONObject> jsonResponseMap) {
 
 		Mustache apiTemplate = mf.compile(Template.API);
 		HashMap<String, Object> apiScope = new HashMap<>();
@@ -91,6 +97,13 @@ public class ApiData {
 				MyResponse response = getResponseList(responseObj);
 				responseList.add(response);
 
+			}
+			for (Map.Entry<String, org.json.simple.JSONObject> responseObj : jsonResponseMap.entrySet()) {
+				for (MyResponse response : responseList) {
+					if (responseObj.getKey().equalsIgnoreCase(response.getSimpleReference()) && !(response.getSimpleReference().equalsIgnoreCase("error"))) {
+						apiScope.put("resSchema", responseObj.getValue());
+					}
+				}
 			}
 			apiScope.put(MustacheVariables.RESPONSES, responseList);
 			apiScope.put(MustacheVariables.EXAMPLE, example);
