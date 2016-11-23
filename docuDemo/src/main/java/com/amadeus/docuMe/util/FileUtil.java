@@ -8,12 +8,12 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
-import io.swagger.models.Swagger;
-import io.swagger.parser.SwaggerParser;
-
 public class FileUtil {
 
-	final static Logger logger = Logger.getLogger(Documentation.class);
+	private FileUtil(){
+		
+	}
+	static final  Logger logger = Logger.getLogger(Documentation.class);
 
 	public static void createFile(String filename, String content) {
 		try {
@@ -22,11 +22,11 @@ public class FileUtil {
 			filedir.mkdirs();
 			File file = new File(filedir, filename + ".html");
 
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(content);
-			bw.close();
-			fw.close();
+			FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			bufferedWriter.write(content);
+			bufferedWriter.close();
+			fileWriter.close();
 
 			if (file.createNewFile()) {
 				logger.info("File is created!");

@@ -1,17 +1,10 @@
-/**
- * 
- */
 package com.amadeus.docuMe.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
-import java.util.Scanner;
 
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
@@ -19,7 +12,6 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.mozilla.javascript.ast.ContinueStatement;
 
 import io.swagger.models.Operation;
 import io.swagger.models.parameters.Parameter;
@@ -32,18 +24,27 @@ import io.swagger.models.parameters.QueryParameter;
  */
 public class GenerateExample {
 
-	final static Logger logger = Logger.getLogger(GenerateExample.class);
+	private GenerateExample() {
 
-	public static JSONObject getReq(Operation op, String url2) {
+	}
+
+	interface Variables {
+		int SUCCESS_RESPONSE_CODE = 200;
+		String APIKEY = "apikey";
+	}
+
+	static final Logger logger = Logger.getLogger(GenerateExample.class);
+
+	public static JSONObject getLiveExample(Operation operation, String baseUrl) {
 		String requestUrl = null;
 		JSONObject output = null;
 		try {
-			requestUrl = getURL(op, url2);
+			requestUrl = getURL(operation, baseUrl);
 			URL url = new URL(requestUrl);
-			HttpURLConnection  connection = (HttpURLConnection) new URL(requestUrl).openConnection();
+			HttpURLConnection connection = (HttpURLConnection) new URL(requestUrl).openConnection();
 			int responseCode = connection.getResponseCode();
-		
-			if (responseCode == 200) {
+
+			if (responseCode == Variables.SUCCESS_RESPONSE_CODE) {
 				Object json = new JSONTokener(url.openStream()).nextValue();
 
 				if (json instanceof JSONObject) {
@@ -63,22 +64,22 @@ public class GenerateExample {
 
 	}
 
-	public static String getURL(Operation op, String url2) {
+	public static String getURL(Operation operation, String baseUrl) {
 		URIBuilder builder = new URIBuilder();
-		List<Parameter> paramList = op.getParameters();
-		String url = url2;
-		for (Parameter p : paramList) {
-			if (p.getRequired() && p instanceof QueryParameter) {
-				QueryParameter qp = (QueryParameter) p;
-				
-				if (p.getName().equals("apikey")) {
-					builder.setParameter(p.getName(), System.getenv("AMADEUS_APIKEY"));
+		List<Parameter> paramList = operation.getParameters();
+		String url = baseUrl;
+		for (Parameter parameter : paramList) {
+			if (parameter.getRequired() && parameter instanceof QueryParameter) {
+				QueryParameter qp = (QueryParameter) parameter;
+
+				if (Variables.APIKEY.equals(parameter.getName())) {
+					builder.setParameter(parameter.getName(), System.getenv("APIKEY"));
 				} else {
-					builder.setParameter(p.getName(), qp.getDefaultValue());
+					builder.setParameter(parameter.getName(), qp.getDefaultValue());
 				}
-			} else if (p instanceof PathParameter) {
-				PathParameter pp = (PathParameter) p;
-				url = url.replace("{" + p.getName() + "}", pp.getDefaultValue());
+			} else if (parameter instanceof PathParameter) {
+				PathParameter pathParameter = (PathParameter) parameter;
+				url = url.replace("{" + parameter.getName() + "}", pathParameter.getDefaultValue());
 			}
 		}
 		builder.setPath(url);
@@ -94,7 +95,7 @@ public class GenerateExample {
 
 		HttpGet httpget = new HttpGet(uri);
 
-		System.out.println(httpget.getURI());
+		logger.info(httpget.getURI());
 		return httpget.getURI().toString();
 	}
 

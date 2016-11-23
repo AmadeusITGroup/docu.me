@@ -2,47 +2,45 @@ package com.amadeus.docuMe.util;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.json.simple.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import io.swagger.models.Path;
+import com.amadeus.docuMe.pojo.Entity;
+
 import io.swagger.models.Swagger;
 import io.swagger.parser.SwaggerParser;
 
 @SpringBootApplication
 public class DocuDemoApplication {
 
-	final static Logger logger = Logger.getLogger(Documentation.class);
+	static final Logger logger = Logger.getLogger(Documentation.class);
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(DocuDemoApplication.class, args);
-		String swaggerFile = args[0];
+//		String swaggerFile = args[0];
 		boolean isExample = FileUtil.toBoolean(args[1]);
-		// String swaggerFile = "d:\\Userfiles\\nghate\\Desktop\\swg.yml";
+		 String swaggerFile = "d:\\Userfiles\\nghate\\Desktop\\swg.yml";
 		File file = new File(swaggerFile);
-		ApiData ad = new ApiData();
-		IndexData id = new IndexData();
-		ResponseModel rm = new ResponseModel();
+		ApiData apiData = new ApiData();
+		IndexData indexData = new IndexData();
+		ResponseModelData responseModelData = new ResponseModelData();
 
 		if (file.exists()) {
 
-			Swagger swaggerObj = new SwaggerParser().read(swaggerFile);
-			String indexFile = id.createIndexData(swaggerObj);
+			Swagger swagger = new SwaggerParser().read(swaggerFile);
+			String indexFile = indexData.createIndexData(swagger);
 			FileUtil.createFile("index", indexFile);
 
-			Map<String, String> hm = ad.createApiData(swaggerObj, isExample);
-			for (Map.Entry<String, String> api : hm.entrySet()) {
-				FileUtil.createFile(api.getKey(), api.getValue());
+			List<Entity> apiEntityList = apiData.createApiData(swagger, false);
+			for (Entity entity : apiEntityList) {
+				FileUtil.createFile(entity.getEntityName(), entity.getEntityValue());
 			}
-
-			rm.createModelTemplate(swaggerObj);
+			
+			responseModelData.createModelTemplate(swagger);
 			FileUtil.createLib();
 			logger.info("The docs are generated in this location: /docuDemo/Portal");
 

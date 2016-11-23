@@ -1,7 +1,5 @@
 package com.amadeus.docuMe.util;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,17 +21,16 @@ import io.swagger.models.Swagger;
 import io.swagger.models.properties.ArrayProperty;
 import io.swagger.models.properties.Property;
 import io.swagger.models.properties.RefProperty;
-import io.swagger.util.Json;
 
-public class ResponseModel {
+public class ResponseModelData {
 
 	// create models
 	/**
-	 * @param swaggerObj
+	 * @param swagger
 	 */
-	public List<ModelDetail> getModelList(Swagger swaggerObj) {
+	public List<ModelDetail> getModelList(Swagger swagger) {
 
-		Map<String, Model> modelMap = swaggerObj.getDefinitions();
+		Map<String, Model> modelMap = swagger.getDefinitions();
 		List<ModelDetail> modelDetailsList = new ArrayList<>();
 		ModelDetail modelDetail;
 
@@ -46,44 +43,43 @@ public class ResponseModel {
 
 	}
 	
-	public HashMap<String,JSONObject> createJson(Swagger swaggerObj){
-		List<ModelDetail> modelDetailsList = getModelList(swaggerObj);
+	public Map<String,JSONObject> createResponseSchemaJson(Swagger swagger){
+		List<ModelDetail> modelDetailsList = getModelList(swagger);
 		HashMap<String, JSONObject> jsonResponseMap = new HashMap<>();
 
-		for(ModelDetail md : modelDetailsList){
+		for(ModelDetail modelDetail : modelDetailsList){
 			JSONObject jObject = new JSONObject();
-			List<MyModel> modelList = md.getModelList();
-			for(MyModel mm :modelList){
-				if("ref".equals(mm.getModelType()) || "array".equals(mm.getModelType())){
-					String ref = mm.getModelRef();
+			List<MyModel> modelList = modelDetail.getModelList();
+			for(MyModel model :modelList){
+				if("ref".equals(model.getModelType()) || "array".equals(model.getModelType())){
+					String ref = model.getModelRef();
 					JSONObject internalrefObject = iterateJson(modelDetailsList,ref);
-					jObject.put(mm.getModelName(), internalrefObject);
+					jObject.put(model.getModelName(), internalrefObject);
 				}
 				else{
 					  
-					  jObject.put(mm.getModelName(), mm.getModelDesc());
+					  jObject.put(model.getModelName(), model.getModelDesc());
 				}
 			}
-			jsonResponseMap.put(md.getModelTitle(), jObject);
+			jsonResponseMap.put(modelDetail.getModelTitle(), jObject);
 		}
 		return jsonResponseMap;
 	}
 
 	private JSONObject iterateJson(List<ModelDetail> modelDetailsList, String ref) {
-		//write method to get list of models n add in json obj
 		JSONObject jObject = new JSONObject();
-		for(ModelDetail md : modelDetailsList){
-			if(md.getModelTitle().equals(ref)){
-				List<MyModel> modelList = md.getModelList();
-				for(MyModel mm :modelList){
-					if("ref".equals(mm.getModelType())){
-						String reference = mm.getModelRef();
+		for(ModelDetail modelDetail : modelDetailsList){
+			if(modelDetail.getModelTitle().equals(ref)){
+				List<MyModel> modelList = modelDetail.getModelList();
+				for(MyModel model :modelList){
+					if("ref".equals(model.getModelType())){
+						String reference = model.getModelRef();
 						JSONObject internalrefObject = iterateJson(modelDetailsList,reference);
-						jObject.put(mm.getModelName(), internalrefObject);
+						jObject.put(model.getModelName(), internalrefObject);
 					}
 					else{
 						  
-						  jObject.put(mm.getModelName(), mm.getModelDesc());
+						  jObject.put(model.getModelName(), model.getModelDesc());
 					}
 				}
 			}
@@ -102,7 +98,7 @@ public class ResponseModel {
 
 		StringWriter writer = new StringWriter();
 		modelTemplate.execute(writer, modelScope);
-		FileUtil.createFile("modelnew", writer.toString());
+		FileUtil.createFile("model", writer.toString());
 
 	}
 

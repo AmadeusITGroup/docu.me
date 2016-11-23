@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+import com.amadeus.docuMe.pojo.Entity;
 import com.amadeus.docuMe.pojo.MyResponse;
 import com.amadeus.docuMe.util.Documentation.MustacheVariables;
 import com.amadeus.docuMe.util.Documentation.Template;
@@ -29,34 +30,47 @@ public class ApiData {
 	MustacheFactory mf = new DefaultMustacheFactory();
 
 	/**
-	 * @param swaggerObj
+	 * @param swagger
 	 * @param isExample
 	 */
-	public Map<String, String> createApiData(Swagger swaggerObj, boolean isExample) {
+	
+	interface Variables {
+		int SUCCESS_RESPONSE_CODE = 200;
+	}
+	public List<Entity> createApiData(Swagger swagger, boolean isExample) {
 
-		ResponseModel rm = new ResponseModel();
-		HashMap<String, org.json.simple.JSONObject> jsonResponseMap = rm.createJson(swaggerObj);
+		ResponseModelData responseModel = new ResponseModelData();
+		HashMap<String, org.json.simple.JSONObject> jsonResponseMap = (HashMap<String, org.json.simple.JSONObject>) responseModel.createResponseSchemaJson(swagger);
 
-		// creating the url
-		String basePath = swaggerObj.getBasePath();
-		String host = swaggerObj.getHost();
-		HashMap<String, String> apiDataMap = new HashMap<>();
+		List<Entity> apiEntityList = new ArrayList<>();
 		// Iterate through Paths,then operations in the Swagger file
-		Map<String, Path> pathMap = swaggerObj.getPaths();
+		Map<String, Path> pathMap = swagger.getPaths();
 		HashMap<String, String> apiDetails;
+		String baseURL = createURL(swagger);
+		
 		for (Map.Entry<String, Path> pathDetail : pathMap.entrySet()) {
 			String pathUrl = pathDetail.getKey();
 			Path path = pathDetail.getValue();
 			Map<HttpMethod, Operation> httpMethodMap = path.getOperationMap();
-			String url = swaggerObj.getSchemes().get(0).toString().toLowerCase() + "://" + host + basePath;
+			String url = swagger.getSchemes().get(0).toString().toLowerCase() + "://" + baseURL;
 			url = url + pathUrl;
 			apiDetails = getApiData(url, isExample, httpMethodMap, jsonResponseMap);
 			for (Map.Entry<String, String> api : apiDetails.entrySet()) {
-				apiDataMap.put(api.getKey(), api.getValue());
+				Entity entity = new Entity();
+				entity.setEntityName(api.getKey());
+				entity.setEntityValue(api.getValue());
+				apiEntityList.add(entity);
 			}
 		}
-		// obj to b created
-		return apiDataMap;
+		return apiEntityList;
+	}
+
+	private String createURL(Swagger swagger) {
+		// creating the url
+		String basePath = swagger.getBasePath();
+		String host = swagger.getHost();
+
+		return host + basePath;
 	}
 
 	// Create api template
@@ -88,7 +102,7 @@ public class ApiData {
 			apiScope.put(MustacheVariables.OPERATION, operation);
 			apiScope.put(MustacheVariables.HTTP_METHOD, method);
 			if (isExample) {
-				example = GenerateExample.getReq(operation, url);
+				example = GenerateExample.getLiveExample(operation, url);
 			}
 			List<MyResponse> responseList = new ArrayList<>();
 			responses = getReponsesMap(operation);
@@ -100,7 +114,8 @@ public class ApiData {
 			}
 			for (Map.Entry<String, org.json.simple.JSONObject> responseObj : jsonResponseMap.entrySet()) {
 				for (MyResponse response : responseList) {
-					if (responseObj.getKey().equalsIgnoreCase(response.getSimpleReference()) && !(response.getSimpleReference().equalsIgnoreCase("error"))) {
+					if (responseObj.getKey().equalsIgnoreCase(response.getSimpleReference())
+							&& ("Variables.SUCCESS_RESPONSE_CODE".equalsIgnoreCase(response.getResponseNumber()))) {
 						apiScope.put("resSchema", responseObj.getValue());
 					}
 				}
@@ -154,12 +169,12 @@ public class ApiData {
 	}
 
 	/**
-	 * @param op
+	 * @param operation
 	 * @return
 	 */
-	public Map<String, Response> getReponsesMap(Operation op) {
+	public Map<String, Response> getReponsesMap(Operation operation) {
 
-		return op.getResponses();
+		return operation.getResponses();
 
 	}
 

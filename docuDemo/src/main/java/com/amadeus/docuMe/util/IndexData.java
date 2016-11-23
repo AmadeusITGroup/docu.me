@@ -24,9 +24,9 @@ public class IndexData {
 	// Create index template
 
 	/**
-	 * @param swaggerObj
+	 * @param swagger
 	 */
-	public String createIndexData(Swagger swaggerObj) {
+	public String createIndexData(Swagger swagger) {
 		Mustache indexTemplate = mf.compile(Template.INDEX);
 		HashMap<String, Object> indexScope = new HashMap<>();
 		List<String> operationIdList = new ArrayList<>();
@@ -34,7 +34,7 @@ public class IndexData {
 		StringWriter indexWriter = new StringWriter();
 
 		// Iterate through Definitions,then models in the Swagger file
-		Map<String, Model> modelMap = swaggerObj.getDefinitions();
+		Map<String, Model> modelMap = swagger.getDefinitions();
 
 		if (modelMap != null) {
 			// Add model's list in index file
@@ -43,13 +43,13 @@ public class IndexData {
 			}
 		}
 		// Iterate through Paths,then operations in the Swagger file
-		Map<String, Path> pathMap = swaggerObj.getPaths();
+		Map<String, Path> pathMap = swagger.getPaths();
 
 		for (Map.Entry<String, Path> pathDetail : pathMap.entrySet()) {
 			Path path = pathDetail.getValue();
-			List<Operation> opList = path.getOperations();
-			for (Operation op : opList) {
-				operationIdList.add(op.getOperationId());
+			List<Operation> operationList = path.getOperations();
+			for (Operation operation : operationList) {
+				operationIdList.add(operation.getOperationId());
 			}
 
 		}
