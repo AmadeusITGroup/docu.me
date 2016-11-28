@@ -35,7 +35,7 @@ public class DocuDemoApplication {
 			String indexFile = indexData.createIndexData(swagger);
 			FileUtil.createFile("index", indexFile);
 
-			List<Entity> apiEntityList = apiData.createApiData(swagger, false);
+			List<Entity> apiEntityList = apiData.createApiData(swagger, isExample);
 			for (Entity entity : apiEntityList) {
 				FileUtil.createFile(entity.getEntityName(), entity.getEntityValue());
 			}

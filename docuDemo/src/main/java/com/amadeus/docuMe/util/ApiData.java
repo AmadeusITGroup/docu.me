@@ -37,6 +37,7 @@ public class ApiData {
 	interface Variables {
 		int SUCCESS_RESPONSE_CODE = 200;
 	}
+	
 	public List<Entity> createApiData(Swagger swagger, boolean isExample) {
 
 		ResponseModelData responseModel = new ResponseModelData();

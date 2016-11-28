@@ -12,6 +12,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import com.amadeus.docuMe.pojo.Entity;
 import com.amadeus.docuMe.util.ApiData;
 import com.amadeus.docuMe.util.Documentation;
 
@@ -31,19 +32,19 @@ public class ApiDataTests {
 	 */
 	@Test
 	public void testCreateApiData() {
-		Swagger swaggerObj = null;
+		/*Swagger swaggerObj = null;
 		if (file.exists()) {
 			swaggerObj = new SwaggerParser().read(swaggerFile);
 		}
 	ApiData apiDataObj = new ApiData();
-		Map<String, String> apiData = apiDataObj.createApiData(swaggerObj, "false");
+		List<Entity> apiData = apiDataObj.createApiData(swaggerObj, false);
 		for (Map.Entry<String, String> pathDetail : apiData.entrySet()) {
 			String str = pathDetail.getKey();
 			assertEquals("Get_hotellist_city.html", str);
 			
 				
-		}
-//		fail("Not yet implemented");
+		}*/
+		fail("Not yet implemented");
 	}
 
 	/**
