@@ -51,7 +51,7 @@ public class DocumentationTest {
 	 */
 	@Test
 	public void testCreateIndexData() {
-		/*Swagger swaggerObj = null;
+		Swagger swaggerObj = null;
 		if (file.exists()) {
 			swaggerObj = new SwaggerParser().read(swaggerFile);
 		}
@@ -86,7 +86,7 @@ public class DocumentationTest {
 		for(String modelName:modelsList){
 			assertThat(indexData,CoreMatchers.containsString(modelName));
 		}
-*/		
+		
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class DocumentationTest {
 	 */
 	@Test
 	public void testCreateApiData() {
-		/*Swagger swaggerObj = null;
+		Swagger swaggerObj = null;
 		if (file.exists()) {
 			swaggerObj = new SwaggerParser().read(swaggerFile);
 		}
@@ -106,7 +106,7 @@ public class DocumentationTest {
 			assertEquals("Get_hotellist_city.html", str);
 			
 				
-		}*/
+		}
 		fail("Not yet implemented");
 	}
 

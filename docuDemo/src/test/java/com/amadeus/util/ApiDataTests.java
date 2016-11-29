@@ -32,7 +32,7 @@ public class ApiDataTests {
 	 */
 	@Test
 	public void testCreateApiData() {
-		/*Swagger swaggerObj = null;
+		Swagger swaggerObj = null;
 		if (file.exists()) {
 			swaggerObj = new SwaggerParser().read(swaggerFile);
 		}
@@ -43,7 +43,7 @@ public class ApiDataTests {
 			assertEquals("Get_hotellist_city.html", str);
 			
 				
-		}*/
+		}
 		fail("Not yet implemented");
 	}
 
