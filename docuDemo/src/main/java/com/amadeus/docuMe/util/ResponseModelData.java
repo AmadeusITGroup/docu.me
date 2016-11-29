@@ -1,4 +1,4 @@
-package com.amadeus.docuMe.util;
+package com.amadeus.docume.util;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -8,9 +8,9 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 
-import com.amadeus.docuMe.pojo.ModelDetail;
-import com.amadeus.docuMe.pojo.MyModel;
-import com.amadeus.docuMe.util.Documentation.Template;
+import com.amadeus.docume.pojo.ModelDetail;
+import com.amadeus.docume.pojo.MyModel;
+import com.amadeus.docume.util.Documentation.Template;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;

@@ -1,4 +1,4 @@
-package com.amadeus.docuMe.pojo;
+package com.amadeus.docume.pojo;
 
 
 public class MyModel {

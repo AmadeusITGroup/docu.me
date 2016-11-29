@@ -1,4 +1,4 @@
-package com.amadeus.docuMe.pojo;
+package com.amadeus.docume.pojo;
 
 
 import java.util.ArrayList;

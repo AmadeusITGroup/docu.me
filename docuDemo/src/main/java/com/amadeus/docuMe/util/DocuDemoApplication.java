@@ -1,15 +1,14 @@
-package com.amadeus.docuMe.util;
+package com.amadeus.docume.util;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.amadeus.docuMe.pojo.Entity;
+import com.amadeus.docume.pojo.Entity;
 
 import io.swagger.models.Swagger;
 import io.swagger.parser.SwaggerParser;

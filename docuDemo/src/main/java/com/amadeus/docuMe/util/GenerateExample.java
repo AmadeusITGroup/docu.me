@@ -1,4 +1,4 @@
-package com.amadeus.docuMe.util;
+package com.amadeus.docume.util;
 
 import java.net.HttpURLConnection;
 import java.net.URI;
