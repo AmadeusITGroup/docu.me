@@ -89,7 +89,6 @@ public class ApiData {
 		HashMap<String, Object> apiScope = new HashMap<>();
 		HashMap<String, String> apiDetails = new HashMap<>();
 		Map<String, Response> responses;
-		String simpleReference;
 
 		// Retrieve the api key which is set as environment variable
 		String apiKey = System.getenv("APIKEY");

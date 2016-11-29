@@ -20,9 +20,8 @@ public class DocuDemoApplication {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(DocuDemoApplication.class, args);
-//		String swaggerFile = args[0];
+		String swaggerFile = args[0];
 		boolean isExample = FileUtil.toBoolean(args[1]);
-		 String swaggerFile = "d:\\Userfiles\\nghate\\Desktop\\swg.yml";
 		File file = new File(swaggerFile);
 		ApiData apiData = new ApiData();
 		IndexData indexData = new IndexData();
