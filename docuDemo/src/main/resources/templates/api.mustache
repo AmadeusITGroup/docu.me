@@ -123,7 +123,7 @@
 	<tr>
 	<td>{{responseNumber}}</td>
 	<td>{{description}}</td>
-	<td><a href="modelnew.html#_{{simpleReference}}">{{simpleReference}}</a></td>
+	<td><a href="model.html#_{{simpleReference}}">{{simpleReference}}</a></td>
 	</tr>
 	{{/responses}}
 	</tbody>
@@ -171,7 +171,7 @@
 	   $('#apikey').val("{{apiKey}}");
 	   $( '#apikey' ).prop( "disabled", true );
 	   $('#element').jsonView(JSON.stringify({{{example}}}));
-	   $('#response-content').jsonView(JSON.stringify({{{resSchema}}}));
+	   $('#response-content').jsonView(JSON.stringify({{{responseSchema}}}));
 	});
 
     $("#get-data").click(function(){

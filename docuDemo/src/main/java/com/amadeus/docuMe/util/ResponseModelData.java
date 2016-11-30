@@ -43,7 +43,7 @@ public class ResponseModelData {
 
 	}
 	
-	public Map<String,JSONObject> createResponseSchemaJson(Swagger swagger){
+	public Map<String,JSONObject> createResponseJsonSchema(Swagger swagger){
 		List<ModelDetail> modelDetailsList = getModelList(swagger);
 		HashMap<String, JSONObject> jsonResponseMap = new HashMap<>();
 

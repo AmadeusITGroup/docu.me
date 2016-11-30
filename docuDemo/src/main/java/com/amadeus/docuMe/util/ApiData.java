@@ -43,28 +43,35 @@ public class ApiData {
 
 		ResponseModelData responseModel = new ResponseModelData();
 		HashMap<String, org.json.simple.JSONObject> jsonResponseMap = (HashMap<String, org.json.simple.JSONObject>) responseModel
-				.createResponseSchemaJson(swagger);
+				.createResponseJsonSchema(swagger);
 
-		List<Entity> apiEntityList = new ArrayList<>();
-		// Iterate through Paths,then operations in the Swagger file
-		Map<String, Path> pathMap = swagger.getPaths();
-		HashMap<String, String> apiDetails = null;
 		String baseURL = createURL(swagger);
 
+		List<Entity> apiEntityList = new ArrayList<>();
+		HashMap<String, String> apiPageDetails = null;
+
+		// Iterate through Paths for operations in the Swagger file
+		Map<String, Path> pathMap = swagger.getPaths();
+
 		for (Map.Entry<String, Path> pathDetail : pathMap.entrySet()) {
+			
+			// Create path url based on each path described in swagger.yml
 			String pathUrl = pathDetail.getKey();
-			Path path = pathDetail.getValue();
-			Map<HttpMethod, Operation> httpMethodMap = path.getOperationMap();
 			String url = swagger.getSchemes().get(0).toString().toLowerCase() + "://" + baseURL;
 			url = url + pathUrl;
+
+			Path path = pathDetail.getValue();
+			Map<HttpMethod, Operation> httpMethodMap = path.getOperationMap();
+
 			for (Map.Entry<HttpMethod, Operation> httpMethod : httpMethodMap.entrySet()) {
-				apiDetails = generateApiPage(url, isExample, httpMethod.getKey(), httpMethod.getValue(),jsonResponseMap);
+				
+				apiPageDetails = generateApiPage(url, isExample, httpMethod.getKey(), httpMethod.getValue(),jsonResponseMap);
 
 			}
-			for (Map.Entry<String, String> api : apiDetails.entrySet()) {
+			for (Map.Entry<String, String> apiPage : apiPageDetails.entrySet()) {
 				Entity entity = new Entity();
-				entity.setEntityName(api.getKey());
-				entity.setEntityValue(api.getValue());
+				entity.setEntityTitle(apiPage.getKey());
+				entity.setEntityHtmlPage(apiPage.getValue());
 				apiEntityList.add(entity);
 			}
 		}
@@ -81,7 +88,6 @@ public class ApiData {
 
 	// Create api template
 	/**
-	 * @param opList
 	 * @param url
 	 * @param isExample
 	 * @param httpMethod
@@ -126,14 +132,14 @@ public class ApiData {
 			apiScope.put(MustacheVariables.EXAMPLE, example);
 		}
 
-		List<MyResponse> responseList = createResponseList(operation);
+		List<MyResponse> responseList = createResponsesList(operation);
 		apiScope.put(MustacheVariables.RESPONSES, responseList);
 
 		for (Map.Entry<String, org.json.simple.JSONObject> responseObj : jsonResponseMap.entrySet()) {
 			for (MyResponse response : responseList) {
 				if (responseObj.getKey().equalsIgnoreCase(response.getSimpleReference())
 						&& (Variables.SUCCESS_RESPONSE_CODE.equals(response.getResponseNumber()))) {
-					apiScope.put("resSchema", responseObj.getValue());
+					apiScope.put(MustacheVariables.RESPONSE_SCHEMA, responseObj.getValue());
 				}
 			}
 		}
@@ -145,50 +151,37 @@ public class ApiData {
 	 * @param operation
 	 * @return
 	 */
-	private List<MyResponse> createResponseList(Operation operation) {
-		List<MyResponse> responseList = new ArrayList<>();
-		Map<String, Response> responses;
-		responses = operation.getResponses();
-		for (Map.Entry<String, Response> responseObj : responses.entrySet()) {
+	private List<MyResponse> createResponsesList(Operation operation) {
+		List<MyResponse> responsesList = new ArrayList<>();
+		Map<String, Response> responsesMap = operation.getResponses();
+		
+		for (Map.Entry<String, Response> responseObj : responsesMap.entrySet()) {
 
 			MyResponse response = getResponseList(responseObj);
-			responseList.add(response);
+			responsesList.add(response);
 
 		}
-		return responseList;
+		return responsesList;
 	}
 
 	/**
-	 * @param responseList
 	 * @param responseMap
 	 */
 	private MyResponse getResponseList(Map.Entry<String, Response> responseMap) {
-		String simpleReference;
+		MyResponse response = null;
 		String resName = responseMap.getKey();
 		Response resValue = responseMap.getValue();
 		Property property = resValue.getSchema();
 
-		MyResponse response = new MyResponse();
-		response.setDescription(resValue.getDescription());
-
+		
 		if (property != null) {
 			if (property instanceof ArrayProperty) {
 				ArrayProperty ap = (ArrayProperty) property;
 				Property p2 = ap.getItems();
-				RefProperty rp = (RefProperty) p2;
-				String ref = rp.get$ref();
-				simpleReference = rp.getSimpleRef();
-				response.setReference(ref);
-				response.setResponseNumber(resName);
+				response = extractSimple(resName, resValue, p2);
 			} else {
-				//call method
-				RefProperty rp = (RefProperty) property;
-				String ref = rp.get$ref();
-				simpleReference = rp.getSimpleRef();
-				response.setReference(ref);
-				response.setResponseNumber(resName);
+				response = extractSimple(resName, resValue, property);
 			}
-			response.setSimpleReference(simpleReference);
 
 		} else {
 			response.setReference("No property reference was found.");
@@ -196,5 +189,24 @@ public class ApiData {
 		return response;
 	}
 
+	/**
+	 * @param resName
+	 * @param resValue
+	 * @param property
+	 * @return
+	 */
+	private MyResponse extractSimple(String resName, Response resValue, Property property) {
+		RefProperty rp = (RefProperty) property;
+		String ref = rp.get$ref();
+		String simpleReference = rp.getSimpleRef();
+		
+		MyResponse response = new MyResponse();
+		response.setDescription(resValue.getDescription());
+		response.setReference(ref);
+		response.setResponseNumber(resName);
+		response.setSimpleReference(simpleReference);
+
+		return response;
+	}
 
 }

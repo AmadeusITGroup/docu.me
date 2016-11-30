@@ -2,22 +2,25 @@ package com.amadeus.docume.pojo;
 
 public class Entity {
 
-	String entityName;
-	String entityValue;
+	String entityTitle;
 
-	public String getEntityName() {
-		return entityName;
+	String entityHtmlPage;
+	
+	public String getEntityTitle() {
+		return entityTitle;
 	}
 
-	public void setEntityName(String entityName) {
-		this.entityName = entityName;
+	public void setEntityTitle(String entityTitle) {
+		this.entityTitle = entityTitle;
 	}
 
-	public String getEntityValue() {
-		return entityValue;
+	public String getEntityHtmlPage() {
+		return entityHtmlPage;
 	}
 
-	public void setEntityValue(String entityValue) {
-		this.entityValue = entityValue;
+	public void setEntityHtmlPage(String entityHtmlPage) {
+		this.entityHtmlPage = entityHtmlPage;
 	}
+
+
 }
