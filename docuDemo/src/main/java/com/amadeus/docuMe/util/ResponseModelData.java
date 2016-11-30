@@ -88,8 +88,8 @@ public class ResponseModelData {
 		
 	}
 
-	public void createModelTemplate(Swagger swaggerObj) {
-		List<ModelDetail> modelDetailsList = getModelList(swaggerObj);
+	public void createModelTemplate(Swagger swagger) {
+		List<ModelDetail> modelDetailsList = getModelList(swagger);
 		MustacheFactory mf = new DefaultMustacheFactory();
 		Mustache modelTemplate = mf.compile(Template.MODEL);
 		HashMap<String, Object> modelScope = new HashMap<>();

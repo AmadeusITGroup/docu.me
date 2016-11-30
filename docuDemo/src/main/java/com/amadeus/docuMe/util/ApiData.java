@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.json.JSONObject;
 
@@ -33,29 +34,33 @@ public class ApiData {
 	 * @param swagger
 	 * @param isExample
 	 */
-	
+
 	interface Variables {
-		int SUCCESS_RESPONSE_CODE = 200;
+		String SUCCESS_RESPONSE_CODE = "200";
 	}
-	
+
 	public List<Entity> createApiData(Swagger swagger, boolean isExample) {
 
 		ResponseModelData responseModel = new ResponseModelData();
-		HashMap<String, org.json.simple.JSONObject> jsonResponseMap = (HashMap<String, org.json.simple.JSONObject>) responseModel.createResponseSchemaJson(swagger);
+		HashMap<String, org.json.simple.JSONObject> jsonResponseMap = (HashMap<String, org.json.simple.JSONObject>) responseModel
+				.createResponseSchemaJson(swagger);
 
 		List<Entity> apiEntityList = new ArrayList<>();
 		// Iterate through Paths,then operations in the Swagger file
 		Map<String, Path> pathMap = swagger.getPaths();
-		HashMap<String, String> apiDetails;
+		HashMap<String, String> apiDetails = null;
 		String baseURL = createURL(swagger);
-		
+
 		for (Map.Entry<String, Path> pathDetail : pathMap.entrySet()) {
 			String pathUrl = pathDetail.getKey();
 			Path path = pathDetail.getValue();
 			Map<HttpMethod, Operation> httpMethodMap = path.getOperationMap();
 			String url = swagger.getSchemes().get(0).toString().toLowerCase() + "://" + baseURL;
 			url = url + pathUrl;
-			apiDetails = getApiData(url, isExample, httpMethodMap, jsonResponseMap);
+			for (Map.Entry<HttpMethod, Operation> httpMethod : httpMethodMap.entrySet()) {
+				apiDetails = generateApiPage(url, isExample, httpMethod.getKey(), httpMethod.getValue(),jsonResponseMap);
+
+			}
 			for (Map.Entry<String, String> api : apiDetails.entrySet()) {
 				Entity entity = new Entity();
 				entity.setEntityName(api.getKey());
@@ -79,56 +84,78 @@ public class ApiData {
 	 * @param opList
 	 * @param url
 	 * @param isExample
-	 * @param httpMethodMap
+	 * @param httpMethod
 	 * @param jsonResponseMap
 	 */
-	private HashMap<String, String> getApiData(String url, boolean isExample, Map<HttpMethod, Operation> httpMethodMap,
-			HashMap<String, org.json.simple.JSONObject> jsonResponseMap) {
+	private HashMap<String, String> generateApiPage(String url, boolean isExample, HttpMethod httpMethod,
+			Operation operation, HashMap<String, org.json.simple.JSONObject> jsonResponseMap) {
 
 		Mustache apiTemplate = mf.compile(Template.API);
-		HashMap<String, Object> apiScope = new HashMap<>();
 		HashMap<String, String> apiDetails = new HashMap<>();
-		Map<String, Response> responses;
 
-		// Retrieve the api key which is set as environment variable
-		String apiKey = System.getenv("APIKEY");
-		apiScope.put(MustacheVariables.URL, url);
-		apiScope.put(MustacheVariables.APIKEY, apiKey);
-		JSONObject example = null;
+		HashMap<String, Object> apiScope = buildApiScope(url, isExample, httpMethod, jsonResponseMap, operation);
 
-		for (Map.Entry<HttpMethod, Operation> httpMethod : httpMethodMap.entrySet()) {
-			HttpMethod method = httpMethod.getKey();
-			Operation operation = httpMethod.getValue();
-			apiScope.put(MustacheVariables.OPERATION, operation);
-			apiScope.put(MustacheVariables.HTTP_METHOD, method);
-			if (isExample) {
-				example = GenerateExample.getLiveExample(operation, url);
-			}
-			List<MyResponse> responseList = new ArrayList<>();
-			responses = getReponsesMap(operation);
-			for (Map.Entry<String, Response> responseObj : responses.entrySet()) {
+		StringWriter apiWriter = new StringWriter();
+		apiTemplate.execute(apiWriter, apiScope);
+		apiDetails.put(operation.getOperationId(), apiWriter.toString());
 
-				MyResponse response = getResponseList(responseObj);
-				responseList.add(response);
-
-			}
-			for (Map.Entry<String, org.json.simple.JSONObject> responseObj : jsonResponseMap.entrySet()) {
-				for (MyResponse response : responseList) {
-					if (responseObj.getKey().equalsIgnoreCase(response.getSimpleReference())
-							&& ("Variables.SUCCESS_RESPONSE_CODE".equalsIgnoreCase(response.getResponseNumber()))) {
-						apiScope.put("resSchema", responseObj.getValue());
-					}
-				}
-			}
-			apiScope.put(MustacheVariables.RESPONSES, responseList);
-			apiScope.put(MustacheVariables.EXAMPLE, example);
-			StringWriter apiWriter = new StringWriter();
-			apiTemplate.execute(apiWriter, apiScope);
-			apiDetails.put(operation.getOperationId(), apiWriter.toString());
-
-		}
 		return apiDetails;
 
+	}
+
+	/**
+	 * @param url
+	 * @param isExample
+	 * @param httpMethod
+	 * @param jsonResponseMap
+	 * @param operation
+	 * @return
+	 */
+	private HashMap<String, Object> buildApiScope(String url, boolean isExample, HttpMethod method,
+			HashMap<String, org.json.simple.JSONObject> jsonResponseMap, Operation operation) {
+		// Retrieve the api key which is set as environment variable
+		String apiKey = System.getenv("APIKEY");
+		HashMap<String, Object> apiScope = new HashMap<>();
+		apiScope.put(MustacheVariables.URL, url);
+		apiScope.put(MustacheVariables.APIKEY, apiKey);
+		apiScope.put(MustacheVariables.OPERATION, operation);
+		apiScope.put(MustacheVariables.HTTP_METHOD, method);
+
+		if (isExample) {
+			JSONObject example = GenerateExample.getLiveExample(operation, url);
+			apiScope.put(MustacheVariables.EXAMPLE, example);
+		}
+
+		List<MyResponse> responseList = createResponseList(operation);
+		apiScope.put(MustacheVariables.RESPONSES, responseList);
+
+		for (Map.Entry<String, org.json.simple.JSONObject> responseObj : jsonResponseMap.entrySet()) {
+			for (MyResponse response : responseList) {
+				if (responseObj.getKey().equalsIgnoreCase(response.getSimpleReference())
+						&& (Variables.SUCCESS_RESPONSE_CODE.equals(response.getResponseNumber()))) {
+					apiScope.put("resSchema", responseObj.getValue());
+				}
+			}
+		}
+
+		return apiScope;
+	}
+
+	/**
+	 * @param operation
+	 * @return
+	 */
+	private List<MyResponse> createResponseList(Operation operation) {
+		List<MyResponse> responseList = new ArrayList<>();
+		Map<String, Response> responses;
+		responses = operation.getResponses();
+		for (Map.Entry<String, Response> responseObj : responses.entrySet()) {
+
+			MyResponse response = getResponseList(responseObj);
+			responseList.add(response);
+
+		}
+		return responseList;
 	}
 
 	/**
@@ -154,6 +181,7 @@ public class ApiData {
 				response.setReference(ref);
 				response.setResponseNumber(resName);
 			} else {
+				//call method
 				RefProperty rp = (RefProperty) property;
 				String ref = rp.get$ref();
 				simpleReference = rp.getSimpleRef();
@@ -168,14 +196,5 @@ public class ApiData {
 		return response;
 	}
 
-	/**
-	 * @param operation
-	 * @return
-	 */
-	public Map<String, Response> getReponsesMap(Operation operation) {
-
-		return operation.getResponses();
-
-	}
 
 }
