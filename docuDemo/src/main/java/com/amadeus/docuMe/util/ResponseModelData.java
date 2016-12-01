@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 
 import com.amadeus.docume.pojo.ModelDetail;
 import com.amadeus.docume.pojo.MyModel;
+import com.amadeus.docume.util.Documentation.MustacheVariables;
 import com.amadeus.docume.util.Documentation.Template;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
@@ -25,26 +26,9 @@ import io.swagger.models.properties.RefProperty;
 public class ResponseModelData {
 
 	// create models
-	/**
-	 * @param swagger
-	 */
-	public List<ModelDetail> getModelList(Swagger swagger) {
 
-		Map<String, Model> modelMap = swagger.getDefinitions();
-		List<ModelDetail> modelDetailsList = new ArrayList<>();
-		ModelDetail modelDetail;
-
-		for (Map.Entry<String, Model> entry : modelMap.entrySet()) {
-			modelDetail = iterateModels(entry);
-			modelDetailsList.add(modelDetail);
-		}
-
-		return modelDetailsList;
-
-	}
-	
 	public Map<String,JSONObject> createResponseJsonSchema(Swagger swagger){
-		List<ModelDetail> modelDetailsList = getModelList(swagger);
+		List<ModelDetail> modelDetailsList = createModelList(swagger);
 		HashMap<String, JSONObject> jsonResponseMap = new HashMap<>();
 
 		for(ModelDetail modelDetail : modelDetailsList){
@@ -57,7 +41,6 @@ public class ResponseModelData {
 					jObject.put(model.getModelName(), internalrefObject);
 				}
 				else{
-					  
 					  jObject.put(model.getModelName(), model.getModelDesc());
 				}
 			}
@@ -65,10 +48,31 @@ public class ResponseModelData {
 		}
 		return jsonResponseMap;
 	}
+	
+	/**
+	 * @param swagger
+	 */
+	public List<ModelDetail> createModelList(Swagger swagger) {
+
+		Map<String, Model> modelMap = swagger.getDefinitions();
+		List<ModelDetail> modelDetailsList = new ArrayList<>();
+		
+
+		for (Map.Entry<String, Model> entry : modelMap.entrySet()) {
+			ModelDetail modelDetail = createModel(entry);
+			modelDetailsList.add(modelDetail);
+		}
+
+		return modelDetailsList;
+
+	}
+	
 
 	private JSONObject iterateJson(List<ModelDetail> modelDetailsList, String ref) {
 		JSONObject jObject = new JSONObject();
+		
 		for(ModelDetail modelDetail : modelDetailsList){
+			
 			if(modelDetail.getModelTitle().equals(ref)){
 				List<MyModel> modelList = modelDetail.getModelList();
 				for(MyModel model :modelList){
@@ -88,25 +92,34 @@ public class ResponseModelData {
 		
 	}
 
-	public void createModelTemplate(Swagger swagger) {
-		List<ModelDetail> modelDetailsList = getModelList(swagger);
+	public String createModelTemplate(Swagger swagger) {
 		MustacheFactory mf = new DefaultMustacheFactory();
 		Mustache modelTemplate = mf.compile(Template.MODEL);
-		HashMap<String, Object> modelScope = new HashMap<>();
-
-		modelScope.put("modelDetailsList", modelDetailsList);
+		
+		HashMap<String, Object> modelScope = buildModelScope(swagger);
 
 		StringWriter writer = new StringWriter();
 		modelTemplate.execute(writer, modelScope);
-		FileUtil.createFile("model", writer.toString());
+		
+		return writer.toString();
+	}
 
+	/**
+	 * @param swagger
+	 * @return
+	 */
+	private HashMap<String, Object> buildModelScope(Swagger swagger) {
+		HashMap<String, Object> modelScope = new HashMap<>();
+		List<ModelDetail> modelDetailsList = createModelList(swagger);
+		modelScope.put("modelDetailsList", modelDetailsList);
+		return modelScope;
 	}
 
 	/**
 	 * @param modelMap
 	 * @return
 	 */
-	private ModelDetail iterateModels(Map.Entry<String, Model> modelMap) {
+	private ModelDetail createModel(Map.Entry<String, Model> modelMap) {
 		List<Model> modelList;
 		Model model = modelMap.getValue();
 		ModelDetail modelDetail = null;
@@ -115,11 +128,11 @@ public class ResponseModelData {
 			modelList = cm.getAllOf();
 			for (Model m : modelList) {
 				Map<String, Property> modelPropMap = m.getProperties();
-				modelDetail = iterateModelProperties(modelPropMap);
+				modelDetail = createModelProperties(modelPropMap);
 			}
 		} else {
 			Map<String, Property> modelPropMap = model.getProperties();
-			modelDetail = iterateModelProperties(modelPropMap);
+			modelDetail = createModelProperties(modelPropMap);
 		}
 
 		modelDetail.setModelTitle(modelMap.getKey());
@@ -131,7 +144,7 @@ public class ResponseModelData {
 	 * @param modelPropertyMap
 	 * @return
 	 */
-	private ModelDetail iterateModelProperties(Map<String, Property> modelPropertyMap) {
+	private ModelDetail createModelProperties(Map<String, Property> modelPropertyMap) {
 		List<MyModel> myModelList;
 		ModelDetail modelDetail = new ModelDetail();
 
@@ -165,5 +178,13 @@ public class ResponseModelData {
 			}
 		}
 		return modelDetail;
+	}
+	
+	
+	public void buildResponseModelPage(Swagger swagger){
+		// Creating the response model page
+					String modelHtmlFile = createModelTemplate(swagger);
+					FileUtil.createFile(MustacheVariables.MODEL, modelHtmlFile);
+
 	}
 }

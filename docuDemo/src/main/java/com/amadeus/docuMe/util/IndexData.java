@@ -28,23 +28,56 @@ public class IndexData {
 	 */
 	public String createIndexData(Swagger swagger) {
 		Mustache indexTemplate = mf.compile(Template.INDEX);
-		HashMap<String, Object> indexScope = new HashMap<>();
-		List<String> operationIdList = new ArrayList<>();
-		List<String> modelsList = new ArrayList<>();
+		HashMap<String, Object> indexScope = buildIndexScope(swagger);
 		StringWriter indexWriter = new StringWriter();
+		indexTemplate.execute(indexWriter, indexScope);
+		return indexWriter.toString();
 
-		// Iterate through Definitions,then models in the Swagger file
+	}
+
+	/**
+	 * @param swagger
+	 * @return
+	 */
+	private HashMap<String, Object> buildIndexScope(Swagger swagger) {
+		
+		HashMap<String, Object> indexScope = new HashMap<>();
+		
+		List<String> modelsList = generateModelTitleList(swagger);
+		indexScope.put(MustacheVariables.MODEL_LIST, modelsList);
+		
+		List<String> operationIdList = generateOperationIdList(swagger);
+		indexScope.put(MustacheVariables.OPERATION_ID, operationIdList);
+		
+		return indexScope;
+	}
+
+	/**
+	 * @param modelMap
+	 * @return
+	 */
+	private List<String> generateModelTitleList(Swagger swagger) {
 		Map<String, Model> modelMap = swagger.getDefinitions();
 
+		List<String> modelsList = new ArrayList<>();
 		if (modelMap != null) {
 			// Add model's list in index file
 			for (Map.Entry<String, Model> entry : modelMap.entrySet()) {
 				modelsList.add(entry.getKey());
 			}
 		}
+		return modelsList;
+	}
+
+	/**
+	 * @param swagger
+	 * @return
+	 */
+	private List<String> generateOperationIdList(Swagger swagger) {
 		// Iterate through Paths,then operations in the Swagger file
 		Map<String, Path> pathMap = swagger.getPaths();
-
+		List<String> operationIdList = new ArrayList<>();
+		
 		for (Map.Entry<String, Path> pathDetail : pathMap.entrySet()) {
 			Path path = pathDetail.getValue();
 			List<Operation> operationList = path.getOperations();
@@ -53,11 +86,14 @@ public class IndexData {
 			}
 
 		}
-
-		indexScope.put(MustacheVariables.OPERATION_ID, operationIdList);
-		indexScope.put(MustacheVariables.MODEL_LIST, modelsList);
-		indexTemplate.execute(indexWriter, indexScope);
-		return indexWriter.toString();
+		return operationIdList;
+	}
+	
+	
+	public void buildIndexPage(Swagger swagger){
+		// Creating the Index page
+					String indexHtmlFile = createIndexData(swagger);
+					FileUtil.createFile(MustacheVariables.INDEX, indexHtmlFile);
 
 	}
 

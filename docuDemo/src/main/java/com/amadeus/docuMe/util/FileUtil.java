@@ -40,7 +40,7 @@ public class FileUtil {
 	}
 
 	public static void createLib() throws IOException {
-		File destDir = new File("Portal\\lib\\");
+		File destDir = new File("portal\\lib\\");
 		File srcCSSFile = new File("src\\main\\resources\\static\\jquery.json-view.css");
 
 		File srcJSFile = new File("src\\main\\resources\\static\\jquery.json-view.js");

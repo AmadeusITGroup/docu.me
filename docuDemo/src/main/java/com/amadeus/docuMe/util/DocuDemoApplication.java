@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.amadeus.docume.pojo.Entity;
+import com.amadeus.docume.util.Documentation.MustacheVariables;
 
 import io.swagger.models.Swagger;
 import io.swagger.parser.SwaggerParser;
@@ -20,8 +21,8 @@ public class DocuDemoApplication {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(DocuDemoApplication.class, args);
-		String swaggerFile = args[0];
-		boolean isExample = FileUtil.toBoolean(args[1]);
+		 String swaggerFile = args[0];
+		 boolean example = FileUtil.toBoolean(args[1]);
 		File file = new File(swaggerFile);
 		ApiData apiData = new ApiData();
 		IndexData indexData = new IndexData();
@@ -30,15 +31,12 @@ public class DocuDemoApplication {
 		if (file.exists()) {
 
 			Swagger swagger = new SwaggerParser().read(swaggerFile);
-			String indexFile = indexData.createIndexData(swagger);
-			FileUtil.createFile("index", indexFile);
 
-			List<Entity> apiEntityList = apiData.createApiData(swagger, isExample);
-			for (Entity entity : apiEntityList) {
-				FileUtil.createFile(entity.getEntityName(), entity.getEntityValue());
-			}
+			indexData.buildIndexPage(swagger);
+			apiData.buildAPIPages(swagger,example);
+			responseModelData.buildResponseModelPage(swagger);
 			
-			responseModelData.createModelTemplate(swagger);
+			// JS and CSS files for creating tree structure for json object
 			FileUtil.createLib();
 			logger.info("The docs are generated in this location: /docuDemo/Portal");
 

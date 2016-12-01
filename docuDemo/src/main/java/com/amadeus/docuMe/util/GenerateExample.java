@@ -35,7 +35,7 @@ public class GenerateExample {
 
 	static final Logger logger = Logger.getLogger(GenerateExample.class);
 
-	public static JSONObject getLiveExample(Operation operation, String baseUrl) {
+	public static JSONObject createLiveExample(Operation operation, String baseUrl) {
 		String requestUrl = null;
 		JSONObject output = null;
 		try {

@@ -39,35 +39,24 @@ public class ApiData {
 		String SUCCESS_RESPONSE_CODE = "200";
 	}
 
-	public List<Entity> createApiData(Swagger swagger, boolean isExample) {
+	public List<Entity> createApiData(Swagger swagger, boolean example) {
 
 		ResponseModelData responseModel = new ResponseModelData();
 		HashMap<String, org.json.simple.JSONObject> jsonResponseMap = (HashMap<String, org.json.simple.JSONObject>) responseModel
 				.createResponseJsonSchema(swagger);
 
-		String baseURL = createURL(swagger);
-
 		List<Entity> apiEntityList = new ArrayList<>();
-		HashMap<String, String> apiPageDetails = null;
-
 		// Iterate through Paths for operations in the Swagger file
 		Map<String, Path> pathMap = swagger.getPaths();
 
 		for (Map.Entry<String, Path> pathDetail : pathMap.entrySet()) {
 			
-			// Create path url based on each path described in swagger.yml
-			String pathUrl = pathDetail.getKey();
-			String url = swagger.getSchemes().get(0).toString().toLowerCase() + "://" + baseURL;
-			url = url + pathUrl;
+			String url = buildUrl(swagger, pathDetail);
 
 			Path path = pathDetail.getValue();
 			Map<HttpMethod, Operation> httpMethodMap = path.getOperationMap();
-
-			for (Map.Entry<HttpMethod, Operation> httpMethod : httpMethodMap.entrySet()) {
-				
-				apiPageDetails = generateApiPage(url, isExample, httpMethod.getKey(), httpMethod.getValue(),jsonResponseMap);
-
-			}
+			Map<String, String> apiPageDetails = generateApiPages(example, jsonResponseMap, url, httpMethodMap);
+			
 			for (Map.Entry<String, String> apiPage : apiPageDetails.entrySet()) {
 				Entity entity = new Entity();
 				entity.setEntityTitle(apiPage.getKey());
@@ -76,6 +65,40 @@ public class ApiData {
 			}
 		}
 		return apiEntityList;
+	}
+
+	/**
+	 * @param swagger
+	 * @param pathDetail
+	 * @return
+	 */
+	private String buildUrl(Swagger swagger, Map.Entry<String, Path> pathDetail) {
+		// Create path url based on each path described in swagger.yml
+		String baseURL = createURL(swagger);
+		String pathUrl = pathDetail.getKey();
+		String url = swagger.getSchemes().get(0).toString().toLowerCase() + "://" + baseURL;
+		url = url + pathUrl;
+		return url;
+	}
+
+	/**
+	 * @param example
+	 * @param jsonResponseMap
+	 * @param url
+	 * @param httpMethodMap
+	 * @return
+	 */
+	private Map<String, String> generateApiPages(boolean example,
+			HashMap<String, org.json.simple.JSONObject> jsonResponseMap, String url,
+			Map<HttpMethod, Operation> httpMethodMap) {
+		Map<String, String> apiPageDetails = new HashMap<>() ;
+		
+		for (Map.Entry<HttpMethod, Operation> httpMethod : httpMethodMap.entrySet()) {
+			
+			apiPageDetails = generateApiPage(url, example, httpMethod.getKey(), httpMethod.getValue(),jsonResponseMap);
+
+		}
+		return apiPageDetails;
 	}
 
 	private String createURL(Swagger swagger) {
@@ -109,10 +132,11 @@ public class ApiData {
 
 	}
 
+	
 	/**
 	 * @param url
 	 * @param isExample
-	 * @param httpMethod
+	 * @param method
 	 * @param jsonResponseMap
 	 * @param operation
 	 * @return
@@ -128,7 +152,7 @@ public class ApiData {
 		apiScope.put(MustacheVariables.HTTP_METHOD, method);
 
 		if (isExample) {
-			JSONObject example = GenerateExample.getLiveExample(operation, url);
+			JSONObject example = GenerateExample.createLiveExample(operation, url);
 			apiScope.put(MustacheVariables.EXAMPLE, example);
 		}
 
@@ -207,6 +231,14 @@ public class ApiData {
 		response.setSimpleReference(simpleReference);
 
 		return response;
+	}
+	
+	public void buildAPIPages(Swagger swagger, boolean example){
+		// Creating the Api page
+					List<Entity> apiEntityList = createApiData(swagger, example);
+					for (Entity entity : apiEntityList) {
+						FileUtil.createFile(entity.getEntityTitle(), entity.getEntityHtmlPage());
+					}
 	}
 
 }

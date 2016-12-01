@@ -23,6 +23,8 @@ public class Documentation {
 		String EXAMPLE = "example";
 		String MODEL_DETAILS_LIST = "modelDetailsList";
 		String RESPONSE_SCHEMA = "responseSchema";
+		String INDEX = "index";
+		String MODEL = "model";
 	}
 }
 
