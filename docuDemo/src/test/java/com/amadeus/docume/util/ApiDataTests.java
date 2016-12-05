@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.amadeus.docume.pojo.Entity;
@@ -24,20 +25,27 @@ import io.swagger.parser.SwaggerParser;
  *
  */
 public class ApiDataTests {
-	String swaggerFile = "d:\\Userfiles\\nghate\\Desktop\\swg.yml";
-	File file = new File(swaggerFile);
+	ClassLoader classLoader = getClass().getClassLoader();
+	File file = new File(classLoader.getResource("swg.yml").getFile());
+	Swagger swaggerObj = null;
 	List<String> operationParamList = new ArrayList<>();
 
 	/**
 	 * Test method for
 	 * {@link com.amadeus.docuMe.util.ApiData#createApiData(io.swagger.models.Swagger, java.lang.String)}.
 	 */
+
+	@Before
+	public void createSwagger() {
+		if (file.exists()) {
+			swaggerObj = new SwaggerParser().read("swg.yml");
+		}
+
+	}
+
 	@Test
 	public void testCreateApiData() {
-		Swagger swaggerObj = null;
-		if (file.exists()) {
-			swaggerObj = new SwaggerParser().read(swaggerFile);
-		}
+
 		ApiData apiDataObj = new ApiData();
 		List<Entity> apiEntityList = apiDataObj.createApiData(swaggerObj, false);
 		List<String> actualList = new ArrayList<>();
@@ -65,14 +73,11 @@ public class ApiDataTests {
 		expectedList.add("Top Flight Destinations");
 		expectedList.add("Top Flight Searches");
 		expectedList.add("Travel Record Retrieve");
-		
-		
+
 		for (Entity entity : apiEntityList) {
 			actualList.add(entity.getEntityTitle());
 		}
-		assertArrayEquals(expectedList.toArray(), actualList.toArray());
-//		fail("Not yet implemented");
+		assertEquals(expectedList, actualList);
 	}
-
 
 }
