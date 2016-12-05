@@ -3,17 +3,16 @@
  */
 package com.amadeus.docume.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.hamcrest.CoreMatchers;
+import org.junit.Before;
 import org.junit.Test;
-
-import com.amadeus.docume.util.IndexData;
 
 import io.swagger.models.Model;
 import io.swagger.models.Operation;
@@ -27,18 +26,23 @@ import io.swagger.parser.SwaggerParser;
  */
 public class IndexDataTests {
 
-	String swaggerFile = "d:\\Userfiles\\nghate\\Desktop\\swg.yml";
-	File file = new File(swaggerFile);
+	ClassLoader classLoader = getClass().getClassLoader();
+	File file = new File(classLoader.getResource("swg.yml").getFile());
+	Swagger swagger = null;
+	
+	@Before
+	public void createSwagger() {
+		if (file.exists()) {
+			swagger = new SwaggerParser().read("swg.yml");
+		}
 
+	}
 	/**
 	 * Test method for {@link com.amadeus.docuMe.util.IndexData#createIndexData(io.swagger.models.Swagger)}.
 	 */
 	@Test
 	public void testCreateIndexData() {
-		Swagger swagger = null;
-		if (file.exists()) {
-			swagger = new SwaggerParser().read(swaggerFile);
-		}
+	
 		List<String> operationIdList = new ArrayList<>();
 		List<String> modelsList = new ArrayList<>();
 		Map<String, Path> pathMap = swagger.getPaths();
