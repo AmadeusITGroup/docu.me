@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.json.JSONObject;
 
@@ -50,13 +49,13 @@ public class ApiData {
 		Map<String, Path> pathMap = swagger.getPaths();
 
 		for (Map.Entry<String, Path> pathDetail : pathMap.entrySet()) {
-			
+
 			String url = buildUrl(swagger, pathDetail);
 
 			Path path = pathDetail.getValue();
 			Map<HttpMethod, Operation> httpMethodMap = path.getOperationMap();
 			Map<String, String> apiPageDetails = generateApiPages(example, jsonResponseMap, url, httpMethodMap);
-			
+
 			for (Map.Entry<String, String> apiPage : apiPageDetails.entrySet()) {
 				Entity entity = new Entity();
 				entity.setEntityTitle(apiPage.getKey());
@@ -91,11 +90,11 @@ public class ApiData {
 	private Map<String, String> generateApiPages(boolean example,
 			HashMap<String, org.json.simple.JSONObject> jsonResponseMap, String url,
 			Map<HttpMethod, Operation> httpMethodMap) {
-		Map<String, String> apiPageDetails = new HashMap<>() ;
-		
+		Map<String, String> apiPageDetails = new HashMap<>();
+
 		for (Map.Entry<HttpMethod, Operation> httpMethod : httpMethodMap.entrySet()) {
-			
-			apiPageDetails = generateApiPage(url, example, httpMethod.getKey(), httpMethod.getValue(),jsonResponseMap);
+
+			apiPageDetails = generateApiPage(url, example, httpMethod.getKey(), httpMethod.getValue(), jsonResponseMap);
 
 		}
 		return apiPageDetails;
@@ -132,7 +131,6 @@ public class ApiData {
 
 	}
 
-	
 	/**
 	 * @param url
 	 * @param isExample
@@ -178,7 +176,7 @@ public class ApiData {
 	private List<MyResponse> createResponsesList(Operation operation) {
 		List<MyResponse> responsesList = new ArrayList<>();
 		Map<String, Response> responsesMap = operation.getResponses();
-		
+
 		for (Map.Entry<String, Response> responseObj : responsesMap.entrySet()) {
 
 			MyResponse response = getResponseList(responseObj);
@@ -197,7 +195,6 @@ public class ApiData {
 		Response resValue = responseMap.getValue();
 		Property property = resValue.getSchema();
 
-		
 		if (property != null) {
 			if (property instanceof ArrayProperty) {
 				ArrayProperty ap = (ArrayProperty) property;
@@ -223,7 +220,7 @@ public class ApiData {
 		RefProperty rp = (RefProperty) property;
 		String ref = rp.get$ref();
 		String simpleReference = rp.getSimpleRef();
-		
+
 		MyResponse response = new MyResponse();
 		response.setDescription(resValue.getDescription());
 		response.setReference(ref);
@@ -232,13 +229,13 @@ public class ApiData {
 
 		return response;
 	}
-	
-	public void buildAPIPages(Swagger swagger, boolean example){
+
+	public void buildAPIPages(Swagger swagger, boolean example) {
 		// Creating the Api page
-					List<Entity> apiEntityList = createApiData(swagger, example);
-					for (Entity entity : apiEntityList) {
-						FileUtil.createFile(entity.getEntityTitle(), entity.getEntityHtmlPage());
-					}
+		List<Entity> apiEntityList = createApiData(swagger, example);
+		for (Entity entity : apiEntityList) {
+			FileUtil.createFile(entity.getEntityTitle(), entity.getEntityHtmlPage());
+		}
 	}
 
 }
