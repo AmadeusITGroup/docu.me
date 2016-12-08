@@ -24,7 +24,7 @@
 		<start-class>com.amadeus.docume.util.DocuDemoApplication</start-class>
 		<!-- sonar properties -->
 		<sonar.sources>docuDemo/src/main</sonar.sources>
-		<sonar.java.binaries>target</sonar.java.binaries>
+		<sonar.java.binaries>target/*.jar</sonar.java.binaries>
 		<sonar.tests>docuDemo/src/test</sonar.tests>
 	</properties>
 	
