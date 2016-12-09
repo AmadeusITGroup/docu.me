@@ -65,6 +65,7 @@ Here we have list of APIs and list of response models in our APIs.
 
 We can see 10 sections on this page.
 
+* Title : Title comes from the [info object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#info-object) mentioned in the swagger file.
 * Summary : Summary tag from yaml file,[Operation object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#operationObject).
 * Description : Description tag from the yaml file,[Operation object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#operationObject).
 * HttpMethod : We get HttpMethod from path.getOperationMap(),[path](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#paths-object) which gives us Map<HttpMethod, Operation>.
