@@ -1,0 +1,449 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+     <style type="text/css">
+      body { 
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+	display: none;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"  rel="stylesheet">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../lib/jquery.json-view.js"></script>
+  <link href="../lib/jquery.json-view.css" rel="stylesheet">
+  </head>
+  
+  <body>
+  <h1></h1>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+            <a class="navbar-brand" href="#">Amadeus Travel Innovation Sandbox</a>
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Index Page</a></li>
+        </ul>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
+    </div><!-- /.navbar-collapse -->
+</nav>
+  <div class="container-fluid">
+    <h4><a name="__Methods">Methods</a></h4>
+  
+   <div class="method"><a name="Train Schedule Search"/>
+   <div class="method-path">
+   <pre class="get"><code class="huge"><span class="http-method">Train Schedule Search</span> </code></pre>
+   <a class="up" href="#__Methods">Up</a>
+   </div>
+   
+   <div class="method-summary"> Train Schedule Search - Suggest destinations from your chosen departure station. Supports SNCF French Rail only.</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Description :</h4>
+     </div>
+     <div class="col-md-9">
+	 <div class="method-summary"> <p>This API allows you to find all the possible destinations in the Rail Instant Search cache (used by Extensive Search above) from a given origin station on a given day. You can use this to help build network maps, journey planners or provide inspiration for rail travel.</p>
+
+<p>This API has continuous content from <a href="http://www.sncf.com/">SNCF</a>.<br />
+All the options returned are single-leg trips - where a single train takes you directly from the origin to the destination. In general, only departure dates up to 90 days in the future are supported</p>
+
+<p>Currently agglomeration stations are not supported</p>
+</div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>HttpMethod :</h4>
+    </div>
+    <div class="col-md-9">
+ 	<div class="http-method">GET</div>
+    </div>
+	</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Resource URL</h4>
+    </div>
+    <div class="col-md-9">
+	<div class="url"></div>
+    </div>
+	</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Query Parameters :</h4>
+    </div>
+    <div class="col-md-9">
+		 <table class="table">
+	   <tr class = "param">
+		 <th>Parameter Name</th>
+		 <th>Parameter in</th>
+		 <th>Value</th>
+		 <th>Description</th>
+	   </tr>
+	 
+	   <tr>
+	   <td>apikey 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="apikey" placeholder="">
+		    </div>
+		  </div>
+		</td>
+		<td>API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>origin 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="origin" placeholder="7171801">
+		    </div>
+		  </div>
+		</td>
+		<td>Identifier of the rail station where you would like to depart from.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>departure_date 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="departure_date" placeholder="2016-07-14">
+		    </div>
+		  </div>
+		</td>
+		<td>The date on which you would like to depart from the origin station to go to the destination.</td>
+		</tr>
+		</table>
+		<div>
+	 	<a href="#" id="get-data" class="btn btn-info">Send request</a>
+	 	</div>
+	   </form>
+	    </div>
+	</div>
+	
+	 <div class="row">
+    <div class="col-md-3">
+	<h4>Tags :</h4>
+     </div>
+    <div class="col-md-9">
+	[Rail &amp; Train]
+    </div>
+	</div>
+ <div class="row">
+    <div class="col-md-3">
+	<h4>Responses :</h4>
+     </div>
+    <div class="col-md-9">
+	<!--From res object-->
+	<table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>Response number</th>
+	        <th>Description</th>
+	        <th>Reference</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	<tr>
+	<td>200</td>
+	<td>Valid Search response</td>
+	<td><a href="model.html#_TrainScheduleSearchResponse">TrainScheduleSearchResponse</a></td>
+	</tr>
+	<tr>
+	<td>default</td>
+	<td>Client or server error response</td>
+	<td><a href="model.html#_Error">Error</a></td>
+	</tr>
+	</tbody>
+	</table>
+    </div>
+ </div>
+  <div class="row">
+    <div class="col-md-3">
+	<h4>Result :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="result-content"></div>
+    </div>
+	</div>
+	<div class="row">
+	 <div class="col-md-3">
+	<h4>Response schema :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="response-content"></div>
+    </div>
+	</div>
+  </div> <!-- container-fluid end-->
+  </body>
+  
+  <script>
+  function output(inp) {
+    $("#result-content").append("<pre></pre>")
+    $("pre").jsonView(inp);
+	}
+
+	$('.url').append("https://api.sandbox.amadeus.com/v1.2/trains/schedule-search");
+
+	$(function() {
+	   $('#apikey').val("Uz3HSvIwhIhqE0MuB0R6pvNDERwoAnqA");
+	   $( '#apikey' ).prop( "disabled", true );
+	   $('#element').jsonView(JSON.stringify());
+	   $('#response-content').jsonView(JSON.stringify({"results":{"date":"The search date provided in the input.","origin_station_id":"Station ID of the origin station for this search.","services":"Array to describe service to the destinations."}}));
+	});
+
+    $("#get-data").click(function(){
+     $( "pre" ).remove();
+      var apikey_value = $('#apikey').val();
+      
+      var origin_value = $('#origin').val();
+      
+      var departure_date_value = $('#departure_date').val();
+      
+     
+     
+     var url = "https://api.sandbox.amadeus.com/v1.2/trains/schedule-search"
+     
+     var total ={};
+     
+     <!-- The following code will output :  url = url.replace("{last_name}",last_name_value).To escape the curly braces mustache escape sequence is used. -->
+      
+      if(apikey_value && "query" != "path"){
+     total["apikey"] = apikey_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{apikey}",apikey_value)
+      }
+      if(origin_value && "query" != "path"){
+     total["origin"] = origin_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{origin}",origin_value)
+      }
+      if(departure_date_value && "query" != "path"){
+     total["departure_date"] = departure_date_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{departure_date}",departure_date_value)
+      }
+     
+     
+  $.ajax({
+        url: url,
+        type : "GET",
+		dataType: "json",
+        data: total
+    })
+    .done (function(data) {
+	console.log(JSON.stringify(data,null,4))
+	var  str =JSON.stringify(data,null,4)
+	output(str);
+	})
+    .fail (function(data)  
+    {
+    if(data.responseJSON){
+    var  str =JSON.stringify(data.responseJSON,null,4)
+    console.log(JSON.stringify(data,null,4))
+    output(str);
+    }
+    else{
+    console.log("Please fill the required fields. The response had HTTP status code 400.");
+    output(" <h3>This is a cross-origin call. Make sure the server accepts GET requests from here.<a href = 'https://github.com/swagger-api/swagger-editor/blob/master/docs/cors.md'>Learn More</a>.</h3>");
+    }
+      })
+	});
+  </script>
+  
+  </html>
+
+

@@ -1,0 +1,424 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+     <style type="text/css">
+      body { 
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+	display: none;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"  rel="stylesheet">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../lib/jquery.json-view.js"></script>
+  <link href="../lib/jquery.json-view.css" rel="stylesheet">
+  </head>
+  
+  <body>
+  <h1></h1>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+            <a class="navbar-brand" href="#">Amadeus Travel Innovation Sandbox</a>
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Index Page</a></li>
+        </ul>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
+    </div><!-- /.navbar-collapse -->
+</nav>
+  <div class="container-fluid">
+    <h4><a name="__Methods">Methods</a></h4>
+  
+   <div class="method"><a name="Location Information"/>
+   <div class="method-path">
+   <pre class="get"><code class="huge"><span class="http-method">Location Information</span> </code></pre>
+   <a class="up" href="#__Methods">Up</a>
+   </div>
+   
+   <div class="method-summary"> Location Information - Find more information about any IATA city or airport location code. With this API, you can find information such as city and airport names and locations, as well as information on timezones and airport usage.</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Description :</h4>
+     </div>
+     <div class="col-md-9">
+	 <div class="method-summary"> <p>This service retrieves the location information corresponding to a IATA city or airport code.</p>
+
+<p>When provided with an <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>, the service determines whether this code could relate to a city code, an airport code or both. If the city could contain multiple airports, it will return all possible airports that correspond to that city code.</p>
+
+<p>This API is based on the Amadeus supported <a href="http://opentraveldata.github.io/geobases">Geobases</a> open-source project. If you wish to make your own database with all IATA location information, in order to get faster reponses, you can download the latest raw data from their <a href="https://github.com/opentraveldata/opentraveldata/blob/master/opentraveldata/optd_por_public.csv">github page</a>.</p>
+</div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>HttpMethod :</h4>
+    </div>
+    <div class="col-md-9">
+ 	<div class="http-method">GET</div>
+    </div>
+	</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Resource URL</h4>
+    </div>
+    <div class="col-md-9">
+	<div class="url"></div>
+    </div>
+	</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Query Parameters :</h4>
+    </div>
+    <div class="col-md-9">
+		 <table class="table">
+	   <tr class = "param">
+		 <th>Parameter Name</th>
+		 <th>Parameter in</th>
+		 <th>Value</th>
+		 <th>Description</th>
+	   </tr>
+	 
+	   <tr>
+	   <td>apikey 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="apikey" placeholder="">
+		    </div>
+		  </div>
+		</td>
+		<td>API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>code 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>path</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="code" placeholder="BOS">
+		    </div>
+		  </div>
+		</td>
+		<td>IATA location code for which further information is required</td>
+		</tr>
+		</table>
+		<div>
+	 	<a href="#" id="get-data" class="btn btn-info">Send request</a>
+	 	</div>
+	   </form>
+	    </div>
+	</div>
+	
+	 <div class="row">
+    <div class="col-md-3">
+	<h4>Tags :</h4>
+     </div>
+    <div class="col-md-9">
+	[Flight, Reference]
+    </div>
+	</div>
+ <div class="row">
+    <div class="col-md-3">
+	<h4>Responses :</h4>
+     </div>
+    <div class="col-md-9">
+	<!--From res object-->
+	<table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>Response number</th>
+	        <th>Description</th>
+	        <th>Reference</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	<tr>
+	<td>200</td>
+	<td>Valid Location lookup Response</td>
+	<td><a href="model.html#_LocationResponse">LocationResponse</a></td>
+	</tr>
+	<tr>
+	<td>default</td>
+	<td>Client or server error</td>
+	<td><a href="model.html#_Error">Error</a></td>
+	</tr>
+	</tbody>
+	</table>
+    </div>
+ </div>
+  <div class="row">
+    <div class="col-md-3">
+	<h4>Result :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="result-content"></div>
+    </div>
+	</div>
+	<div class="row">
+	 <div class="col-md-3">
+	<h4>Response schema :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="response-content"></div>
+    </div>
+	</div>
+  </div> <!-- container-fluid end-->
+  </body>
+  
+  <script>
+  function output(inp) {
+    $("#result-content").append("<pre></pre>")
+    $("pre").jsonView(inp);
+	}
+
+	$('.url').append("https://api.sandbox.amadeus.com/v1.2/location/{code}");
+
+	$(function() {
+	   $('#apikey').val("Uz3HSvIwhIhqE0MuB0R6pvNDERwoAnqA");
+	   $( '#apikey' ).prop( "disabled", true );
+	   $('#element').jsonView(JSON.stringify());
+	   $('#response-content').jsonView(JSON.stringify({"city":{"country":"The <a href=\"http:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2\">ISO 3166-1 alpha-2 country code<\/a> in which this city can be found.","code":"The <a href=\"https:\/\/en.wikipedia.org\/wiki\/International_Air_Transport_Association_airport_code\">IATA code<\/a> of this city. If you intend to make a flight search from the output of this call, I recommend using this as your input parameter as it generally gives the best results.","timezone":"The <a href=\"http:\/\/en.wikipedia.org\/wiki\/List_of_tz_database_time_zones\">Olson format<\/a> name of the timezone in which this city is located","name":"The name of this city, in English","location":{"google_maps_link":"For YapQ APIs only  - a link to a google map rendering of this location.","latitude":"The north-south coordinate of this location, in decimal degrees, between -90 and 90","longitude":"The east-west coordinate of this location, in decimal degrees, between -180 and 180"},"currency":"The ISO-4217 currency code of the official local currency at this location","state":"The state code of this city, if applicable","geonames_ID":"The ID of this city in the open-sourced Geonames DB"},"airports":{"country":"The <a href=\"http:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2\">ISO 3166-1 alpha-2 country code<\/a> in which this city can be found.","city_name":"The English name of the city in which this airport is located","code":"The 3 letter IATA airport code of this given airport. You can use this as an input parameter for a low-fare flight search, to get more specific results than the city code, but inspiration search works best using the city code.","timezone":"The <a href=\"http:\/\/en.wikipedia.org\/wiki\/List_of_tz_database_time_zones\">Olson format<\/a> name of the timezone in which this airport is located","name":"The name of this airport, in UTF-8 format","city_code":"The three letter <a href=\"https:\/\/en.wikipedia.org\/wiki\/International_Air_Transport_Association_airport_code\">IATA code<\/a> of the city of the city in which this airport is located.","aircraft_movements":"The annual number of aircraft movements at that airport.","location":{"google_maps_link":"For YapQ APIs only  - a link to a google map rendering of this location.","latitude":"The north-south coordinate of this location, in decimal degrees, between -90 and 90","longitude":"The east-west coordinate of this location, in decimal degrees, between -180 and 180"},"state":"The state code of this city, if applicable"}}));
+	});
+
+    $("#get-data").click(function(){
+     $( "pre" ).remove();
+      var apikey_value = $('#apikey').val();
+      
+      var code_value = $('#code').val();
+      
+     
+     
+     var url = "https://api.sandbox.amadeus.com/v1.2/location/{code}"
+     
+     var total ={};
+     
+     <!-- The following code will output :  url = url.replace("{last_name}",last_name_value).To escape the curly braces mustache escape sequence is used. -->
+      
+      if(apikey_value && "query" != "path"){
+     total["apikey"] = apikey_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{apikey}",apikey_value)
+      }
+      if(code_value && "path" != "path"){
+     total["code"] = code_value;
+     }
+     if("path" == "path"){
+      url = url.replace("{code}",code_value)
+      }
+     
+     
+  $.ajax({
+        url: url,
+        type : "GET",
+		dataType: "json",
+        data: total
+    })
+    .done (function(data) {
+	console.log(JSON.stringify(data,null,4))
+	var  str =JSON.stringify(data,null,4)
+	output(str);
+	})
+    .fail (function(data)  
+    {
+    if(data.responseJSON){
+    var  str =JSON.stringify(data.responseJSON,null,4)
+    console.log(JSON.stringify(data,null,4))
+    output(str);
+    }
+    else{
+    console.log("Please fill the required fields. The response had HTTP status code 400.");
+    output(" <h3>This is a cross-origin call. Make sure the server accepts GET requests from here.<a href = 'https://github.com/swagger-api/swagger-editor/blob/master/docs/cors.md'>Learn More</a>.</h3>");
+    }
+      })
+	});
+  </script>
+  
+  </html>
+
+

@@ -1,0 +1,642 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+     <style type="text/css">
+      body { 
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+	display: none;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"  rel="stylesheet">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../lib/jquery.json-view.js"></script>
+  <link href="../lib/jquery.json-view.css" rel="stylesheet">
+  </head>
+  
+  <body>
+  <h1></h1>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+            <a class="navbar-brand" href="#">Amadeus Travel Innovation Sandbox</a>
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Index Page</a></li>
+        </ul>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
+    </div><!-- /.navbar-collapse -->
+</nav>
+  <div class="container-fluid">
+    <h4><a name="__Methods">Methods</a></h4>
+  
+   <div class="method"><a name="Car Rental Airport Search"/>
+   <div class="method-path">
+   <pre class="get"><code class="huge"><span class="http-method">Car Rental Airport Search</span> </code></pre>
+   <a class="up" href="#__Methods">Up</a>
+   </div>
+   
+   <div class="method-summary"> Car Rental Airport Search - Find car rental providers and rates when you provide an airport code, as well as the pick-up and drop-off dates. Optional parameters such as currency and rental provider codes are also available and can be used to narrow down the results. This API is an ideal pairing with the flight and hotel search to provide ground transportation options at the destination.</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Description :</h4>
+     </div>
+     <div class="col-md-9">
+	 <div class="method-summary"> <p>With this API you can find out the price and type of car, for all car rental providers, near a specified airport.</p>
+
+<p>You can quickly see the locations of car providers near a given airport, and what cars are available to rent, and at what prices. This API is based on our car pricing service that gets live availability from car providers, and is used to power a variety of airline and travel agency websites.</p>
+           
+<p>Results are validated from car providers, and thus response times may take up to 10 seconds (response times are typically about 5s), and the number of concurrent calls is throttled per user to avoid flooding our provider's systems. However, this means the final result is guaranteed to be live and accurate.</p>
+
+<p>The configuration of this API allows search for car rentals in the rental location where the car is picked up (at the start of the rental), is the same as the one where it will be dropped off.</p>
+</div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>HttpMethod :</h4>
+    </div>
+    <div class="col-md-9">
+ 	<div class="http-method">GET</div>
+    </div>
+	</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Resource URL</h4>
+    </div>
+    <div class="col-md-9">
+	<div class="url"></div>
+    </div>
+	</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Query Parameters :</h4>
+    </div>
+    <div class="col-md-9">
+		 <table class="table">
+	   <tr class = "param">
+		 <th>Parameter Name</th>
+		 <th>Parameter in</th>
+		 <th>Value</th>
+		 <th>Description</th>
+	   </tr>
+	 
+	   <tr>
+	   <td>apikey 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="apikey" placeholder="">
+		    </div>
+		  </div>
+		</td>
+		<td>API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>location 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="location" placeholder="NCE">
+		    </div>
+		  </div>
+		</td>
+		<td>The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the airport at which the car will be rented.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>pick_up 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="pick_up" placeholder="2016-11-07">
+		    </div>
+		  </div>
+		</td>
+		<td>Date on which the car rental will be collected from the car rental location. If no time is provided, a default value of 09:00 is used. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>drop_off 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="drop_off" placeholder="2016-11-08">
+		    </div>
+		  </div>
+		</td>
+		<td>Date at which the car rental will end and the car will be returned to the rental location. If no time is provided, a default value of 17:00 is used.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>lang 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="lang" placeholder="EN">
+		    </div>
+		  </div>
+		</td>
+		<td>The preferred language of the content related to each car rental. Content will be returned in this language if available.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>currency 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="currency" placeholder="USD">
+		    </div>
+		  </div>
+		</td>
+		<td>The preferred <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> to use when displaying prices and rates related to the car rental.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>provider 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="provider" placeholder="ZI">
+		    </div>
+		  </div>
+		</td>
+		<td>2 character car rental provider code. You may provide this parameter more than once. </td>
+		</tr>
+	 
+	   <tr>
+	   <td>rate_class 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="rate_class" placeholder="ALL">
+		    </div>
+		  </div>
+		</td>
+		<td>Allows to request specific rate types.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>rate_plan 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="rate_plan" placeholder="DAILY">
+		    </div>
+		  </div>
+		</td>
+		<td>Qualifies the rate depending on the pickup date and the rental duration.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>rate_filter 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="rate_filter" placeholder="ESTIMATED">
+		    </div>
+		  </div>
+		</td>
+		<td>Defines the types of rates to be returned in the output</td>
+		</tr>
+	 
+	   <tr>
+	   <td>vehicle 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="vehicle" placeholder="">
+		    </div>
+		  </div>
+		</td>
+		<td>Specifies the type of vehicle to be rented. If selected, the results set will include only vehicles that match these type descriptions. The enumerations above correspond to ACRISS Pseudo Codes, and you may also provide an ACRISS pseudo code directly. If specifying a vehicle-specific ACRISS code, you may provide this parameter up to 3 times.</td>
+		</tr>
+		</table>
+		<div>
+	 	<a href="#" id="get-data" class="btn btn-info">Send request</a>
+	 	</div>
+	   </form>
+	    </div>
+	</div>
+	
+	 <div class="row">
+    <div class="col-md-3">
+	<h4>Tags :</h4>
+     </div>
+    <div class="col-md-9">
+	[Car]
+    </div>
+	</div>
+ <div class="row">
+    <div class="col-md-3">
+	<h4>Responses :</h4>
+     </div>
+    <div class="col-md-9">
+	<!--From res object-->
+	<table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>Response number</th>
+	        <th>Description</th>
+	        <th>Reference</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	<tr>
+	<td>200</td>
+	<td>Valid Search Response</td>
+	<td><a href="model.html#_CarSearchResponse">CarSearchResponse</a></td>
+	</tr>
+	<tr>
+	<td>default</td>
+	<td>Client or server error</td>
+	<td><a href="model.html#_Error">Error</a></td>
+	</tr>
+	</tbody>
+	</table>
+    </div>
+ </div>
+  <div class="row">
+    <div class="col-md-3">
+	<h4>Result :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="result-content"></div>
+    </div>
+	</div>
+	<div class="row">
+	 <div class="col-md-3">
+	<h4>Response schema :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="response-content"></div>
+    </div>
+	</div>
+  </div> <!-- container-fluid end-->
+  </body>
+  
+  <script>
+  function output(inp) {
+    $("#result-content").append("<pre></pre>")
+    $("pre").jsonView(inp);
+	}
+
+	$('.url').append("https://api.sandbox.amadeus.com/v1.2/cars/search-airport");
+
+	$(function() {
+	   $('#apikey').val("Uz3HSvIwhIhqE0MuB0R6pvNDERwoAnqA");
+	   $( '#apikey' ).prop( "disabled", true );
+	   $('#element').jsonView(JSON.stringify());
+	   $('#response-content').jsonView(JSON.stringify({"results":{"cars":"Further details about each of the vehicles offered by this car rental provider.","provider":{"company_name":"The long name of the provider corresponding to the above code.","company_code":"The Amadeus 2-character company code of this provider."},"location":{"google_maps_link":"For YapQ APIs only  - a link to a google map rendering of this location.","latitude":"The north-south coordinate of this location, in decimal degrees, between -90 and 90","longitude":"The east-west coordinate of this location, in decimal degrees, between -180 and 180"},"airport":"The exact quality of this parameter depends on the provider but it's usually quite accurate."}}));
+	});
+
+    $("#get-data").click(function(){
+     $( "pre" ).remove();
+      var apikey_value = $('#apikey').val();
+      
+      var location_value = $('#location').val();
+      
+      var pick_up_value = $('#pick_up').val();
+      
+      var drop_off_value = $('#drop_off').val();
+      
+      var lang_value = $('#lang').val();
+      
+      var currency_value = $('#currency').val();
+      
+      var provider_value = $('#provider').val();
+      
+      var rate_class_value = $('#rate_class').val();
+      
+      var rate_plan_value = $('#rate_plan').val();
+      
+      var rate_filter_value = $('#rate_filter').val();
+      
+      var vehicle_value = $('#vehicle').val();
+      
+     
+     
+     var url = "https://api.sandbox.amadeus.com/v1.2/cars/search-airport"
+     
+     var total ={};
+     
+     <!-- The following code will output :  url = url.replace("{last_name}",last_name_value).To escape the curly braces mustache escape sequence is used. -->
+      
+      if(apikey_value && "query" != "path"){
+     total["apikey"] = apikey_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{apikey}",apikey_value)
+      }
+      if(location_value && "query" != "path"){
+     total["location"] = location_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{location}",location_value)
+      }
+      if(pick_up_value && "query" != "path"){
+     total["pick_up"] = pick_up_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{pick_up}",pick_up_value)
+      }
+      if(drop_off_value && "query" != "path"){
+     total["drop_off"] = drop_off_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{drop_off}",drop_off_value)
+      }
+      if(lang_value && "query" != "path"){
+     total["lang"] = lang_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{lang}",lang_value)
+      }
+      if(currency_value && "query" != "path"){
+     total["currency"] = currency_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{currency}",currency_value)
+      }
+      if(provider_value && "query" != "path"){
+     total["provider"] = provider_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{provider}",provider_value)
+      }
+      if(rate_class_value && "query" != "path"){
+     total["rate_class"] = rate_class_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{rate_class}",rate_class_value)
+      }
+      if(rate_plan_value && "query" != "path"){
+     total["rate_plan"] = rate_plan_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{rate_plan}",rate_plan_value)
+      }
+      if(rate_filter_value && "query" != "path"){
+     total["rate_filter"] = rate_filter_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{rate_filter}",rate_filter_value)
+      }
+      if(vehicle_value && "query" != "path"){
+     total["vehicle"] = vehicle_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{vehicle}",vehicle_value)
+      }
+     
+     
+  $.ajax({
+        url: url,
+        type : "GET",
+		dataType: "json",
+        data: total
+    })
+    .done (function(data) {
+	console.log(JSON.stringify(data,null,4))
+	var  str =JSON.stringify(data,null,4)
+	output(str);
+	})
+    .fail (function(data)  
+    {
+    if(data.responseJSON){
+    var  str =JSON.stringify(data.responseJSON,null,4)
+    console.log(JSON.stringify(data,null,4))
+    output(str);
+    }
+    else{
+    console.log("Please fill the required fields. The response had HTTP status code 400.");
+    output(" <h3>This is a cross-origin call. Make sure the server accepts GET requests from here.<a href = 'https://github.com/swagger-api/swagger-editor/blob/master/docs/cors.md'>Learn More</a>.</h3>");
+    }
+      })
+	});
+  </script>
+  
+  </html>
+
+

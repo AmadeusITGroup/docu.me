@@ -1,0 +1,693 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+     <style type="text/css">
+      body { 
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+	display: none;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"  rel="stylesheet">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../lib/jquery.json-view.js"></script>
+  <link href="../lib/jquery.json-view.css" rel="stylesheet">
+  </head>
+  
+  <body>
+  <h1></h1>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+            <a class="navbar-brand" href="#">Amadeus Travel Innovation Sandbox</a>
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Index Page</a></li>
+        </ul>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
+    </div><!-- /.navbar-collapse -->
+</nav>
+  <div class="container-fluid">
+    <h4><a name="__Methods">Methods</a></h4>
+  
+   <div class="method"><a name="Flight Affiliate Search"/>
+   <div class="method-path">
+   <pre class="get"><code class="huge"><span class="http-method">Flight Affiliate Search</span> </code></pre>
+   <a class="up" href="#__Methods">Up</a>
+   </div>
+   
+   <div class="method-summary"> Flight Affiliate Search - Use Travel Audience Connect's affiliate network API to search flights from our list of partners and provides deep-links to allow the user to book directly on the airline website.</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Description :</h4>
+     </div>
+     <div class="col-md-9">
+	 <div class="method-summary"> <p>The Flight Affiliate Search API combines Amadeus' flight search technology with Travel Audience's Connect API partners to provide a unique flight search, where all results come with deep-links to book the flight at a partner's website. The API will let you easily provide the traveler with a path to book flights from your application.</p>
+<p>Travel Audience Connect partners include
+<ul>
+  <li><a href="http://www.cityjet.com/">CityJet</a>, <a href="https://www.aireuropa.com/en/flights">Air Europa</a> and <a href="http://www.flytap.com/">TAP</a> in Western Europe,</li>
+  <li><a href="http://uralairlines.com/">Ural Airlines</a> in Russia, </li>
+  <li><a href="http://www.avianca.com.br/">Avianca Brazil</a>  and</li>
+  <li><a href="http://www.jal.com/">JAL</a> in East Asia</li>
+</ul>
+</p>
+<p>Only Travel Audience Connect partner airlines are searched. For an up-to-date list of routes, see the route maps on each partners respective websites above. You can earn commission using the deep links provided in the search results if you sign up for an account at <a href="http://connect.travelaudience.com/">connect.travelaudience.com</a>.</p>
+</div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>HttpMethod :</h4>
+    </div>
+    <div class="col-md-9">
+ 	<div class="http-method">GET</div>
+    </div>
+	</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Resource URL</h4>
+    </div>
+    <div class="col-md-9">
+	<div class="url"></div>
+    </div>
+	</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Query Parameters :</h4>
+    </div>
+    <div class="col-md-9">
+		 <table class="table">
+	   <tr class = "param">
+		 <th>Parameter Name</th>
+		 <th>Parameter in</th>
+		 <th>Value</th>
+		 <th>Description</th>
+	   </tr>
+	 
+	   <tr>
+	   <td>apikey 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="apikey" placeholder="">
+		    </div>
+		  </div>
+		</td>
+		<td>API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>origin 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="origin" placeholder="LON">
+		    </div>
+		  </div>
+		</td>
+		<td>City code from which the traveler will depart. See the location and airport interfaces for more information.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>destination 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="destination" placeholder="DUB">
+		    </div>
+		  </div>
+		</td>
+		<td><a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city to which the traveler is going</td>
+		</tr>
+	 
+	   <tr>
+	   <td>departure_date 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="departure_date" placeholder="2016-11-25">
+		    </div>
+		  </div>
+		</td>
+		<td>The date on which the traveler will depart from the origin to go to the destination. The maximum scope for a date range is 2 days, for a larger scope, use the Extensive Search! </td>
+		</tr>
+	 
+	   <tr>
+	   <td>return_date 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="return_date" placeholder="2016-11-28">
+		    </div>
+		  </div>
+		</td>
+		<td>The date on which the traveler will depart from the destination to return to the origin. If this parameter is not specified, the search will find only one_way trips. If this, or the return_by parameter are specified, only return trips are found</td>
+		</tr>
+	 
+	   <tr>
+	   <td>adults 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="adults" placeholder="1">
+		    </div>
+		  </div>
+		</td>
+		<td>The number of adult (age 12 and over) passengers traveling on this flight.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>children 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="children" placeholder="0">
+		    </div>
+		  </div>
+		</td>
+		<td>The number of child (younger than age 12 on date of departure) passengers traveling on this flight who will each have their own separate seat</td>
+		</tr>
+	 
+	   <tr>
+	   <td>infants 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="infants" placeholder="0">
+		    </div>
+		  </div>
+		</td>
+		<td>The number of infant (younger than age 2 on date of departure) passengers traveling on this flight. Infants travel in the lap of an adult passenger, and thus the number of infants must not exceed the number of adults.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>include_merchants 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="include_merchants" placeholder="">
+		    </div>
+		  </div>
+		</td>
+		<td>If specified, all results will include at least one flight where one or more of these airlines is the marketing carrier. Airlines are specified using <a href="https://en.wikipedia.org/wiki/Airline_codes"><a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a>s</a></td>
+		</tr>
+	 
+	   <tr>
+	   <td>exclude_merchants 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="exclude_merchants" placeholder="">
+		    </div>
+		  </div>
+		</td>
+		<td>If specified, no results will include any flights where any of these airlines is the marketing carrier. Airlines are specified using <a href="https://en.wikipedia.org/wiki/Airline_codes"><a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a>s</a></td>
+		</tr>
+	 
+	   <tr>
+	   <td>max_price 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="max_price" placeholder="980">
+		    </div>
+		  </div>
+		</td>
+		<td>Maximum price of trips to find in the result set, in USD (US dollars) unless some other currency code is specified. By default, no limit is applied</td>
+		</tr>
+	 
+	   <tr>
+	   <td>currency 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="currency" placeholder="EUR">
+		    </div>
+		  </div>
+		</td>
+		<td>The preferred <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> for the results</td>
+		</tr>
+	 
+	   <tr>
+	   <td>mobile 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="mobile" placeholder="false">
+		    </div>
+		  </div>
+		</td>
+		<td>Setting this to true will show mobile web deeplinks </td>
+		</tr>
+		</table>
+		<div>
+	 	<a href="#" id="get-data" class="btn btn-info">Send request</a>
+	 	</div>
+	   </form>
+	    </div>
+	</div>
+	
+	 <div class="row">
+    <div class="col-md-3">
+	<h4>Tags :</h4>
+     </div>
+    <div class="col-md-9">
+	[Flight]
+    </div>
+	</div>
+ <div class="row">
+    <div class="col-md-3">
+	<h4>Responses :</h4>
+     </div>
+    <div class="col-md-9">
+	<!--From res object-->
+	<table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>Response number</th>
+	        <th>Description</th>
+	        <th>Reference</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	<tr>
+	<td>200</td>
+	<td>Valid Search Response</td>
+	<td><a href="model.html#_AffiliateSearchResponse">AffiliateSearchResponse</a></td>
+	</tr>
+	<tr>
+	<td>default</td>
+	<td>Client or server error</td>
+	<td><a href="model.html#_Error">Error</a></td>
+	</tr>
+	</tbody>
+	</table>
+    </div>
+ </div>
+  <div class="row">
+    <div class="col-md-3">
+	<h4>Result :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="result-content"></div>
+    </div>
+	</div>
+	<div class="row">
+	 <div class="col-md-3">
+	<h4>Response schema :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="response-content"></div>
+    </div>
+	</div>
+  </div> <!-- container-fluid end-->
+  </body>
+  
+  <script>
+  function output(inp) {
+    $("#result-content").append("<pre></pre>")
+    $("pre").jsonView(inp);
+	}
+
+	$('.url').append("https://api.sandbox.amadeus.com/v1.2/flights/affiliate-search");
+
+	$(function() {
+	   $('#apikey').val("Uz3HSvIwhIhqE0MuB0R6pvNDERwoAnqA");
+	   $( '#apikey' ).prop( "disabled", true );
+	   $('#element').jsonView(JSON.stringify());
+	   $('#response-content').jsonView(JSON.stringify({"meta":{"carriers":{}},"results":{"fare":{"fees":{"creditcard_fees":"The cost of any fees for common credit cards, such as Visa or Mastercard, in addition to the total price","service_fees":"The cost of any required service fees in addition to the total price"},"total_price":"The total price for all the requested passengers for this flight","price_per_child":{"total_fare":"The total price, including taxes per-passenger, for this passenger type, for this itinerary. Always a string, formatted correctly for the given currency","tax":"The tax applied per-passenger, for this passenger type, for this itinerary. Some of this tax may be refundable in the event of cancellation."},"restrictions":{"change_penalties":"Indicates whether this fare allows the itinerary to be changed under some circumstances. Note that a change fee or penalty may apply","refundable":"Indicates whether this fare is refundable under some circumstances. Note that a refund charge or penalty may apply"},"currency":"The <a href=\"https:\/\/en.wikipedia.org\/wiki\/ISO_4217\">currency<\/a> code applicable to this fare","price_per_adult":{"total_fare":"The total price, including taxes per-passenger, for this passenger type, for this itinerary. Always a string, formatted correctly for the given currency","tax":"The tax applied per-passenger, for this passenger type, for this itinerary. Some of this tax may be refundable in the event of cancellation."},"price_per_infant":{"total_fare":"The total price, including taxes per-passenger, for this passenger type, for this itinerary. Always a string, formatted correctly for the given currency","tax":"The tax applied per-passenger, for this passenger type, for this itinerary. Some of this tax may be refundable in the event of cancellation."}},"inbound":{"duration":"The duration of this bound, including layover time, expressed in the format hh:mm","flights":null},"outbound":{"duration":"The duration of this bound, including layover time, expressed in the format hh:mm","flights":null},"payout":{"CPA":{"amount":"Total amount in the given currency, formatted appropriately. For example&colon; 194.99","currency":"<a href=\"http:\/\/en.wikipedia.org\/wiki\/ISO_4217\">ISO 4217<\/a> currency code."},"CPC":{"amount":"Total amount in the given currency, formatted appropriately. For example&colon; 194.99","currency":"<a href=\"http:\/\/en.wikipedia.org\/wiki\/ISO_4217\">ISO 4217<\/a> currency code."},"CPS":{"amount":"Total amount in the given currency, formatted appropriately. For example&colon; 194.99","currency":"<a href=\"http:\/\/en.wikipedia.org\/wiki\/ISO_4217\">ISO 4217<\/a> currency code."}},"airline":"The 2 character alphanumeric <a href=\"https:\/\/en.wikipedia.org\/wiki\/Airline_codes\">IATA airline code<\/a> of the airline that is selling this result","deep_link":"A link to the page from which this result can be purchased from the affiliate"}}));
+	});
+
+    $("#get-data").click(function(){
+     $( "pre" ).remove();
+      var apikey_value = $('#apikey').val();
+      
+      var origin_value = $('#origin').val();
+      
+      var destination_value = $('#destination').val();
+      
+      var departure_date_value = $('#departure_date').val();
+      
+      var return_date_value = $('#return_date').val();
+      
+      var adults_value = $('#adults').val();
+      
+      var children_value = $('#children').val();
+      
+      var infants_value = $('#infants').val();
+      
+      var include_merchants_value = $('#include_merchants').val();
+      
+      var exclude_merchants_value = $('#exclude_merchants').val();
+      
+      var max_price_value = $('#max_price').val();
+      
+      var currency_value = $('#currency').val();
+      
+      var mobile_value = $('#mobile').val();
+      
+     
+     
+     var url = "https://api.sandbox.amadeus.com/v1.2/flights/affiliate-search"
+     
+     var total ={};
+     
+     <!-- The following code will output :  url = url.replace("{last_name}",last_name_value).To escape the curly braces mustache escape sequence is used. -->
+      
+      if(apikey_value && "query" != "path"){
+     total["apikey"] = apikey_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{apikey}",apikey_value)
+      }
+      if(origin_value && "query" != "path"){
+     total["origin"] = origin_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{origin}",origin_value)
+      }
+      if(destination_value && "query" != "path"){
+     total["destination"] = destination_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{destination}",destination_value)
+      }
+      if(departure_date_value && "query" != "path"){
+     total["departure_date"] = departure_date_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{departure_date}",departure_date_value)
+      }
+      if(return_date_value && "query" != "path"){
+     total["return_date"] = return_date_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{return_date}",return_date_value)
+      }
+      if(adults_value && "query" != "path"){
+     total["adults"] = adults_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{adults}",adults_value)
+      }
+      if(children_value && "query" != "path"){
+     total["children"] = children_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{children}",children_value)
+      }
+      if(infants_value && "query" != "path"){
+     total["infants"] = infants_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{infants}",infants_value)
+      }
+      if(include_merchants_value && "query" != "path"){
+     total["include_merchants"] = include_merchants_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{include_merchants}",include_merchants_value)
+      }
+      if(exclude_merchants_value && "query" != "path"){
+     total["exclude_merchants"] = exclude_merchants_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{exclude_merchants}",exclude_merchants_value)
+      }
+      if(max_price_value && "query" != "path"){
+     total["max_price"] = max_price_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{max_price}",max_price_value)
+      }
+      if(currency_value && "query" != "path"){
+     total["currency"] = currency_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{currency}",currency_value)
+      }
+      if(mobile_value && "query" != "path"){
+     total["mobile"] = mobile_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{mobile}",mobile_value)
+      }
+     
+     
+  $.ajax({
+        url: url,
+        type : "GET",
+		dataType: "json",
+        data: total
+    })
+    .done (function(data) {
+	console.log(JSON.stringify(data,null,4))
+	var  str =JSON.stringify(data,null,4)
+	output(str);
+	})
+    .fail (function(data)  
+    {
+    if(data.responseJSON){
+    var  str =JSON.stringify(data.responseJSON,null,4)
+    console.log(JSON.stringify(data,null,4))
+    output(str);
+    }
+    else{
+    console.log("Please fill the required fields. The response had HTTP status code 400.");
+    output(" <h3>This is a cross-origin call. Make sure the server accepts GET requests from here.<a href = 'https://github.com/swagger-api/swagger-editor/blob/master/docs/cors.md'>Learn More</a>.</h3>");
+    }
+      })
+	});
+  </script>
+  
+  </html>
+
+

@@ -38,9 +38,16 @@ Go on the project's root folder, then type:
 * Go to Environment > New . Enter variable name as "APIKEY" and value with your apikey.
 * Click Apply > Run.
 
+### From Eclipse
+
+* Import docuDemo folder as *Existing Maven Project*. Go to the DocuDemoApplication class and click Run configurations.
+* Go to Arguments and pass  "args1,args2" as explained above.
+* Go to Environment > New . Enter variable name as "APIKEY" and value with your apikey.
+* Click Apply > Run.
+
 ## Output
 
-* The output folder produced in your project folder contains index file with navigation to different APIs and response models of the API documentation.
+* The output folder produced in your project folder contains index.html file with navigation to different APIs and response models of the API documentation.
 
 ### Customize it your way !
 
@@ -58,7 +65,7 @@ Here we have list of APIs and list of response models in our APIs.
 
 We can see 10 sections on this page.
 
-* Summary : Summary tag from yaml file,Operation object.
+* Summary : Summary tag from yaml file,[Operation object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#operationObject).
 * Description : Description tag from the yaml file,Operation object.
 * HttpMethod : We get HttpMethod from path.getOperationMap() which gives us Map<HttpMethod, Operation>.
 * Resource URL : This is build using  schemes/host/basePath/paths from the swagger yaml file.
@@ -72,3 +79,11 @@ We can see 10 sections on this page.
 3. Response model documentation page
 
 All the response models are listed here with all of its elements. Elements can be of type Array, String or Reference to another model.
+
+## Mustache templates:
+
+When you want to make changes to the look and feel of the documentation portal mustache templates can be customized.
+
+A list of mustache variables are present in Documentation.java class.
+
+3 files mustache files namely indexbody,model and api.mustache deal with index.html, model.html and {{api}}.html respectively.

@@ -1,0 +1,568 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+     <style type="text/css">
+      body { 
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+	display: none;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"  rel="stylesheet">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../lib/jquery.json-view.js"></script>
+  <link href="../lib/jquery.json-view.css" rel="stylesheet">
+  </head>
+  
+  <body>
+  <h1></h1>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+            <a class="navbar-brand" href="#">Amadeus Travel Innovation Sandbox</a>
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Index Page</a></li>
+        </ul>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
+    </div><!-- /.navbar-collapse -->
+</nav>
+  <div class="container-fluid">
+    <h4><a name="__Methods">Methods</a></h4>
+  
+   <div class="method"><a name="Hotel Property Code Search"/>
+   <div class="method-path">
+   <pre class="get"><code class="huge"><span class="http-method">Hotel Property Code Search</span> </code></pre>
+   <a class="up" href="#__Methods">Up</a>
+   </div>
+   
+   <div class="method-summary"> Hotel Property Code Search - Find out more room and rate information once you have found your preferred hotel.</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Description :</h4>
+     </div>
+     <div class="col-md-9">
+	 <div class="method-summary"> <p>This API allows you to quickly see the detailed information of a single hotel, including descriptions, address, GPS location, amenities, awards, lowest priced room and all room prices and booking information. </p>
+
+<p>This API gives you more information on a specific property. Optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. </p>
+
+<p>The API is based on our high-speed hotel pricing cache, which is also used to power the <a href="https://hotelsearchengine.amadeus.com/">Amadeus Hotel Search Engine</a> application. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
+</div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>HttpMethod :</h4>
+    </div>
+    <div class="col-md-9">
+ 	<div class="http-method">GET</div>
+    </div>
+	</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Resource URL</h4>
+    </div>
+    <div class="col-md-9">
+	<div class="url"></div>
+    </div>
+	</div>
+    <div class="row">
+    <div class="col-md-3">
+	<h4>Query Parameters :</h4>
+    </div>
+    <div class="col-md-9">
+		 <table class="table">
+	   <tr class = "param">
+		 <th>Parameter Name</th>
+		 <th>Parameter in</th>
+		 <th>Value</th>
+		 <th>Description</th>
+	   </tr>
+	 
+	   <tr>
+	   <td>apikey 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="apikey" placeholder="">
+		    </div>
+		  </div>
+		</td>
+		<td>API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>property_code 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>path</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="property_code" placeholder="BWDCA133">
+		    </div>
+		  </div>
+		</td>
+		<td>A Hotel property code based on 2 letter chain code + 3 letter <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city + 3 char property unique id.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>check_in 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="check_in" placeholder="2016-11-14">
+		    </div>
+		  </div>
+		</td>
+		<td>Date on which the guest will begin their stay in the hotel. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>check_out 	       <i>(required)</i> <!-- If {required: true} --->
+
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="check_out" placeholder="2016-11-15">
+		    </div>
+		  </div>
+		</td>
+		<td>Date on which the guest will end their stay in the hotel.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>lang 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="lang" placeholder="EN">
+		    </div>
+		  </div>
+		</td>
+		<td>The preferred language of the content related to each hotel. Content will be returned in this language if available.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>currency 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="currency" placeholder="USD">
+		    </div>
+		  </div>
+		</td>
+		<td>The preferred <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> for the results</td>
+		</tr>
+	 
+	   <tr>
+	   <td>all_rooms 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="all_rooms" placeholder="true">
+		    </div>
+		  </div>
+		</td>
+		<td>This option if enabled will return all hotel room rates, not just the lowest room rate. Note: This will have an impact on the response time due to the larger messages returned.</td>
+		</tr>
+	 
+	   <tr>
+	   <td>show_sold_out 
+	        (optional) <!-- If {required: false} --->
+	    </td>
+	    <td> <i>query</i> </td>
+		<td>
+	    <form class="form-horizontal">
+		  <div class="form-group ">
+		    <div>
+		      <input type="text" class="form-control" id="show_sold_out" placeholder="false">
+		    </div>
+		  </div>
+		</td>
+		<td>This option if enabled will return hotel names and addresses even if rooms are sold out (closed properties)</td>
+		</tr>
+		</table>
+		<div>
+	 	<a href="#" id="get-data" class="btn btn-info">Send request</a>
+	 	</div>
+	   </form>
+	    </div>
+	</div>
+	
+	 <div class="row">
+    <div class="col-md-3">
+	<h4>Tags :</h4>
+     </div>
+    <div class="col-md-9">
+	[Hotel]
+    </div>
+	</div>
+ <div class="row">
+    <div class="col-md-3">
+	<h4>Responses :</h4>
+     </div>
+    <div class="col-md-9">
+	<!--From res object-->
+	<table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>Response number</th>
+	        <th>Description</th>
+	        <th>Reference</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	<tr>
+	<td>200</td>
+	<td>Valid Lookup Response</td>
+	<td><a href="model.html#_HotelPropertyResponse">HotelPropertyResponse</a></td>
+	</tr>
+	<tr>
+	<td>default</td>
+	<td>Client or server error</td>
+	<td><a href="model.html#_Error">Error</a></td>
+	</tr>
+	</tbody>
+	</table>
+    </div>
+ </div>
+  <div class="row">
+    <div class="col-md-3">
+	<h4>Result :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="result-content"></div>
+    </div>
+	</div>
+	<div class="row">
+	 <div class="col-md-3">
+	<h4>Response schema :</h4>
+     </div>
+    <div class="col-md-9">
+	<div id="response-content"></div>
+    </div>
+	</div>
+  </div> <!-- container-fluid end-->
+  </body>
+  
+  <script>
+  function output(inp) {
+    $("#result-content").append("<pre></pre>")
+    $("pre").jsonView(inp);
+	}
+
+	$('.url').append("https://api.sandbox.amadeus.com/v1.2/hotels/{property_code}");
+
+	$(function() {
+	   $('#apikey').val("Uz3HSvIwhIhqE0MuB0R6pvNDERwoAnqA");
+	   $( '#apikey' ).prop( "disabled", true );
+	   $('#element').jsonView(JSON.stringify());
+	   $('#response-content').jsonView(JSON.stringify({"amenities":{"ota_code":"The <a href=\"http:\/\/www.opentravel.org\/\">Open Travel Alliance<\/a> <a href=\"ota-hotel-amenity-code-table\">Hotel Amenities Code<\/a> for this amenity.","amenity":"<a href=\"hotels-api-supported-amenities-filter\">The amenity code<\/a>","description":"The decoded text description for this amenity code, where available."},"property_code":"The 8 character property code of this given hotel. The first 2 characters of this code are the chain code that can be specified in the input. The remaining elements are proprietary to each hotel chain.","images":{"width":"The pixel width of the image at the provided URL.","category":"The enumerated category of this image type. Common values include EXTERIOR, GUEST_ROOM, SUITE, LOBBY, RESTAURANT, LOUNGE, LOGO, MAP, MISC and UNKNOWN.","url":"The URL of the hotel image of this given category and size, for display.","height":"The pixel height of the image at the provided URL."},"rooms":{"booking_code":"The booking code identifies a product at the hotel. It can be used to book a room.","rate_type_code":"The unique rate code used by the hotel chain to price this room's rate","room_type_info":{"bed_type":"The type of bed or beds in the room, such as Double, or King.","number_of_beds":"The number of beds in the room. May be an integer or a free-text dessciption, as provided by the hotel","room_type":"Free-text indicating the type of room - such Smoking, No Smoking, Suite, etc.."},"total_amount":{"amount":"Total amount in the given currency, formatted appropriately. For example&colon; 194.99","currency":"<a href=\"http:\/\/en.wikipedia.org\/wiki\/ISO_4217\">ISO 4217<\/a> currency code."},"room_type_code":"A 3-letter code to identify a specific room type.","rates":"The total price of staying in this room from the given check-in date to the given check-out date","rate_plan_code":"A 3 letter code to designate different rates base on traveler type.","descriptions":"An array of description strings describing room and rate types features"},"address":{"country":"The <a href=\"http:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2\">ISO 3166-1 alpha-2 country code<\/a> country code of this address.","city":"The town or city in which place is located.","region":"The state or region code in which the place is located.","postal_code":"The postal or zip code of this address.","line1":"The first line of this place's address. Generally represents the basic street address."},"total_price":{"amount":"Total amount in the given currency, formatted appropriately. For example&colon; 194.99","currency":"<a href=\"http:\/\/en.wikipedia.org\/wiki\/ISO_4217\">ISO 4217<\/a> currency code."},"more_rooms_at_this_hotel":{"href":"Hyperlink reference URL to the target"},"awards":{"provider":"The organization that issued the award. For example&colon;. Local Star Rating, AAA.","rating":"The level of the award that was awarded on the provider's scale. For example&colon; 4 or RECOMMENDED."},"min_daily_rate":{"amount":"Total amount in the given currency, formatted appropriately. For example&colon; 194.99","currency":"<a href=\"http:\/\/en.wikipedia.org\/wiki\/ISO_4217\">ISO 4217<\/a> currency code."},"location":{"google_maps_link":"For YapQ APIs only  - a link to a google map rendering of this location.","latitude":"The north-south coordinate of this location, in decimal degrees, between -90 and 90","longitude":"The east-west coordinate of this location, in decimal degrees, between -180 and 180"},"contacts":{"purpose":"The reason or channel of that contact method. For example&colon; HOME, EMERGENCY, MOBILE.","detail":"How that contact should be used, eg. a phone number","type":"The method of contact, such as phone or fax."},"property_name":"The name of this hotel."}));
+	});
+
+    $("#get-data").click(function(){
+     $( "pre" ).remove();
+      var apikey_value = $('#apikey').val();
+      
+      var property_code_value = $('#property_code').val();
+      
+      var check_in_value = $('#check_in').val();
+      
+      var check_out_value = $('#check_out').val();
+      
+      var lang_value = $('#lang').val();
+      
+      var currency_value = $('#currency').val();
+      
+      var all_rooms_value = $('#all_rooms').val();
+      
+      var show_sold_out_value = $('#show_sold_out').val();
+      
+     
+     
+     var url = "https://api.sandbox.amadeus.com/v1.2/hotels/{property_code}"
+     
+     var total ={};
+     
+     <!-- The following code will output :  url = url.replace("{last_name}",last_name_value).To escape the curly braces mustache escape sequence is used. -->
+      
+      if(apikey_value && "query" != "path"){
+     total["apikey"] = apikey_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{apikey}",apikey_value)
+      }
+      if(property_code_value && "path" != "path"){
+     total["property_code"] = property_code_value;
+     }
+     if("path" == "path"){
+      url = url.replace("{property_code}",property_code_value)
+      }
+      if(check_in_value && "query" != "path"){
+     total["check_in"] = check_in_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{check_in}",check_in_value)
+      }
+      if(check_out_value && "query" != "path"){
+     total["check_out"] = check_out_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{check_out}",check_out_value)
+      }
+      if(lang_value && "query" != "path"){
+     total["lang"] = lang_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{lang}",lang_value)
+      }
+      if(currency_value && "query" != "path"){
+     total["currency"] = currency_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{currency}",currency_value)
+      }
+      if(all_rooms_value && "query" != "path"){
+     total["all_rooms"] = all_rooms_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{all_rooms}",all_rooms_value)
+      }
+      if(show_sold_out_value && "query" != "path"){
+     total["show_sold_out"] = show_sold_out_value;
+     }
+     if("query" == "path"){
+      url = url.replace("{show_sold_out}",show_sold_out_value)
+      }
+     
+     
+  $.ajax({
+        url: url,
+        type : "GET",
+		dataType: "json",
+        data: total
+    })
+    .done (function(data) {
+	console.log(JSON.stringify(data,null,4))
+	var  str =JSON.stringify(data,null,4)
+	output(str);
+	})
+    .fail (function(data)  
+    {
+    if(data.responseJSON){
+    var  str =JSON.stringify(data.responseJSON,null,4)
+    console.log(JSON.stringify(data,null,4))
+    output(str);
+    }
+    else{
+    console.log("Please fill the required fields. The response had HTTP status code 400.");
+    output(" <h3>This is a cross-origin call. Make sure the server accepts GET requests from here.<a href = 'https://github.com/swagger-api/swagger-editor/blob/master/docs/cors.md'>Learn More</a>.</h3>");
+    }
+      })
+	});
+  </script>
+  
+  </html>
+
+
