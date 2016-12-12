@@ -1,4 +1,4 @@
-package com.docume.util;
+package com.docume.main;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,6 +6,12 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.docume.util.ApiData;
+import com.docume.util.Documentation;
+import com.docume.util.FileUtil;
+import com.docume.util.IndexData;
+import com.docume.util.ResponseModelData;
 
 import io.swagger.models.Swagger;
 import io.swagger.parser.SwaggerParser;
@@ -17,7 +23,7 @@ public class DocuDemoApplication {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(DocuDemoApplication.class, args);
-		String swaggerFile = args[0];
+		String swaggerFile = "d:\\Userfiles\\nghate\\Desktop\\swg.yml";
 		boolean example = FileUtil.toBoolean(args[1]);
 		File file = new File(swaggerFile);
 		ApiData apiData = new ApiData();
@@ -29,7 +35,7 @@ public class DocuDemoApplication {
 			Swagger swagger = new SwaggerParser().read(swaggerFile);
 
 			indexData.buildIndexPage(swagger);
-			apiData.buildAPIPages(swagger, example);
+			apiData.buildAPIPages(swagger, false);
 			responseModelData.buildResponseModelPage(swagger);
 
 			// JS and CSS files for creating tree structure for json object

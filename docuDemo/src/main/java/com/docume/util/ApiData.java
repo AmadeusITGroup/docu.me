@@ -49,6 +49,7 @@ public class ApiData {
 		Map<String, Path> pathMap = swagger.getPaths();
 
 		String info = swagger.getInfo().getTitle();
+		
 		for (Map.Entry<String, Path> pathDetail : pathMap.entrySet()) {
 
 			String url = buildUrl(swagger, pathDetail);

@@ -108,6 +108,9 @@ public class ResponseModelData {
 		HashMap<String, Object> modelScope = new HashMap<>();
 		List<ModelDetail> modelDetailsList = createModelList(swagger);
 		modelScope.put("modelDetailsList", modelDetailsList);
+		
+		String info = swagger.getInfo().getTitle();
+		modelScope.put("info", info);
 		return modelScope;
 	}
 

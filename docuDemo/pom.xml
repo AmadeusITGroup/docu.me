@@ -81,12 +81,6 @@
 			<version>1.0.22</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.samskivert/jmustache -->
-		<dependency>
-			<groupId>com.samskivert</groupId>
-			<artifactId>jmustache</artifactId>
-			<version>1.13</version>
-		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.github.spullara.mustache.java/compiler -->
 		<dependency>

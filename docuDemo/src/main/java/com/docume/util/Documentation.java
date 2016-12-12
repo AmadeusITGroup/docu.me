@@ -10,6 +10,8 @@ public class Documentation {
 		String MODEL = "templates//model.mustache";
 
 	}
+	
+	//The following variables are used in mustache files.
 
 	interface MustacheVariables {
 
