@@ -1,7 +1,7 @@
 environments: [java-1.8, maven-3.3]
 build: |
      cd docuDemo
-     mvn -B clean package
+      mvn -B clean package -DskipTests
 reports:
  mail:
 codequality: on
