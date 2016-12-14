@@ -24,7 +24,7 @@
 		<start-class>com.docume.util.DocuDemoApplication</start-class>
 		<!-- sonar properties -->
 		<sonar.sources>docuDemo/src/main</sonar.sources>
-		<sonar.java.libraries>target/*.jar</sonar.java.libraries>
+		<sonar.java.libraries>docuDemo/target/classes/</sonar.java.libraries>
 		<sonar.tests>docuDemo/src/test</sonar.tests>
 	</properties>
 	
