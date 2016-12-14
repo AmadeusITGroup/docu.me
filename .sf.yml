@@ -1,5 +1,7 @@
 environments: [java-1.8, maven-3.3]
-build: mvn -B clean verify
+build: |
+     cd docuDemo
+     mvn -B clean package
 reports:
  mail:
 codequality: on
