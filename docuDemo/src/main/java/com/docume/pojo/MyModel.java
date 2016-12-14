@@ -4,42 +4,42 @@ package com.docume.pojo;
 public class MyModel {
 
 
-	private String modelName;
-	private String modelDesc;
-	private String modelType;
-	private String modelRef;
+	private String name;
+	private String description;
+	private String type;
+	private String referenceModel;
 	
 
 	public String getModelRef() {
-		return modelRef;
+		return referenceModel;
 	}
 
 	public void setModelRef(String modelRef) {
-		this.modelRef = modelRef;
+		this.referenceModel = modelRef;
 	}
 
 	public String getModelName() {
-		return modelName;
+		return name;
 	}
 
 	public void setModelName(String modelName) {
-		this.modelName = modelName;
+		this.name = modelName;
 	}
 
 	public String getModelDesc() {
-		return modelDesc;
+		return description;
 	}
 
 	public void setModelDesc(String modelDesc) {
-		this.modelDesc = modelDesc;
+		this.description = modelDesc;
 	}
 
 	public String getModelType() {
-		return modelType;
+		return type;
 	}
 
 	public void setModelType(String modelType) {
-		this.modelType = modelType;
+		this.type = modelType;
 	}
 
 	

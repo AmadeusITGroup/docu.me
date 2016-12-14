@@ -5,9 +5,9 @@ package com.docume.util;
 public class Documentation {
 
 	interface Template {
-		String INDEX = "templates\\index.mustache";
-		String API = "templates\\api.mustache";
-		String MODEL = "templates//model.mustache";
+		String INDEX = "templates/index.mustache";
+		String API = "templates/api.mustache";
+		String MODEL = "templates/model.mustache";
 
 	}
 	

@@ -24,7 +24,7 @@ import io.swagger.parser.SwaggerParser;
 public class ApiDataTests {
 	ClassLoader classLoader = getClass().getClassLoader();
 	File file = new File(classLoader.getResource("swg.yml").getFile());
-	Swagger swaggerObj = null;
+	Swagger swagger = null;
 	List<String> operationParamList = new ArrayList<>();
 
 	/**
@@ -35,7 +35,7 @@ public class ApiDataTests {
 	@Before
 	public void createSwagger() {
 		if (file.exists()) {
-			swaggerObj = new SwaggerParser().read("swg.yml");
+			swagger = new SwaggerParser().read("swg.yml");
 		}
 
 	}
@@ -44,7 +44,8 @@ public class ApiDataTests {
 	public void testCreateApiData() {
 
 		ApiData apiDataObj = new ApiData();
-		List<Entity> apiEntityList = apiDataObj.createApiData(swaggerObj, false);
+		List<Entity> apiEntityList = apiDataObj.createApiData(swagger, false);
+		
 		List<String> actualList = new ArrayList<>();
 		List<String> expectedList = new ArrayList<>();
 		expectedList.add("Airport Autocomplete");
