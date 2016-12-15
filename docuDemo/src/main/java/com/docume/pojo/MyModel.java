@@ -10,35 +10,35 @@ public class MyModel {
 	private String referenceModel;
 	
 
-	public String getModelRef() {
+	public String getReferenceModel() {
 		return referenceModel;
 	}
 
-	public void setModelRef(String modelRef) {
+	public void setReferenceModel(String modelRef) {
 		this.referenceModel = modelRef;
 	}
 
-	public String getModelName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setModelName(String modelName) {
+	public void setName(String modelName) {
 		this.name = modelName;
 	}
 
-	public String getModelDesc() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setModelDesc(String modelDesc) {
+	public void setDescription(String modelDesc) {
 		this.description = modelDesc;
 	}
 
-	public String getModelType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setModelType(String modelType) {
+	public void setType(String modelType) {
 		this.type = modelType;
 	}
 

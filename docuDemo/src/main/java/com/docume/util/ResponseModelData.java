@@ -35,12 +35,12 @@ public class ResponseModelData {
 			JSONObject jObject = new JSONObject();
 			List<MyModel> modelList = modelDetail.getModelList();
 			for (MyModel model : modelList) {
-				if ("ref".equals(model.getModelType()) || "array".equals(model.getModelType())) {
-					String ref = model.getModelRef();
+				if ("ref".equals(model.getType()) || "array".equals(model.getType())) {
+					String ref = model.getReferenceModel();
 					JSONObject internalrefObject = iterateJson(modelDetailsList, ref);
-					jObject.put(model.getModelName(), internalrefObject);
+					jObject.put(model.getName(), internalrefObject);
 				} else {
-					jObject.put(model.getModelName(), model.getModelDesc());
+					jObject.put(model.getName(), model.getDescription());
 				}
 			}
 			jsonResponseMap.put(modelDetail.getModelTitle(), jObject);
@@ -73,13 +73,13 @@ public class ResponseModelData {
 			if (modelDetail.getModelTitle().equals(ref)) {
 				List<MyModel> modelList = modelDetail.getModelList();
 				for (MyModel model : modelList) {
-					if ("ref".equals(model.getModelType())) {
-						String reference = model.getModelRef();
+					if ("ref".equals(model.getType())) {
+						String reference = model.getReferenceModel();
 						JSONObject internalrefObject = iterateJson(modelDetailsList, reference);
-						jObject.put(model.getModelName(), internalrefObject);
+						jObject.put(model.getName(), internalrefObject);
 					} else {
 
-						jObject.put(model.getModelName(), model.getModelDesc());
+						jObject.put(model.getName(), model.getDescription());
 					}
 				}
 			}
@@ -154,21 +154,21 @@ public class ResponseModelData {
 				myModelList = modelDetail.getModelList();
 
 				MyModel myModel = new MyModel();
-				myModel.setModelDesc(property.getDescription());
-				myModel.setModelName(modelName);
-				myModel.setModelType(property.getType());
+				myModel.setDescription(property.getDescription());
+				myModel.setName(modelName);
+				myModel.setType(property.getType());
 				RefProperty refProperty;
 				if (property instanceof RefProperty) {
 					RefProperty rp = (RefProperty) property;
 					String simpleReference = rp.getSimpleRef();
-					myModel.setModelRef(simpleReference);
+					myModel.setReferenceModel(simpleReference);
 				} else if (property instanceof ArrayProperty) {
 					ArrayProperty arrayProperty = (ArrayProperty) property;
 					Property internalProperty = arrayProperty.getItems();
 					if (internalProperty instanceof RefProperty) {
 						refProperty = (RefProperty) internalProperty;
 						String simpleReference = refProperty.getSimpleRef();
-						myModel.setModelRef(simpleReference);
+						myModel.setReferenceModel(simpleReference);
 					}
 				}
 				myModelList.add(myModel);
