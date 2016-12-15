@@ -3,20 +3,23 @@
  */
 package com.docume.util;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.List;
 import java.util.Set;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.docume.pojo.ModelDetail;
-import com.docume.pojo.MyModel;
+import com.docume.pojo.ModelParameter;
 
-import io.swagger.models.Model;
 import io.swagger.models.Swagger;
 import io.swagger.parser.SwaggerParser;
 
@@ -29,6 +32,10 @@ public class ResponseModelDataTest {
 	ClassLoader classLoader = getClass().getClassLoader();
 	File file = new File(classLoader.getResource("swg.yml").getFile());
 	Swagger swagger = null;
+	int extremeSearchResultIndex = 2;
+	int destinationModelParamIndex= 0;
+	int lowFareSearchIndex = 3;
+	int resultsModelParamIndex = 1;
 	
 	@Before
 	public void createSwagger() {
@@ -53,21 +60,20 @@ public class ResponseModelDataTest {
 		}
 		
 		 // Unit test for  ExtremeSearchResult with string parameter
-		ModelDetail modelDetail = modelList.get(2); // def 2 as const
+		ModelDetail modelDetail = modelList.get(extremeSearchResultIndex); 
 		// Extracting element 'destination'
-		MyModel model = modelDetail.getModelList().get(0); //model list to param list
-		assertEquals("destination", model.getName());
-		//contains for desc
-		assertEquals("The <a href=\"https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code\">IATA code</a> of the city or airport to which the traveler may go, from the provided origin", model.getDescription());
-		assertEquals("string", model.getType());
+		ModelParameter modelParameterForExtremeSearchResult = modelDetail.getModelParameterList().get(destinationModelParamIndex); //model list to param list
+		assertEquals("destination", modelParameterForExtremeSearchResult.getName());
+		assertThat(modelParameterForExtremeSearchResult.getDescription(),containsString("city or airport"));
+		assertEquals("string", modelParameterForExtremeSearchResult.getType());
 		
-		// Unit test for  ExtremeSearchResult with array[references] parameter
-		ModelDetail modelDetailForLowFareSearch = modelList.get(3);
+		// Unit test for  LowFareSearch with array[references] parameter
+		ModelDetail modelDetailForLowFareSearch = modelList.get(lowFareSearchIndex);
 		// Extracting element 'results'
-		MyModel modelForResults = modelDetailForLowFareSearch.getModelList().get(1); 
-		assertEquals("results", modelForResults.getName());
-		assertEquals("array", modelForResults.getType());
-		assertEquals("LowFareSearchResult", modelForResults.getReferenceModel());
+		ModelParameter modelParameterForResults = modelDetailForLowFareSearch.getModelParameterList().get(resultsModelParamIndex); 
+		assertEquals("results", modelParameterForResults.getName());
+		assertEquals("array", modelParameterForResults.getType());
+		assertEquals("LowFareSearchResult", modelParameterForResults.getReferenceModel());
 	}
 
 

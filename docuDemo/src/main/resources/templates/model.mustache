@@ -34,20 +34,20 @@
       </tr>
       </thead>
    <tbody>
-  {{#modelList}}
+  {{#modelParameterList}}
  
   <tr>
-  <td>{{modelName}}</td>
-  <td>{{{modelDesc}}}</td>
-  <td>{{modelType}}</td>
-  <td><a href="model.html#_{{modelRef}}">{{modelRef}}</a>
-  {{^modelRef}}
+  <td>{{name}}</td>
+  <td>{{{description}}}</td>
+  <td>{{type}}</td>
+  <td><a href="model.html#_{{referenceModel}}">{{referenceModel}}</a>
+  {{^referenceModel}}
   -
-  {{/modelRef}}
+  {{/referenceModel}}
   </td> 
   </tr>
-  
-  {{/modelList}}
+
+  {{/modelParameterList}}
   </tbody>
   <br>
   </table>

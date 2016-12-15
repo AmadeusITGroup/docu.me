@@ -9,7 +9,7 @@ import java.util.Map;
 import org.json.simple.JSONObject;
 
 import com.docume.pojo.ModelDetail;
-import com.docume.pojo.MyModel;
+import com.docume.pojo.ModelParameter;
 import com.docume.util.Documentation.MustacheVariables;
 import com.docume.util.Documentation.Template;
 import com.github.mustachejava.DefaultMustacheFactory;
@@ -33,8 +33,8 @@ public class ResponseModelData {
 
 		for (ModelDetail modelDetail : modelDetailsList) {
 			JSONObject jObject = new JSONObject();
-			List<MyModel> modelList = modelDetail.getModelList();
-			for (MyModel model : modelList) {
+			List<ModelParameter> modelList = modelDetail.getModelParameterList();
+			for (ModelParameter model : modelList) {
 				if ("ref".equals(model.getType()) || "array".equals(model.getType())) {
 					String ref = model.getReferenceModel();
 					JSONObject internalrefObject = iterateJson(modelDetailsList, ref);
@@ -71,8 +71,8 @@ public class ResponseModelData {
 		for (ModelDetail modelDetail : modelDetailsList) {
 
 			if (modelDetail.getModelTitle().equals(ref)) {
-				List<MyModel> modelList = modelDetail.getModelList();
-				for (MyModel model : modelList) {
+				List<ModelParameter> modelList = modelDetail.getModelParameterList();
+				for (ModelParameter model : modelList) {
 					if ("ref".equals(model.getType())) {
 						String reference = model.getReferenceModel();
 						JSONObject internalrefObject = iterateJson(modelDetailsList, reference);
@@ -144,16 +144,16 @@ public class ResponseModelData {
 	 * @return
 	 */
 	private ModelDetail createModelProperties(Map<String, Property> modelPropertyMap) {
-		List<MyModel> myModelList;
+		List<ModelParameter> myModelList;
 		ModelDetail modelDetail = new ModelDetail();
 
 		if (modelPropertyMap != null) {
 			for (Map.Entry<String, Property> modelProp : modelPropertyMap.entrySet()) {
 				String modelName = modelProp.getKey();
 				Property property = modelProp.getValue();
-				myModelList = modelDetail.getModelList();
+				myModelList = modelDetail.getModelParameterList();
 
-				MyModel myModel = new MyModel();
+				ModelParameter myModel = new ModelParameter();
 				myModel.setDescription(property.getDescription());
 				myModel.setName(modelName);
 				myModel.setType(property.getType());
@@ -173,7 +173,7 @@ public class ResponseModelData {
 				}
 				myModelList.add(myModel);
 
-				modelDetail.setModelList(myModelList);
+				modelDetail.setModelParameterList(myModelList);
 			}
 		}
 		return modelDetail;

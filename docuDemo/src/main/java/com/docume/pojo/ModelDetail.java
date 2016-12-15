@@ -7,11 +7,11 @@ public class ModelDetail {
 
 	private String modelTitle;
 
-	private List<MyModel> modelList;
+	private List<ModelParameter> modelParameterList;
 
 	public ModelDetail() {
 
-		modelList = new ArrayList<>();
+		modelParameterList = new ArrayList<>();
 	}
 
 	public String getModelTitle() {
@@ -22,16 +22,16 @@ public class ModelDetail {
 		this.modelTitle = modelTitle;
 	}
 
-	public List<MyModel> getModelList() {
-		return modelList;
+	public List<ModelParameter> getModelParameterList() {
+		return modelParameterList;
 	}
 
-	public void setModelList(List<MyModel> modelList) {
-		this.modelList = modelList;
+	public void setModelParameterList(List<ModelParameter> modelParameterList) {
+		this.modelParameterList = modelParameterList;
 	}
 
 	public void addModels() {
-		MyModel mm = new MyModel();
-		modelList.add(mm);
+		ModelParameter mm = new ModelParameter();
+		modelParameterList.add(mm);
 	}
 }

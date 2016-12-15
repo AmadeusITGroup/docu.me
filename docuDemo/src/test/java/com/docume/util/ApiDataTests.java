@@ -3,7 +3,11 @@
  */
 package com.docume.util;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.contains;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,6 +30,7 @@ public class ApiDataTests {
 	File file = new File(classLoader.getResource("swg.yml").getFile());
 	Swagger swagger = null;
 	List<String> operationParamList = new ArrayList<>();
+	int airportAutocompleteIndex = 0;
 
 	/**
 	 * Test method for
@@ -45,7 +50,7 @@ public class ApiDataTests {
 
 		ApiData apiDataObj = new ApiData();
 		List<Entity> apiEntityList = apiDataObj.createApiData(swagger, false);
-		
+
 		List<String> actualList = new ArrayList<>();
 		List<String> expectedList = new ArrayList<>();
 		expectedList.add("Airport Autocomplete");
@@ -76,6 +81,14 @@ public class ApiDataTests {
 			actualList.add(entity.getEntityTitle());
 		}
 		assertEquals(expectedList, actualList);
+		
+		String apiAirportAutocompleteHtml = apiEntityList.get(airportAutocompleteIndex).getEntityHtmlPage();
+		assertThat(apiAirportAutocompleteHtml, containsString("Airport Autocomplete"));
+		assertThat(apiAirportAutocompleteHtml,containsString("country"));
+		assertThat(apiAirportAutocompleteHtml,containsString("https://api.sandbox.amadeus.com/v1.2/airports/autocomplete"));
+		assertThat(apiAirportAutocompleteHtml,containsString("Flight, Reference"));
+		assertThat(apiAirportAutocompleteHtml,containsString("AirportAutocompleteResponse"));
+		
 	}
 
 }

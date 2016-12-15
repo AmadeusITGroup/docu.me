@@ -1,6 +1,6 @@
 package com.docume.pojo;
 
-public class MyModel {
+public class ModelParameter {
 
 	private String name;
 	private String description;

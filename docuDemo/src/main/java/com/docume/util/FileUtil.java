@@ -10,10 +10,7 @@ import org.apache.log4j.Logger;
 
 public class FileUtil {
 
-	private FileUtil() {
-
-	}
-
+	
 	static final Logger logger = Logger.getLogger(Documentation.class);
 
 	public static void createFile(String filename, String content) {
@@ -40,11 +37,12 @@ public class FileUtil {
 		}
 	}
 
-	public static void createLib() throws IOException {
+	public  void createLib() throws IOException {
+		
 		File destDir = new File("portal\\lib\\");
-		File srcCSSFile = new File("docuDemo\\src\\main\\resources\\static\\jquery.json-view.css");
-
-		File srcJSFile = new File("docuDemo\\src\\main\\resources\\static\\jquery.json-view.js");
+		ClassLoader classLoader = getClass().getClassLoader();
+		File srcCSSFile = new File(classLoader.getResource("static/jquery.json-view.css").getFile());
+		File srcJSFile = new File(classLoader.getResource("static/jquery.json-view.js").getFile());
 
 		FileUtils.copyFileToDirectory(srcCSSFile, destDir);
 		FileUtils.copyFileToDirectory(srcJSFile, destDir);
