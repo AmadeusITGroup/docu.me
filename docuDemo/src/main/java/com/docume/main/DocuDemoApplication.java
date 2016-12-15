@@ -24,7 +24,7 @@ public class DocuDemoApplication {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(DocuDemoApplication.class, args);
-		String swaggerFile = "d:\\Userfiles\\nghate\\Desktop\\swg.yml";
+		String swaggerFile = args[0];
 		boolean example = FileUtil.toBoolean(args[1]);
 		File file = new File(swaggerFile);
 		ApiData apiData = new ApiData();
@@ -36,7 +36,7 @@ public class DocuDemoApplication {
 			Swagger swagger = new SwaggerParser().read(swaggerFile);
 
 			indexData.buildIndexPage(swagger);
-			apiData.buildAPIPages(swagger, false);
+			apiData.buildAPIPages(swagger, example);
 			responseModelData.buildResponseModelPage(swagger);
 
 			// JS and CSS files for creating tree structure for json object
