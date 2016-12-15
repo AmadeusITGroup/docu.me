@@ -28,12 +28,12 @@ Go on the project's root folder, then type:
 
 	$ mvn spring-boot:run -Drun.arguments = "args1,args2"
 	
- - args1 = Swagger yaml file location. For example "d:\\Userfiles\\nghate\\Desktop\\swg.yml".
+ - args1 = Swagger yaml file location. For example "path\\swagger.yml".
  - args2 = This parameter should be true if you want to generate examples on the fly by callling the API with default values or set to false.
 
 Your command will look like:
 
-	$ mvn spring-boot:run -Drun.arguments = "d:\\Userfiles\\nghate\\Desktop\\swg.yml, false"
+	$ mvn spring-boot:run -Drun.arguments = "path\\swagger.yml, false"
 
 ### From Spring Tool Suite
 
@@ -92,3 +92,5 @@ When you want to make changes to the look and feel of the documentation portal m
 * A list of mustache variables are present in Documentation.java class.
 * Here, index.mustache creates index.html, model.mustache creates model.html and api.mustache creates {{api}}.html.
 * In addition to changing the mustache files, one can customize the html files , just in case you want to add some static content that your swagger file could not accommodate !
+
+

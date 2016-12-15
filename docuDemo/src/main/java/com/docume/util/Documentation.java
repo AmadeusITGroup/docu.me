@@ -1,7 +1,5 @@
 package com.docume.util;
 
-
-
 public class Documentation {
 
 	interface Template {
@@ -10,8 +8,8 @@ public class Documentation {
 		String MODEL = "templates/model.mustache";
 
 	}
-	
-	//The following variables are used in mustache files.
+
+	// The following variables are used in mustache files.
 
 	interface MustacheVariables {
 
@@ -29,5 +27,3 @@ public class Documentation {
 		String MODEL = "model";
 	}
 }
-
-

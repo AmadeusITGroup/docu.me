@@ -1,14 +1,11 @@
 package com.docume.pojo;
 
-
 public class MyModel {
-
 
 	private String name;
 	private String description;
 	private String type;
 	private String referenceModel;
-	
 
 	public String getReferenceModel() {
 		return referenceModel;
@@ -41,7 +38,5 @@ public class MyModel {
 	public void setType(String modelType) {
 		this.type = modelType;
 	}
-
-	
 
 }

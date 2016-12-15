@@ -58,7 +58,7 @@ public class GenerateExample {
 				logger.info("Response could not be generated.");
 			}
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			logger.error(ex);
 		}
 		return output;
 
@@ -90,7 +90,7 @@ public class GenerateExample {
 
 		} catch (URISyntaxException e) {
 
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 
 		HttpGet httpget = new HttpGet(uri);

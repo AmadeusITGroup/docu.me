@@ -5,7 +5,7 @@ public class Entity {
 	String entityTitle;
 
 	String entityHtmlPage;
-	
+
 	public String getEntityTitle() {
 		return entityTitle;
 	}
@@ -21,6 +21,5 @@ public class Entity {
 	public void setEntityHtmlPage(String entityHtmlPage) {
 		this.entityHtmlPage = entityHtmlPage;
 	}
-
 
 }

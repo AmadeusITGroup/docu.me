@@ -10,10 +10,11 @@ import org.apache.log4j.Logger;
 
 public class FileUtil {
 
-	private FileUtil(){
-		
+	private FileUtil() {
+
 	}
-	static final  Logger logger = Logger.getLogger(Documentation.class);
+
+	static final Logger logger = Logger.getLogger(Documentation.class);
 
 	public static void createFile(String filename, String content) {
 		try {
@@ -35,7 +36,7 @@ public class FileUtil {
 			}
 
 		} catch (IOException e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 	}
 
@@ -51,8 +52,7 @@ public class FileUtil {
 	}
 
 	public static boolean toBoolean(String s) {
-			 return Boolean.parseBoolean(s); 
-	 }
-	 
+		return Boolean.parseBoolean(s);
+	}
 
 }

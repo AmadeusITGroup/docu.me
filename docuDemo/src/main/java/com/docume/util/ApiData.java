@@ -41,15 +41,15 @@ public class ApiData {
 	public List<Entity> createApiData(Swagger swagger, boolean example) {
 
 		ResponseModelData responseModel = new ResponseModelData();
-		HashMap<String, org.json.simple.JSONObject> jsonResponseMap = (HashMap<String, org.json.simple.JSONObject>) responseModel
-				.createResponseJsonSchema(swagger);
+		HashMap<String, org.json.simple.JSONObject> jsonResponseMap;
+		jsonResponseMap = (HashMap<String, org.json.simple.JSONObject>) responseModel.createResponseJsonSchema(swagger);
 
 		List<Entity> apiEntityList = new ArrayList<>();
 		// Iterate through Paths for operations in the Swagger file
 		Map<String, Path> pathMap = swagger.getPaths();
 
 		String info = swagger.getInfo().getTitle();
-		
+
 		for (Map.Entry<String, Path> pathDetail : pathMap.entrySet()) {
 
 			String url = buildUrl(swagger, pathDetail);
@@ -118,7 +118,7 @@ public class ApiData {
 	 * @param isExample
 	 * @param httpMethod
 	 * @param jsonResponseMap
-	 * @param info 
+	 * @param info
 	 */
 	private HashMap<String, String> generateApiPage(String url, boolean isExample, HttpMethod httpMethod,
 			Operation operation, HashMap<String, org.json.simple.JSONObject> jsonResponseMap, String info) {
@@ -142,7 +142,7 @@ public class ApiData {
 	 * @param method
 	 * @param jsonResponseMap
 	 * @param operation
-	 * @param info 
+	 * @param info
 	 * @return
 	 */
 	private HashMap<String, Object> buildApiScope(String url, boolean isExample, HttpMethod method,
