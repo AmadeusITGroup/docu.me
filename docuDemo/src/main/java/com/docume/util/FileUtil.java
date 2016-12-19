@@ -19,17 +19,12 @@ public class FileUtil {
 			File filedir = new File("Portal\\docs\\");
 			filedir.mkdirs();
 			File file = new File(filedir, filename + ".html");
-
+			logger.info(filename + ".html is created!");
 			FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 			bufferedWriter.write(content);
 			bufferedWriter.close();
 			fileWriter.close();
-			if (file.createNewFile()) {
-				logger.info(filename + ".html is created!");
-			} else {
-				logger.info(filename + ".html already exists.");
-			}
 
 		} catch (IOException e) {
 			logger.error(e);
