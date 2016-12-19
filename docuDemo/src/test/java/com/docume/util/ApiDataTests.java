@@ -30,8 +30,7 @@ public class ApiDataTests {
 	File file = new File(classLoader.getResource("swg.yml").getFile());
 	Swagger swagger = null;
 	List<String> operationParamList = new ArrayList<>();
-	int airportAutocompleteIndex = 0;
-
+	
 	/**
 	 * Test method for
 	 * {@link com.amadeus.docuMe.util.ApiData#createApiData(io.swagger.models.Swagger, java.lang.String)}.
@@ -82,6 +81,7 @@ public class ApiDataTests {
 		}
 		assertEquals(expectedList, actualList);
 		
+		int airportAutocompleteIndex = 0;
 		String apiAirportAutocompleteHtml = apiEntityList.get(airportAutocompleteIndex).getEntityHtmlPage();
 		assertThat(apiAirportAutocompleteHtml, containsString("Airport Autocomplete"));
 		assertThat(apiAirportAutocompleteHtml,containsString("country"));

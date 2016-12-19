@@ -25,7 +25,7 @@ import io.swagger.models.properties.RefProperty;
 
 public class ResponseModelData {
 
-	// create models
+	// create response model json schema
 
 	public Map<String, JSONObject> createResponseJsonSchema(Swagger swagger) {
 		List<ModelDetail> modelDetailsList = createModelList(swagger);

@@ -25,9 +25,8 @@ public class FileUtil {
 			bufferedWriter.write(content);
 			bufferedWriter.close();
 			fileWriter.close();
-
 			if (file.createNewFile()) {
-				logger.info("File is created!");
+				logger.info(filename + ".html is created!");
 			} else {
 				logger.info(filename + ".html already exists.");
 			}

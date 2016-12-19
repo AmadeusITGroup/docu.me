@@ -56,6 +56,7 @@ public class ApiData {
 
 			Path path = pathDetail.getValue();
 			Map<HttpMethod, Operation> httpMethodMap = path.getOperationMap();
+//			String icon = path.getVendorExtensions().get("x-icon").toString();
 			Map<String, String> apiPageDetails = generateApiPages(example, jsonResponseMap, url, httpMethodMap, info);
 
 			for (Map.Entry<String, String> apiPage : apiPageDetails.entrySet()) {
@@ -154,8 +155,9 @@ public class ApiData {
 		apiScope.put(MustacheVariables.APIKEY, apiKey);
 		apiScope.put(MustacheVariables.OPERATION, operation);
 		apiScope.put(MustacheVariables.HTTP_METHOD, method);
-
 		apiScope.put("info", info);
+//		apiScope.put("icon", icon);
+
 		if (isExample) {
 			JSONObject example = GenerateExample.createLiveExample(operation, url);
 			apiScope.put(MustacheVariables.EXAMPLE, example);

@@ -32,11 +32,7 @@ public class ResponseModelDataTest {
 	ClassLoader classLoader = getClass().getClassLoader();
 	File file = new File(classLoader.getResource("swg.yml").getFile());
 	Swagger swagger = null;
-	int extremeSearchResultIndex = 2;
-	int destinationModelParamIndex= 0;
-	int lowFareSearchIndex = 3;
-	int resultsModelParamIndex = 1;
-	
+
 	@Before
 	public void createSwagger() {
 		if (file.exists()) {
@@ -60,6 +56,8 @@ public class ResponseModelDataTest {
 		}
 		
 		 // Unit test for  ExtremeSearchResult with string parameter
+		int extremeSearchResultIndex = 2;
+		int destinationModelParamIndex= 0;
 		ModelDetail modelDetail = modelList.get(extremeSearchResultIndex); 
 		// Extracting element 'destination'
 		ModelParameter modelParameterForExtremeSearchResult = modelDetail.getModelParameterList().get(destinationModelParamIndex); //model list to param list
@@ -67,7 +65,10 @@ public class ResponseModelDataTest {
 		assertThat(modelParameterForExtremeSearchResult.getDescription(),containsString("city or airport"));
 		assertEquals("string", modelParameterForExtremeSearchResult.getType());
 		
+		
 		// Unit test for  LowFareSearch with array[references] parameter
+		int lowFareSearchIndex = 3;
+		int resultsModelParamIndex = 1;
 		ModelDetail modelDetailForLowFareSearch = modelList.get(lowFareSearchIndex);
 		// Extracting element 'results'
 		ModelParameter modelParameterForResults = modelDetailForLowFareSearch.getModelParameterList().get(resultsModelParamIndex); 

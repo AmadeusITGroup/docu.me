@@ -24,9 +24,6 @@ import io.swagger.models.parameters.QueryParameter;
  */
 public class GenerateExample {
 
-	private GenerateExample() {
-
-	}
 
 	interface Variables {
 		int SUCCESS_RESPONSE_CODE = 200;
@@ -55,7 +52,7 @@ public class GenerateExample {
 					output = (JSONObject) jsonArray.get(0);
 				}
 			} else {
-				logger.info("Response could not be generated.");
+				logger.info("Response generated with error code " + responseCode +"\n"+ " One of the default parameters in "+url+" is incorrect.");
 			}
 		} catch (Exception ex) {
 			logger.error(ex);

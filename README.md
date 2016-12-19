@@ -24,7 +24,7 @@ Enter variable name as "APIKEY" and value with your apikey.
 
 ### From terminal
 
-Go on the project's root folder, then type:
+Go on till the docuDemo folder, then type:
 
 	$ mvn spring-boot:run -Drun.arguments = "args1,args2"
 	
@@ -33,7 +33,7 @@ Go on the project's root folder, then type:
 
 Your command will look like:
 
-	$ mvn spring-boot:run -Drun.arguments = "path\\swagger.yml, false"
+	$ mvn spring-boot:run -Drun.arguments="path\\swagger.yml, false"
 
 ### From Spring Tool Suite
 
