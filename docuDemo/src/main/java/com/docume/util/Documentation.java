@@ -25,5 +25,6 @@ public class Documentation {
 		String RESPONSE_SCHEMA = "responseSchema";
 		String INDEX = "index";
 		String MODEL = "model";
+		String EXAMPLEURL = "exampleUrl";
 	}
 }

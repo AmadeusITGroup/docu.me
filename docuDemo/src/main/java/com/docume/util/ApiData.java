@@ -6,9 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONObject;
-
 import com.docume.pojo.Entity;
+import com.docume.pojo.Example;
 import com.docume.pojo.MyResponse;
 import com.docume.util.Documentation.MustacheVariables;
 import com.docume.util.Documentation.Template;
@@ -56,7 +55,6 @@ public class ApiData {
 
 			Path path = pathDetail.getValue();
 			Map<HttpMethod, Operation> httpMethodMap = path.getOperationMap();
-//			String icon = path.getVendorExtensions().get("x-icon").toString();
 			Map<String, String> apiPageDetails = generateApiPages(example, jsonResponseMap, url, httpMethodMap, info);
 
 			for (Map.Entry<String, String> apiPage : apiPageDetails.entrySet()) {
@@ -156,11 +154,11 @@ public class ApiData {
 		apiScope.put(MustacheVariables.OPERATION, operation);
 		apiScope.put(MustacheVariables.HTTP_METHOD, method);
 		apiScope.put("info", info);
-//		apiScope.put("icon", icon);
 
 		if (isExample) {
-			JSONObject example = GenerateExample.createLiveExample(operation, url);
-			apiScope.put(MustacheVariables.EXAMPLE, example);
+			Example example = GenerateExample.createLiveExample(operation, url);
+			apiScope.put(MustacheVariables.EXAMPLE, example.getExampleJson());
+			apiScope.put(MustacheVariables.EXAMPLEURL, example.getExampleURL());
 		}
 
 		List<MyResponse> responseList = createResponsesList(operation);

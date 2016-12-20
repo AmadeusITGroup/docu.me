@@ -3,7 +3,6 @@
  */
 package com.docume.util;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
@@ -80,7 +79,7 @@ public class IndexDataTests {
 		expectedOperationIdList.add("Top Flight Searches");
 		expectedOperationIdList.add("Travel Record Retrieve");
 		
-		assertArrayEquals(expectedOperationIdList.toArray(), operationIdList.toArray());
+		assertEquals(expectedOperationIdList, operationIdList);
 		
 		List<String> expectedModelList = new ArrayList<>();
 		expectedModelList.add("Error");

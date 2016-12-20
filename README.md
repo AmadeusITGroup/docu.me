@@ -24,9 +24,10 @@ Enter variable name as "APIKEY" and value with your apikey.
 
 ### From terminal
 
-Go on till the docuDemo folder, then type:
+Go into the docuDemo folder :
 
-	$ mvn spring-boot:run -Drun.arguments = "args1,args2"
+	$ cd docu.me/docuDemo/
+	$ mvn spring-boot:run -Drun.arguments="args1,args2"
 	
  - args1 = Swagger yaml file location. For example "path/swagger.yml".
  - args2 = This parameter should be true if you want to generate examples on the fly by callling the API with default values or set to false.

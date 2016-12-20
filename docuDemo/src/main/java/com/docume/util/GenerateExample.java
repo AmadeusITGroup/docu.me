@@ -13,6 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import com.docume.pojo.Example;
+
 import io.swagger.models.Operation;
 import io.swagger.models.parameters.Parameter;
 import io.swagger.models.parameters.PathParameter;
@@ -32,7 +34,7 @@ public class GenerateExample {
 
 	static final Logger logger = Logger.getLogger(GenerateExample.class);
 
-	public static JSONObject createLiveExample(Operation operation, String baseUrl) {
+	public static Example createLiveExample(Operation operation, String baseUrl) {
 		String requestUrl = null;
 		JSONObject output = null;
 		try {
@@ -52,12 +54,15 @@ public class GenerateExample {
 					output = (JSONObject) jsonArray.get(0);
 				}
 			} else {
-				logger.info("Response generated with error code " + responseCode +"\n"+ " One of the default parameters in "+url+" is incorrect.");
+				logger.warn("Response generated with error code " + responseCode +"\n"+ " One of the default parameters in "+url+" is incorrect.");
 			}
 		} catch (Exception ex) {
 			logger.error(ex);
 		}
-		return output;
+		Example example = new Example();
+		example.setExampleJson(output);
+		example.setExampleURL(requestUrl);
+		return example;
 
 	}
 

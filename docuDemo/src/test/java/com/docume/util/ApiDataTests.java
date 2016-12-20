@@ -3,11 +3,9 @@
  */
 package com.docume.util;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.contains;
 
 import java.io.File;
 import java.util.ArrayList;

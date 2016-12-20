@@ -44,7 +44,7 @@ public class FileUtil {
 	}
 
 	public static boolean toBoolean(String s) {
-		return Boolean.parseBoolean(s);
+		return Boolean.parseBoolean(s.trim().toLowerCase());
 	}
 
 }
