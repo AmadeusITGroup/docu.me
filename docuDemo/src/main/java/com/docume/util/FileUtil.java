@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.pegdown.PegDownProcessor;
 
 public class FileUtil {
 
@@ -48,12 +47,5 @@ public class FileUtil {
 		return Boolean.parseBoolean(s.trim().toLowerCase());
 	}
 	
-	public void convertMarkdownToHtml(){
-			PegDownProcessor pegDown = new PegDownProcessor(); 
-			String markDownRawString = "markdown _here_";
-	        String htmlString = pegDown.markdownToHtml(markDownRawString);
-	        System.out.println(htmlString); 
-			
-	}
 
 }
