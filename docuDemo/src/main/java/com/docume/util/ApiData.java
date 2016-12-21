@@ -197,7 +197,7 @@ public class ApiData {
 	 * @param responseMap
 	 */
 	private MyResponse getResponseList(Map.Entry<String, Response> responseMap) {
-		MyResponse response = null;
+		MyResponse response;
 		String resName = responseMap.getKey();
 		Response resValue = responseMap.getValue();
 		Property property = resValue.getSchema();
@@ -205,6 +205,8 @@ public class ApiData {
 		if(property == null){
 			//Response has no schema
 			response = createEmptyResponse();
+			response.setDescription(resValue.getDescription());
+			response.setResponseNumber(resName);
 		}
 		else {
 			if (property instanceof ArrayProperty) {
@@ -222,8 +224,7 @@ public class ApiData {
 	private MyResponse createEmptyResponse() {
 		MyResponse response;
 		response = new MyResponse();
-		response.setSimpleReference("No properties");
-		//TODO Check display
+		response.setReference("No schema is present");
 		return response;
 	}
 

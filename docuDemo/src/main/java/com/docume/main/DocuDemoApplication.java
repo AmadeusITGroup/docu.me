@@ -8,7 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.docume.util.ApiData;
-import com.docume.util.Documentation;
 import com.docume.util.FileUtil;
 import com.docume.util.IndexData;
 import com.docume.util.ResponseModelData;
@@ -20,7 +19,7 @@ import io.swagger.parser.SwaggerParser;
 public class DocuDemoApplication {
 
 
-	static final Logger logger = Logger.getLogger(Documentation.class);
+	static final Logger logger = Logger.getLogger(DocuDemoApplication.class);
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(DocuDemoApplication.class, args);
@@ -42,14 +41,15 @@ public class DocuDemoApplication {
 			// JS and CSS files for creating tree structure for json object
 			FileUtil fileUtil = new FileUtil();
 			fileUtil.createLib();
-			logger.info("The documentation portal is generated at this location: /docu.me/Portal");
+			logger.info("The documentation portal is generated at this location: /docuDemo/Portal");
+			System.exit(0);
 
 		} else {
 			logger.error("======================Error===============================");
 			logger.error("Please input a valid file location");
-
+			System.exit(1);
 		}
-		System.exit(0);
+		
 
 	}
 
