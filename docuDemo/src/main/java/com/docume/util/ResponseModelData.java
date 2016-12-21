@@ -25,8 +25,7 @@ import io.swagger.models.properties.RefProperty;
 
 public class ResponseModelData {
 
-	// create response model json schema
-
+	@SuppressWarnings("unchecked") //Remove JSONObject untyped warnings
 	public Map<String, JSONObject> createResponseJsonSchema(Swagger swagger) {
 		List<ModelDetail> modelDetailsList = createModelList(swagger);
 		HashMap<String, JSONObject> jsonResponseMap = new HashMap<>();
@@ -65,6 +64,7 @@ public class ResponseModelData {
 
 	}
 
+	@SuppressWarnings("unchecked") //Remove JSONObject untyped warnings
 	private JSONObject iterateJson(List<ModelDetail> modelDetailsList, String ref) {
 		JSONObject jObject = new JSONObject();
 

@@ -10,7 +10,6 @@ public class ModelDetail {
 	private List<ModelParameter> modelParameterList;
 
 	public ModelDetail() {
-
 		modelParameterList = new ArrayList<>();
 	}
 
