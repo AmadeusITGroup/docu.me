@@ -2,9 +2,9 @@ package com.docume.pojo;
 
 public class Entity {
 
-	String entityTitle;
+	private String entityTitle;
 
-	String entityHtmlPage;
+	private String entityHtmlPage;
 
 	public String getEntityTitle() {
 		return entityTitle;
