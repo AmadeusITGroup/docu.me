@@ -202,7 +202,11 @@ public class ApiData {
 		Response resValue = responseMap.getValue();
 		Property property = resValue.getSchema();
 
-		if (property != null) {
+		if(property == null){
+			//Response has no schema
+			response = createEmptyResponse();
+		}
+		else {
 			if (property instanceof ArrayProperty) {
 				ArrayProperty ap = (ArrayProperty) property;
 				Property p2 = ap.getItems();
@@ -211,9 +215,15 @@ public class ApiData {
 				response = extractSimple(resName, resValue, property);
 			}
 
-		} else {
-			response.setReference("No property reference was found.");
-		}
+		} 
+		return response;
+	}
+
+	private MyResponse createEmptyResponse() {
+		MyResponse response;
+		response = new MyResponse();
+		response.setSimpleReference("No properties");
+		//TODO Check display
 		return response;
 	}
 
