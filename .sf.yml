@@ -1,3 +1,4 @@
+#This file is used by Amadeus internal build tools
 environments: [java-1.8, maven-3.3]
 build: |
      cd docuDemo

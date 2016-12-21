@@ -21,8 +21,6 @@ public class IndexData {
 
 	MustacheFactory mf = new DefaultMustacheFactory();
 
-	// Create index template
-
 	/**
 	 * @param swagger
 	 */
@@ -92,10 +90,8 @@ public class IndexData {
 	
 	
 	public void buildIndexPage(Swagger swagger){
-		// Creating the Index page
-					String indexHtmlFile = createIndexData(swagger);
-					FileUtil.createFile(MustacheVariables.INDEX, indexHtmlFile);
-
+		String indexHtmlFile = createIndexData(swagger);
+		FileUtil.createFile(MustacheVariables.INDEX, indexHtmlFile);
 	}
 
 }

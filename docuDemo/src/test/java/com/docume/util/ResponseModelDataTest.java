@@ -3,7 +3,6 @@
  */
 package com.docume.util;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -13,7 +12,6 @@ import java.io.File;
 import java.util.List;
 import java.util.Set;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 
