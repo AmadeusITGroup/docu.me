@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.pegdown.PegDownProcessor;
 
 public class FileUtil {
 
@@ -16,7 +17,7 @@ public class FileUtil {
 	public static void createFile(String filename, String content) {
 		try {
 
-			File filedir = new File("Portal\\docs\\");
+			File filedir = new File("Portal/docs/");
 			filedir.mkdirs();
 			File file = new File(filedir, filename + ".html");
 			logger.info(filename + ".html is created!");
@@ -33,7 +34,7 @@ public class FileUtil {
 
 	public  void createLib() throws IOException {
 		
-		File destDir = new File("portal\\lib\\");
+		File destDir = new File("Portal/lib/");
 		ClassLoader classLoader = getClass().getClassLoader();
 		File srcCSSFile = new File(classLoader.getResource("static/jquery.json-view.css").getFile());
 		File srcJSFile = new File(classLoader.getResource("static/jquery.json-view.js").getFile());
@@ -45,6 +46,14 @@ public class FileUtil {
 
 	public static boolean toBoolean(String s) {
 		return Boolean.parseBoolean(s.trim().toLowerCase());
+	}
+	
+	public void convertMarkdownToHtml(){
+			PegDownProcessor pegDown = new PegDownProcessor(); 
+			String markDownRawString = "markdown _here_";
+	        String htmlString = pegDown.markdownToHtml(markDownRawString);
+	        System.out.println(htmlString); 
+			
 	}
 
 }

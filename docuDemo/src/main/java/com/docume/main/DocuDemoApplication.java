@@ -45,6 +45,7 @@ public class DocuDemoApplication {
 			logger.info("The documentation portal is generated at this location: /docu.me/Portal");
 
 		} else {
+			logger.error("======================Error===============================");
 			logger.error("Please input a valid file location");
 
 		}
