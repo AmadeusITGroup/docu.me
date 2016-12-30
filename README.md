@@ -51,9 +51,6 @@ Go into the docuDemo folder :
 	$ cd docu.me/docuDemo/
 	$ mvn spring-boot:run -Drun.arguments="swagger file path,live example flag"	
 
-Your command will look like:
-
-	$ mvn spring-boot:run -Drun.arguments="path/swagger.yml,false"
 
 ### From Spring Tool Suite
 
@@ -117,7 +114,7 @@ When you want to make changes to the look and feel of the documentation portal m
 * Here, index.mustache creates index.html, model.mustache creates model.html and api.mustache creates {{api}}.html.
 * In addition to changing the mustache files, one can customize the html files, just in case you want to add some static content that your swagger file could not accommodate!
 
-### Limitations for generating examples:
+### Limitations for generating examples
 
 * Supports only API key authorization, can be worked on for OAuth authorization mechanism using swagger security tools.
 * In this case your documentation portal will be generated as expected but you cannot 'Get a live response' which needs to call your API.
