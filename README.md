@@ -5,10 +5,10 @@ Built with Java and designed with Bootstrap and Jquery, it is based on the curre
 
 This documentation generator tool:
 
- - create a dedicated API documentation page for each and every single one of API services defined in a swagger file
+ - creates dedicated API documentation pages for each and every single one of API services defined in a swagger file
  - will allow execution of an API service from its own API documentation page, and display its results on the same page
- - pre-populate the API documentation pages with a predefined API environment variable if it is required to call the API services.(See the set API key installation section)
- - generate an example section during the API documentation creation by executing API call requests based on the most recent implementation. Thus, all response examples are always up to date (See How to Run section) 
+ - pre-populates the API documentation pages with a predefined API environment variable if it is required to call the API services.(See the set API key installation section)
+ - generates an example section during the API documentation creation by executing API call requests based on the most recent implementation. Thus, all response examples are always up to date (See How to Run section) 
 	  
 You can create your own swagger.yaml file with [Swagger Editor](http://editor.swagger.io/#/).
 
