@@ -29,7 +29,7 @@ This is a simple [tutorial](https://www.mkyong.com/maven/how-to-install-maven-in
 
 ## How to run 
 ### APIKEY environment variable
-If the API services defined in your swagger file require an APIKEY variable to run, you need to specify its value in your environment.
+If the API services defined in the swagger file require an APIKEY variable to run, you need to specify its value in your environment.
 You can follow this [tutorial](https://www.java.com/en/download/help/path.xml).
 Enter variable name as "APIKEY" and value with your apikey.
 
