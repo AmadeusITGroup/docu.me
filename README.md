@@ -3,9 +3,12 @@
 Docu.Me generates clear,  searchable, easy-to-customize documentation portal for APIs from your Swagger specifications.
 Built with Java and designed with Bootstrap and Jquery, it is based on the current version of the [Open API specification](https://github.com/OAI/OpenAPI-Specification) formerly known as Swagger.
 
-This documentation generator tool helps in creating interactive API documentation by:
-- Pre-populating your API documentation with your own API key needed to call your API services.(See the set API key installation section)
-- Create an example section in your document based by executing an API call request while generating your documentation. This allows you to display the actual response example to the user.
+This documentation generator tool will:
+
+ - create a dedicated API documentation page for each and every single one of API services defined in a swagger file
+ - will allow execution of an API service from its own API documentation page, and display its results on the same page
+ - pre-populate the API documentation pages with a predefined API environment variable if it is required to call the API services.(See the set API key installation section)
+ - generate an example section during the API documentation creation by executing API call requests based on the most recent implementation. Thus, all response examples are always up to date (See How to Run section) 
 	  
 You can create your own swagger.yaml file with [Swagger Editor](http://editor.swagger.io/#/).
 
@@ -23,11 +26,22 @@ You need the following installed and available in your $PATH:
 
 This is a simple [tutorial](https://www.mkyong.com/maven/how-to-install-maven-in-windows/) I followed to install them.
 
-### Set API key as environment variable.
+
+## How to run 
+### APIKEY environment variable
+If the API services defined in your swagger file require an APIKEY variable to run, you need to specify its value in your environment.
 You can follow this [tutorial](https://www.java.com/en/download/help/path.xml).
 Enter variable name as "APIKEY" and value with your apikey.
 
-## Installation of Docu.me:
+### Input parameters
+There are two required arguments
+
+
+- *swagger file path*:  The full swagger yaml file path location from which the API documentation should be created for
+
+- *live example flag*: if true, the example section will be generated on the fly by calling each API service default values, if false static example are inserted from the swagger file.
+
+## Installation
 Clone the project into your local. You can follow one of the ways to generate documentation.
 
 ### From terminal
@@ -35,10 +49,7 @@ Clone the project into your local. You can follow one of the ways to generate do
 Go into the docuDemo folder :
 
 	$ cd docu.me/docuDemo/
-	$ mvn spring-boot:run -Drun.arguments="args1,args2"
-	
- - args1 = Swagger yaml file location. For example "path/swagger.yml".
- - args2 = This parameter should be true if you want to generate examples on the fly by calling the API with default values or set it to false.
+	$ mvn spring-boot:run -Drun.arguments="swagger file path,live example flag"	
 
 Your command will look like:
 
@@ -47,7 +58,7 @@ Your command will look like:
 ### From Spring Tool Suite
 
 * Import _docuDemo_ folder as *Existing Maven Project*. Go to the DocuDemoApplication class and click Run configurations.
-* Go to Arguments tab and pass "args1,args2" as explained above.
+* Go to Arguments tab and set the "*swagger file path*,*live example flag*" as explained above.
 * Go to Environment > New . Enter variable name as "APIKEY" and value with your apikey.
 * Click Apply > Run.
 
@@ -57,8 +68,8 @@ Your command will look like:
 * Once the project is imported. Select Run > Run Configurations. Create a new Java Application.
 * Set the Main class. Click on the Search button and select "DocuDemoApplication" from com.docume.main package.
 * Go to Arguments tab and enter the following two arguments:
-  - the full path file location of your swagger yaml file of your API. (ex C:/myproject/documentation/myswagger.yml)
-  - a boolean value: true indicating that you want to generate examples on the fly by calling your API, false otherwise.
+  - the full path file location of your swagger yaml file of your API (*swagger file path*). (ex C:/myproject/documentation/myswagger.yml)
+  - a boolean value (*live example flag*): true indicating that you want to generate examples on the fly by calling your API, false otherwise.
 * Go to Environment > New . Enter variable name as "APIKEY" and value with your apikey.
 * Click Apply > Run.
 
@@ -98,7 +109,7 @@ We can see 10 sections on this page.
 
 All the response models are listed here with all of their elements.This information comes from [schemaObject](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject) mentioned in definitions object. Elements can be of type Array, String or Reference to another model.
 
-## Mustache templates:
+## Mustache templates
 
 When you want to make changes to the look and feel of the documentation portal mustache templates can be customized.
 * You can follow [Mustache.js](https://mustache.github.io/mustache.5.html) guide for tweaking the mustache files.
