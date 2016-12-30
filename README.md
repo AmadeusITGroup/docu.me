@@ -3,7 +3,7 @@
 Docu.Me generates clear,  searchable, easy-to-customize documentation portal for APIs from your Swagger specifications.
 Built with Java and designed with Bootstrap and Jquery, it is based on the current version of the [Open API specification](https://github.com/OAI/OpenAPI-Specification) formerly known as Swagger.
 
-This documentation generator tool will:
+This documentation generator tool:
 
  - create a dedicated API documentation page for each and every single one of API services defined in a swagger file
  - will allow execution of an API service from its own API documentation page, and display its results on the same page
