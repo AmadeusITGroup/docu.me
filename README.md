@@ -39,7 +39,7 @@ There are two required arguments
 
 - *swagger file path*:  The full swagger yaml file path location from which the API documentation should be created for
 
-- *live example flag*: if true, the example section will be generated on the fly by calling each API service default values, if false static example are inserted from the swagger file.
+- *live example flag*: if true, an example section will be generated on the fly by calling the API service with default values, if false, no example section will be present at the end of the generation, but each API documentation page can still be manually edited to add one later. 
 
 ## Installation
 Clone the project into your local. You can follow one of the ways to generate documentation.
