@@ -118,3 +118,6 @@ When you want to make changes to the look and feel of the documentation portal m
 
 * Supports only API key authorization, can be worked on for OAuth authorization mechanism using swagger security tools.
 * In this case your documentation portal will be generated as expected but you cannot 'Get a live response' which needs to call your API.
+
+## Got feedback?
+Like what you see? Got feedback on what we could be doing better? You can email us at docu.me@amadeus.com
